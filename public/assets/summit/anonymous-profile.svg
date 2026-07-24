@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 430" role="img" aria-labelledby="title desc">
+  <title id="title">Anonymous profile placeholder</title>
+  <desc id="desc">A simple anonymous profile silhouette for a forthcoming summit speaker.</desc>
+  <rect width="430" height="430" fill="#fff7e3"/>
+  <circle cx="215" cy="171" r="76" fill="#d8c29a"/>
+  <path fill="#d8c29a" d="M86 372c17-74 67-118 129-118s112 44 129 118H86z"/>
+  <circle cx="215" cy="215" r="198" fill="none" stroke="#d69a28" stroke-width="6" opacity=".55"/>
+  <circle cx="215" cy="215" r="169" fill="none" stroke="#16b9d6" stroke-width="4" opacity=".36"/>
+</svg>

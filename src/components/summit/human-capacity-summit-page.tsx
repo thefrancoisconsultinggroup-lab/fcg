@@ -69,8 +69,15 @@ export function HumanCapacitySummitPage() {
                       <h3 className={styles.speakerSectionTitle}>{section.title}</h3>
                     </ScrollReveal>
                     <div className={styles.speakerGrid}>
-                      {sectionSpeakers.map((speaker) => (
-                        <ScrollReveal key={speaker.name} className={styles.speakerCard}>
+                      {sectionSpeakers.map((speaker, index) => (
+                        <ScrollReveal
+                          key={`${section.group}-${speaker.name}-${index}`}
+                          className={`${styles.speakerCard} ${
+                            speaker.name === "Christine D. Francois"
+                              ? styles.speakerCardChristine
+                              : ""
+                          }`}
+                        >
                           <div className={styles.speakerPortrait}>
                             <Image
                               src={`${speaker.image}?v=${speakerImageVersion}`}

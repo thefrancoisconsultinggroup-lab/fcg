@@ -408,11 +408,11 @@
 .speakerSectionTitle {
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2.25rem, 4vw, 4.25rem);
+  font-size: clamp(2.55rem, 4.35vw, 4.65rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 0.98;
-  color: var(--summit-navy);
+  color: var(--summit-ink);
   text-wrap: balance;
 }
 
@@ -450,7 +450,9 @@
 
 .speakerCapacity {
   margin-top: 0.7rem;
-  color: var(--summit-gold);
+  color: var(--summit-ink);
+  font-size: clamp(0.86rem, 0.95vw, 1rem);
+  font-weight: 800;
   letter-spacing: 0.18em;
 }
 
@@ -1088,6 +1090,10 @@
   .typeGrid,
   .formGrid {
     grid-template-columns: 1fr;
+  }
+
+  .speakerCardChristine {
+    order: -1;
   }
 
   .capacityCard {

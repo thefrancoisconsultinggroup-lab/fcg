@@ -66,13 +66,6 @@ export const summitSpeakers = [
     image: "/assets/summit/judy-oxley-fullerton.jpg",
   },
   {
-    name: "Capt. Wendy Yawching",
-    group: "founding",
-    capacity: "Experiential Capacity",
-    role: "Airline Captain | Author | Adventurer",
-    image: "/assets/summit/wendy_yawching.jpeg",
-  },
-  {
     name: "Christine D. Francois",
     group: "founding",
     capacity: "Human Capacity",
@@ -80,11 +73,32 @@ export const summitSpeakers = [
     image: "/assets/summit/christine-francois.png",
   },
   {
+    name: "Capt. Wendy Yawching",
+    group: "founding",
+    capacity: "Experiential Capacity",
+    role: "Airline Captain | Author | Adventurer",
+    image: "/assets/summit/wendy_yawching.jpeg",
+  },
+  {
     name: "David R. Larsen, MFHD",
     group: "contributing",
     capacity: "Cognitive Capacity",
     role: "Education Chairman, American Brain Council | Alzheimer's Researcher | Author",
     image: "/assets/summit/david-larsen.jpeg",
+  },
+  {
+    name: "To Be Announced",
+    group: "contributing",
+    capacity: "Human Capacity",
+    role: "Contributing Voice",
+    image: "/assets/summit/anonymous-profile.svg",
+  },
+  {
+    name: "To Be Announced",
+    group: "contributing",
+    capacity: "Human Capacity",
+    role: "Contributing Voice",
+    image: "/assets/summit/anonymous-profile.svg",
   },
 ] as const;
 
