@@ -1,0 +1,32 @@
+{
+  "records": [
+    {
+      "id": "4bddb524-4679-440e-93ef-5ca8108b8788",
+      "paypalOrderId": "5JU67043RM412390J",
+      "pricing": {
+        "attendeeCount": 1,
+        "categoryLabel": "Individual registration",
+        "rateDetail": "Ends August 15, 2026",
+        "rateLabel": "Early Bird",
+        "rateValue": "early-bird",
+        "total": 45,
+        "unitPrice": 45
+      },
+      "registration": {
+        "accessibilityNeeds": "",
+        "country": "Trinidad and Tobago",
+        "dietaryNotes": "",
+        "email": "paypal-sandbox-test@example.com",
+        "firstName": "PayPal",
+        "hopes": "Testing PayPal sandbox checkout.",
+        "lastName": "Sandbox Test",
+        "organization": "Francois Consulting Group Test",
+        "phone": "+18685550199",
+        "role": "QA Test"
+      },
+      "status": "pending_approval",
+      "createdAt": "2026-07-24T19:28:17.859Z",
+      "updatedAt": "2026-07-24T19:28:17.859Z"
+    }
+  ]
+}

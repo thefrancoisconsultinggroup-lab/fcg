@@ -1,0 +1,5744 @@
+[
+  {
+    "vp": "desktop",
+    "slug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+    "local": {
+      "currentSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 250,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 254,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 258,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 270,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 250
+      },
+      {
+        "w": 324,
+        "h": 254
+      },
+      {
+        "w": 324,
+        "h": 258
+      },
+      {
+        "w": 324,
+        "h": 270
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+    "local": {
+      "currentSlug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 420,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 420,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 420
+      },
+      {
+        "w": 324,
+        "h": 420
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "international-mens-day-edition-celebrating-men-and-boys",
+    "local": {
+      "currentSlug": "international-mens-day-edition-celebrating-men-and-boys",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 275,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 559,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 503,
+          "layout": "mediaTextLeft",
+          "w": 389
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 432,
+        "h": 275
+      },
+      {
+        "w": 432,
+        "h": 559
+      },
+      {
+        "w": 389,
+        "h": 503
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "when-giving-blood-becomes-a-national-conversation",
+    "local": {
+      "currentSlug": "when-giving-blood-becomes-a-national-conversation",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 487,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 193,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 424,
+          "layout": "mediaTextLeft",
+          "w": 162
+        },
+        {
+          "float": "left",
+          "h": 263,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 487
+      },
+      {
+        "w": 324,
+        "h": 216
+      },
+      {
+        "w": 324,
+        "h": 193
+      },
+      {
+        "w": 162,
+        "h": 424
+      },
+      {
+        "w": 324,
+        "h": 263
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+    "local": {
+      "currentSlug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 774,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 771,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 734,
+          "layout": "mediaTextLeft",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 707,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 432,
+        "h": 774
+      },
+      {
+        "w": 432,
+        "h": 771
+      },
+      {
+        "w": 540,
+        "h": 734
+      },
+      {
+        "w": 540,
+        "h": 707
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "self-care-the-protector-of-the-soul",
+    "local": {
+      "currentSlug": "self-care-the-protector-of-the-soul",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 693,
+          "layout": "mediaTextLeft",
+          "w": 400
+        },
+        {
+          "float": "left",
+          "h": 308,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 400,
+        "h": 693
+      },
+      {
+        "w": 540,
+        "h": 308
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "life-through-the-lens-with-elliot-francois-part-1-2",
+    "local": {
+      "currentSlug": "life-through-the-lens-with-elliot-francois-part-1-2",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "desktop",
+    "slug": "gratitude-grace-fuel-for-mind-body-soul-and-leadership",
+    "local": {
+      "currentSlug": "gratitude-grace-fuel-for-mind-body-soul-and-leadership",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 352,
+          "layout": "mediaTextLeft",
+          "w": 248
+        },
+        {
+          "float": "left",
+          "h": 265,
+          "layout": "mediaTextLeft",
+          "w": 400
+        },
+        {
+          "float": "left",
+          "h": 398,
+          "layout": "mediaTextLeft",
+          "w": 400
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 248,
+        "h": 352
+      },
+      {
+        "w": 400,
+        "h": 265
+      },
+      {
+        "w": 400,
+        "h": 398
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly",
+    "local": {
+      "currentSlug": "resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 949,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 949
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing",
+    "local": {
+      "currentSlug": "financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "prioritizing-brain-health-the-power-of-early-action",
+    "local": {
+      "currentSlug": "prioritizing-brain-health-the-power-of-early-action",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "just-miles-away-thriving-emotionally-when-the-world-feels-unsteady",
+    "local": {
+      "currentSlug": "just-miles-away-thriving-emotionally-when-the-world-feels-unsteady",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "service-from-a-position-of-love-and-care-rising-together-in-uncertain-times",
+    "local": {
+      "currentSlug": "service-from-a-position-of-love-and-care-rising-together-in-uncertain-times",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "hair-hormones-what-we-feelhairs-the-truth",
+    "local": {
+      "currentSlug": "hair-hormones-what-we-feelhairs-the-truth",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 252,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 252
+      },
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "purrs-wags-wellness-why-we-truly-thrive-together",
+    "local": {
+      "currentSlug": "purrs-wags-wellness-why-we-truly-thrive-together",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 362,
+          "layout": "mediaTextLeft",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 540,
+        "h": 362
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "simple-moves-to-feel-stronger-this-week",
+    "local": {
+      "currentSlug": "simple-moves-to-feel-stronger-this-week",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "cart-full-of-joy-the-3-g-grocery-groove",
+    "local": {
+      "currentSlug": "cart-full-of-joy-the-3-g-grocery-groove",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 454,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 222,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 454
+      },
+      {
+        "w": 324,
+        "h": 222
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "emotional-wellness-in-uncertain-times",
+    "local": {
+      "currentSlug": "emotional-wellness-in-uncertain-times",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 535,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 547,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 535
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 547
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "when-female-friendships-nourish-the-soul",
+    "local": {
+      "currentSlug": "when-female-friendships-nourish-the-soul",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 184,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 648,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 184
+      },
+      {
+        "w": 324,
+        "h": 648
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "small-steps-big-impact-a-lively-wellness-conversation-with-dr-sonia-copeland",
+    "local": {
+      "currentSlug": "small-steps-big-impact-a-lively-wellness-conversation-with-dr-sonia-copeland",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "desktop",
+    "slug": "a-soulful-conversation-with-troy-hadeed-on-wellness-and-life",
+    "local": {
+      "currentSlug": "a-soulful-conversation-with-troy-hadeed-on-wellness-and-life",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-stillness-within-exploring-spiritual-wellness-as-a-path-to-peace-purpose-and-presence",
+    "local": {
+      "currentSlug": "the-stillness-within-exploring-spiritual-wellness-as-a-path-to-peace-purpose-and-presence",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "unplug-to-power-up",
+    "local": {
+      "currentSlug": "unplug-to-power-up",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 414,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 180,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 414
+      },
+      {
+        "w": 324,
+        "h": 180
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-environment-and-our-wellness",
+    "local": {
+      "currentSlug": "the-environment-and-our-wellness",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 165,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 165
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "empower-align-prevail-why-seeking-support-could-be-the-most-strategic-move-of-your-career-and-your-life",
+    "local": {
+      "currentSlug": "empower-align-prevail-why-seeking-support-could-be-the-most-strategic-move-of-your-career-and-your-life",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 182,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 502,
+          "layout": "center",
+          "w": 355
+        },
+        {
+          "float": "none",
+          "h": 502,
+          "layout": "center",
+          "w": 355
+        },
+        {
+          "float": "none",
+          "h": 502,
+          "layout": "center",
+          "w": 355
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 182
+      },
+      {
+        "w": 355,
+        "h": 502
+      },
+      {
+        "w": 355,
+        "h": 502
+      },
+      {
+        "w": 355,
+        "h": 502
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "breathe-better-live-brighter-the-healing-power-within-you",
+    "local": {
+      "currentSlug": "breathe-better-live-brighter-the-healing-power-within-you",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 181,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 181
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "menopause-messing-with-you-heres-how-to-get-your-life-back",
+    "local": {
+      "currentSlug": "menopause-messing-with-you-heres-how-to-get-your-life-back",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "longevity-is-redefining-the-workplace-are-we-ready",
+    "local": {
+      "currentSlug": "longevity-is-redefining-the-workplace-are-we-ready",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 215,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 215
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-mind-as-medicine-think-breathe-thrive",
+    "local": {
+      "currentSlug": "the-mind-as-medicine-think-breathe-thrive",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "nourish-to-flourish",
+    "local": {
+      "currentSlug": "nourish-to-flourish",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 184,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 215,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 184
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 215
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "rethink-your-drink-alcohol-culture-and-brain-health",
+    "local": {
+      "currentSlug": "rethink-your-drink-alcohol-culture-and-brain-health",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "financial-wellness-moms-money-and-a-movement",
+    "local": {
+      "currentSlug": "financial-wellness-moms-money-and-a-movement",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-story-that-changed-everything-why-brain-health-cant-wait",
+    "local": {
+      "currentSlug": "the-story-that-changed-everything-why-brain-health-cant-wait",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 308,
+          "layout": "mediaTextLeft",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 180,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 308
+      },
+      {
+        "w": 324,
+        "h": 180
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "coffee-more-than-just-your-morning-pick-me-up",
+    "local": {
+      "currentSlug": "coffee-more-than-just-your-morning-pick-me-up",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-power-of-sleep-for-longevity-brain-health-why-sleep-is-your-superpower",
+    "local": {
+      "currentSlug": "the-power-of-sleep-for-longevity-brain-health-why-sleep-is-your-superpower",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 248,
+          "layout": "mediaTextLeft",
+          "w": 248
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 248,
+        "h": 248
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-heart-of-social-wellness-more-than-just-connections",
+    "local": {
+      "currentSlug": "the-heart-of-social-wellness-more-than-just-connections",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 250,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 165,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 250,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 216
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 220
+      },
+      {
+        "w": 216,
+        "h": 250
+      },
+      {
+        "w": 216,
+        "h": 165
+      },
+      {
+        "w": 216,
+        "h": 250
+      },
+      {
+        "w": 216,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "the-power-of-occupational-wellness",
+    "local": {
+      "currentSlug": "the-power-of-occupational-wellness",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "accelerate-action-for-womens-health-and-wellbeing",
+    "local": {
+      "currentSlug": "accelerate-action-for-womens-health-and-wellbeing",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 239,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 217,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 219,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 239
+      },
+      {
+        "w": 216,
+        "h": 217
+      },
+      {
+        "w": 216,
+        "h": 219
+      },
+      {
+        "w": 216,
+        "h": 220
+      },
+      {
+        "w": 216,
+        "h": 220
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "prioritizing-emotional-wellness-through-menopause",
+    "local": {
+      "currentSlug": "prioritizing-emotional-wellness-through-menopause",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 150,
+          "layout": "center",
+          "w": 150
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 150,
+        "h": 150
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "nourish-to-flourish-the-food-mood-connection",
+    "local": {
+      "currentSlug": "nourish-to-flourish-the-food-mood-connection",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 169,
+          "layout": "center",
+          "w": 300
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 300,
+        "h": 169
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "desktop",
+    "slug": "lets-talk-about-energy",
+    "local": {
+      "currentSlug": "lets-talk-about-energy",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "right",
+          "h": 304,
+          "layout": "mediaTextRight",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 304,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 304
+      },
+      {
+        "w": 540,
+        "h": 304
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+    "local": {
+      "currentSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 250,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 254,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 258,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 270,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 250
+      },
+      {
+        "w": 324,
+        "h": 254
+      },
+      {
+        "w": 324,
+        "h": 258
+      },
+      {
+        "w": 324,
+        "h": 270
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+    "local": {
+      "currentSlug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 420,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 420,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 420
+      },
+      {
+        "w": 324,
+        "h": 420
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "international-mens-day-edition-celebrating-men-and-boys",
+    "local": {
+      "currentSlug": "international-mens-day-edition-celebrating-men-and-boys",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 275,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 559,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 503,
+          "layout": "mediaTextLeft",
+          "w": 389
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 432,
+        "h": 275
+      },
+      {
+        "w": 432,
+        "h": 559
+      },
+      {
+        "w": 389,
+        "h": 503
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "when-giving-blood-becomes-a-national-conversation",
+    "local": {
+      "currentSlug": "when-giving-blood-becomes-a-national-conversation",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 487,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 193,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 424,
+          "layout": "mediaTextLeft",
+          "w": 162
+        },
+        {
+          "float": "left",
+          "h": 263,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 487
+      },
+      {
+        "w": 324,
+        "h": 216
+      },
+      {
+        "w": 324,
+        "h": 193
+      },
+      {
+        "w": 162,
+        "h": 424
+      },
+      {
+        "w": 324,
+        "h": 263
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+    "local": {
+      "currentSlug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 774,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 771,
+          "layout": "mediaTextLeft",
+          "w": 432
+        },
+        {
+          "float": "left",
+          "h": 734,
+          "layout": "mediaTextLeft",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 707,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 432,
+        "h": 774
+      },
+      {
+        "w": 432,
+        "h": 771
+      },
+      {
+        "w": 540,
+        "h": 734
+      },
+      {
+        "w": 540,
+        "h": 707
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "self-care-the-protector-of-the-soul",
+    "local": {
+      "currentSlug": "self-care-the-protector-of-the-soul",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 693,
+          "layout": "mediaTextLeft",
+          "w": 400
+        },
+        {
+          "float": "left",
+          "h": 308,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 400,
+        "h": 693
+      },
+      {
+        "w": 540,
+        "h": 308
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "life-through-the-lens-with-elliot-francois-part-1-2",
+    "local": {
+      "currentSlug": "life-through-the-lens-with-elliot-francois-part-1-2",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "tablet",
+    "slug": "gratitude-grace-fuel-for-mind-body-soul-and-leadership",
+    "local": {
+      "currentSlug": "gratitude-grace-fuel-for-mind-body-soul-and-leadership",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 352,
+          "layout": "mediaTextLeft",
+          "w": 248
+        },
+        {
+          "float": "left",
+          "h": 265,
+          "layout": "mediaTextLeft",
+          "w": 400
+        },
+        {
+          "float": "left",
+          "h": 398,
+          "layout": "mediaTextLeft",
+          "w": 400
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 248,
+        "h": 352
+      },
+      {
+        "w": 400,
+        "h": 265
+      },
+      {
+        "w": 400,
+        "h": 398
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly",
+    "local": {
+      "currentSlug": "resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 949,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 949
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing",
+    "local": {
+      "currentSlug": "financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "prioritizing-brain-health-the-power-of-early-action",
+    "local": {
+      "currentSlug": "prioritizing-brain-health-the-power-of-early-action",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "just-miles-away-thriving-emotionally-when-the-world-feels-unsteady",
+    "local": {
+      "currentSlug": "just-miles-away-thriving-emotionally-when-the-world-feels-unsteady",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "service-from-a-position-of-love-and-care-rising-together-in-uncertain-times",
+    "local": {
+      "currentSlug": "service-from-a-position-of-love-and-care-rising-together-in-uncertain-times",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "hair-hormones-what-we-feelhairs-the-truth",
+    "local": {
+      "currentSlug": "hair-hormones-what-we-feelhairs-the-truth",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 252,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 252
+      },
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "purrs-wags-wellness-why-we-truly-thrive-together",
+    "local": {
+      "currentSlug": "purrs-wags-wellness-why-we-truly-thrive-together",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 362,
+          "layout": "mediaTextLeft",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 540,
+        "h": 362
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "simple-moves-to-feel-stronger-this-week",
+    "local": {
+      "currentSlug": "simple-moves-to-feel-stronger-this-week",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "cart-full-of-joy-the-3-g-grocery-groove",
+    "local": {
+      "currentSlug": "cart-full-of-joy-the-3-g-grocery-groove",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 454,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 222,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 454
+      },
+      {
+        "w": 324,
+        "h": 222
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "emotional-wellness-in-uncertain-times",
+    "local": {
+      "currentSlug": "emotional-wellness-in-uncertain-times",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 535,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 547,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 535
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 547
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "when-female-friendships-nourish-the-soul",
+    "local": {
+      "currentSlug": "when-female-friendships-nourish-the-soul",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 184,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 648,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 184
+      },
+      {
+        "w": 324,
+        "h": 648
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "small-steps-big-impact-a-lively-wellness-conversation-with-dr-sonia-copeland",
+    "local": {
+      "currentSlug": "small-steps-big-impact-a-lively-wellness-conversation-with-dr-sonia-copeland",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "tablet",
+    "slug": "a-soulful-conversation-with-troy-hadeed-on-wellness-and-life",
+    "local": {
+      "currentSlug": "a-soulful-conversation-with-troy-hadeed-on-wellness-and-life",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-stillness-within-exploring-spiritual-wellness-as-a-path-to-peace-purpose-and-presence",
+    "local": {
+      "currentSlug": "the-stillness-within-exploring-spiritual-wellness-as-a-path-to-peace-purpose-and-presence",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "unplug-to-power-up",
+    "local": {
+      "currentSlug": "unplug-to-power-up",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 414,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 180,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 414
+      },
+      {
+        "w": 324,
+        "h": 180
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-environment-and-our-wellness",
+    "local": {
+      "currentSlug": "the-environment-and-our-wellness",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 165,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 165
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "empower-align-prevail-why-seeking-support-could-be-the-most-strategic-move-of-your-career-and-your-life",
+    "local": {
+      "currentSlug": "empower-align-prevail-why-seeking-support-could-be-the-most-strategic-move-of-your-career-and-your-life",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 182,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 502,
+          "layout": "center",
+          "w": 355
+        },
+        {
+          "float": "none",
+          "h": 502,
+          "layout": "center",
+          "w": 355
+        },
+        {
+          "float": "none",
+          "h": 502,
+          "layout": "center",
+          "w": 355
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 182
+      },
+      {
+        "w": 355,
+        "h": 502
+      },
+      {
+        "w": 355,
+        "h": 502
+      },
+      {
+        "w": 355,
+        "h": 502
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "breathe-better-live-brighter-the-healing-power-within-you",
+    "local": {
+      "currentSlug": "breathe-better-live-brighter-the-healing-power-within-you",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 181,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 181
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "menopause-messing-with-you-heres-how-to-get-your-life-back",
+    "local": {
+      "currentSlug": "menopause-messing-with-you-heres-how-to-get-your-life-back",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "longevity-is-redefining-the-workplace-are-we-ready",
+    "local": {
+      "currentSlug": "longevity-is-redefining-the-workplace-are-we-ready",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 215,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 215
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-mind-as-medicine-think-breathe-thrive",
+    "local": {
+      "currentSlug": "the-mind-as-medicine-think-breathe-thrive",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "nourish-to-flourish",
+    "local": {
+      "currentSlug": "nourish-to-flourish",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 184,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 215,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 184
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 215
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "rethink-your-drink-alcohol-culture-and-brain-health",
+    "local": {
+      "currentSlug": "rethink-your-drink-alcohol-culture-and-brain-health",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "financial-wellness-moms-money-and-a-movement",
+    "local": {
+      "currentSlug": "financial-wellness-moms-money-and-a-movement",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-story-that-changed-everything-why-brain-health-cant-wait",
+    "local": {
+      "currentSlug": "the-story-that-changed-everything-why-brain-health-cant-wait",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 308,
+          "layout": "mediaTextLeft",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 180,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 308
+      },
+      {
+        "w": 324,
+        "h": 180
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "coffee-more-than-just-your-morning-pick-me-up",
+    "local": {
+      "currentSlug": "coffee-more-than-just-your-morning-pick-me-up",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-power-of-sleep-for-longevity-brain-health-why-sleep-is-your-superpower",
+    "local": {
+      "currentSlug": "the-power-of-sleep-for-longevity-brain-health-why-sleep-is-your-superpower",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 248,
+          "layout": "mediaTextLeft",
+          "w": 248
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 248,
+        "h": 248
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-heart-of-social-wellness-more-than-just-connections",
+    "local": {
+      "currentSlug": "the-heart-of-social-wellness-more-than-just-connections",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 250,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 165,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 250,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 216
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 220
+      },
+      {
+        "w": 216,
+        "h": 250
+      },
+      {
+        "w": 216,
+        "h": 165
+      },
+      {
+        "w": 216,
+        "h": 250
+      },
+      {
+        "w": 216,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "the-power-of-occupational-wellness",
+    "local": {
+      "currentSlug": "the-power-of-occupational-wellness",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "accelerate-action-for-womens-health-and-wellbeing",
+    "local": {
+      "currentSlug": "accelerate-action-for-womens-health-and-wellbeing",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "left",
+          "h": 239,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 217,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 219,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "left",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 239
+      },
+      {
+        "w": 216,
+        "h": 217
+      },
+      {
+        "w": 216,
+        "h": 219
+      },
+      {
+        "w": 216,
+        "h": 220
+      },
+      {
+        "w": 216,
+        "h": 220
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "prioritizing-emotional-wellness-through-menopause",
+    "local": {
+      "currentSlug": "prioritizing-emotional-wellness-through-menopause",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 150,
+          "layout": "center",
+          "w": 150
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 150,
+        "h": 150
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "nourish-to-flourish-the-food-mood-connection",
+    "local": {
+      "currentSlug": "nourish-to-flourish-the-food-mood-connection",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 169,
+          "layout": "center",
+          "w": 300
+        },
+        {
+          "float": "left",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 300,
+        "h": 169
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "tablet",
+    "slug": "lets-talk-about-energy",
+    "local": {
+      "currentSlug": "lets-talk-about-energy",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "right",
+          "h": 304,
+          "layout": "mediaTextRight",
+          "w": 540
+        },
+        {
+          "float": "left",
+          "h": 304,
+          "layout": "mediaTextLeft",
+          "w": 540
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 304
+      },
+      {
+        "w": 540,
+        "h": 304
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+    "local": {
+      "currentSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 420,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 250
+      },
+      {
+        "w": 324,
+        "h": 254
+      },
+      {
+        "w": 324,
+        "h": 258
+      },
+      {
+        "w": 324,
+        "h": 270
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+    "local": {
+      "currentSlug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 420,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 420
+      },
+      {
+        "w": 324,
+        "h": 420
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "international-mens-day-edition-celebrating-men-and-boys",
+    "local": {
+      "currentSlug": "international-mens-day-edition-celebrating-men-and-boys",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 213,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 434,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 434,
+          "layout": "mediaTextLeft",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/when-giving-blood-becomes-a-national-conversation"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 432,
+        "h": 275
+      },
+      {
+        "w": 432,
+        "h": 559
+      },
+      {
+        "w": 389,
+        "h": 503
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "when-giving-blood-becomes-a-national-conversation",
+    "local": {
+      "currentSlug": "when-giving-blood-becomes-a-national-conversation",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 487,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 193,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 424,
+          "layout": "mediaTextLeft",
+          "w": 162
+        },
+        {
+          "float": "none",
+          "h": 263,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 487
+      },
+      {
+        "w": 324,
+        "h": 216
+      },
+      {
+        "w": 324,
+        "h": 193
+      },
+      {
+        "w": 162,
+        "h": 424
+      },
+      {
+        "w": 324,
+        "h": 263
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+    "local": {
+      "currentSlug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 600,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 598,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 455,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 438,
+          "layout": "mediaTextLeft",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 432,
+        "h": 774
+      },
+      {
+        "w": 432,
+        "h": 771
+      },
+      {
+        "w": 540,
+        "h": 734
+      },
+      {
+        "w": 540,
+        "h": 707
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "self-care-the-protector-of-the-soul",
+    "local": {
+      "currentSlug": "self-care-the-protector-of-the-soul",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 581,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 191,
+          "layout": "mediaTextLeft",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 400,
+        "h": 693
+      },
+      {
+        "w": 540,
+        "h": 308
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "life-through-the-lens-with-elliot-francois-part-1-2",
+    "local": {
+      "currentSlug": "life-through-the-lens-with-elliot-francois-part-1-2",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "mobile",
+    "slug": "gratitude-grace-fuel-for-mind-body-soul-and-leadership",
+    "local": {
+      "currentSlug": "gratitude-grace-fuel-for-mind-body-soul-and-leadership",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 352,
+          "layout": "mediaTextLeft",
+          "w": 248
+        },
+        {
+          "float": "none",
+          "h": 222,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 334,
+          "layout": "mediaTextLeft",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 248,
+        "h": 352
+      },
+      {
+        "w": 400,
+        "h": 265
+      },
+      {
+        "w": 400,
+        "h": 398
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly",
+    "local": {
+      "currentSlug": "resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 589,
+          "layout": "mediaTextLeft",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 949
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing",
+    "local": {
+      "currentSlug": "financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "prioritizing-brain-health-the-power-of-early-action",
+    "local": {
+      "currentSlug": "prioritizing-brain-health-the-power-of-early-action",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "just-miles-away-thriving-emotionally-when-the-world-feels-unsteady",
+    "local": {
+      "currentSlug": "just-miles-away-thriving-emotionally-when-the-world-feels-unsteady",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "service-from-a-position-of-love-and-care-rising-together-in-uncertain-times",
+    "local": {
+      "currentSlug": "service-from-a-position-of-love-and-care-rising-together-in-uncertain-times",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "hair-hormones-what-we-feelhairs-the-truth",
+    "local": {
+      "currentSlug": "hair-hormones-what-we-feelhairs-the-truth",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 252,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 252
+      },
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "purrs-wags-wellness-why-we-truly-thrive-together",
+    "local": {
+      "currentSlug": "purrs-wags-wellness-why-we-truly-thrive-together",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 225,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      },
+      {
+        "w": 540,
+        "h": 362
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "simple-moves-to-feel-stronger-this-week",
+    "local": {
+      "currentSlug": "simple-moves-to-feel-stronger-this-week",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "cart-full-of-joy-the-3-g-grocery-groove",
+    "local": {
+      "currentSlug": "cart-full-of-joy-the-3-g-grocery-groove",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 454,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 222,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 419,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 454
+      },
+      {
+        "w": 324,
+        "h": 222
+      },
+      {
+        "w": 324,
+        "h": 419
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "emotional-wellness-in-uncertain-times",
+    "local": {
+      "currentSlug": "emotional-wellness-in-uncertain-times",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 536,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 734,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 546,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 535
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 547
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "when-female-friendships-nourish-the-soul",
+    "local": {
+      "currentSlug": "when-female-friendships-nourish-the-soul",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 252,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 185,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 649,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 184
+      },
+      {
+        "w": 324,
+        "h": 648
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "small-steps-big-impact-a-lively-wellness-conversation-with-dr-sonia-copeland",
+    "local": {
+      "currentSlug": "small-steps-big-impact-a-lively-wellness-conversation-with-dr-sonia-copeland",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "mobile",
+    "slug": "a-soulful-conversation-with-troy-hadeed-on-wellness-and-life",
+    "local": {
+      "currentSlug": "a-soulful-conversation-with-troy-hadeed-on-wellness-and-life",
+      "hasExcerpt": false,
+      "imgs": [],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": []
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-stillness-within-exploring-spiritual-wellness-as-a-path-to-peace-purpose-and-presence",
+    "local": {
+      "currentSlug": "the-stillness-within-exploring-spiritual-wellness-as-a-path-to-peace-purpose-and-presence",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 458,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 181,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 582,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 568,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "unplug-to-power-up",
+    "local": {
+      "currentSlug": "unplug-to-power-up",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 555,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 414,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 180,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 414
+      },
+      {
+        "w": 324,
+        "h": 180
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-environment-and-our-wellness",
+    "local": {
+      "currentSlug": "the-environment-and-our-wellness",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 785,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 165
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "empower-align-prevail-why-seeking-support-could-be-the-most-strategic-move-of-your-career-and-your-life",
+    "local": {
+      "currentSlug": "empower-align-prevail-why-seeking-support-could-be-the-most-strategic-move-of-your-career-and-your-life",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 1092,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 579,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 179,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 473,
+          "layout": "center",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 473,
+          "layout": "center",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 473,
+          "layout": "center",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 182
+      },
+      {
+        "w": 355,
+        "h": 502
+      },
+      {
+        "w": 355,
+        "h": 502
+      },
+      {
+        "w": 355,
+        "h": 502
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "breathe-better-live-brighter-the-healing-power-within-you",
+    "local": {
+      "currentSlug": "breathe-better-live-brighter-the-healing-power-within-you",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 181,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 580,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 529,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 572,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 181
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "menopause-messing-with-you-heres-how-to-get-your-life-back",
+    "local": {
+      "currentSlug": "menopause-messing-with-you-heres-how-to-get-your-life-back",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 328,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "longevity-is-redefining-the-workplace-are-we-ready",
+    "local": {
+      "currentSlug": "longevity-is-redefining-the-workplace-are-we-ready",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 214,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 215
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-mind-as-medicine-think-breathe-thrive",
+    "local": {
+      "currentSlug": "the-mind-as-medicine-think-breathe-thrive",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 569,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "nourish-to-flourish",
+    "local": {
+      "currentSlug": "nourish-to-flourish",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 184,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 215,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 583,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 184
+      },
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 215
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "rethink-your-drink-alcohol-culture-and-brain-health",
+    "local": {
+      "currentSlug": "rethink-your-drink-alcohol-culture-and-brain-health",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 181,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 577,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "financial-wellness-moms-money-and-a-movement",
+    "local": {
+      "currentSlug": "financial-wellness-moms-money-and-a-movement",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 181,
+          "layout": "mediaTextLeft",
+          "w": 324
+        },
+        {
+          "float": "none",
+          "h": 184,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      },
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-story-that-changed-everything-why-brain-health-cant-wait",
+    "local": {
+      "currentSlug": "the-story-that-changed-everything-why-brain-health-cant-wait",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 191,
+          "layout": "mediaTextLeft",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 180,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 308
+      },
+      {
+        "w": 324,
+        "h": 180
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "coffee-more-than-just-your-morning-pick-me-up",
+    "local": {
+      "currentSlug": "coffee-more-than-just-your-morning-pick-me-up",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 513,
+          "layout": "mediaTextLeft",
+          "w": 324
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 324,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-power-of-sleep-for-longevity-brain-health-why-sleep-is-your-superpower",
+    "local": {
+      "currentSlug": "the-power-of-sleep-for-longevity-brain-health-why-sleep-is-your-superpower",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 352,
+          "layout": "mediaTextLeft",
+          "w": 248
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 248,
+        "h": 248
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-heart-of-social-wellness-more-than-just-connections",
+    "local": {
+      "currentSlug": "the-heart-of-social-wellness-more-than-just-connections",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 209,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 305,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 324,
+          "layout": "mediaTextLeft",
+          "w": 216
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 220
+      },
+      {
+        "w": 216,
+        "h": 250
+      },
+      {
+        "w": 216,
+        "h": 165
+      },
+      {
+        "w": 216,
+        "h": 250
+      },
+      {
+        "w": 216,
+        "h": 324
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "the-power-of-occupational-wellness",
+    "local": {
+      "currentSlug": "the-power-of-occupational-wellness",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 218,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 368,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 216,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 251,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 210,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "accelerate-action-for-womens-health-and-wellbeing",
+    "local": {
+      "currentSlug": "accelerate-action-for-womens-health-and-wellbeing",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 239,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 217,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 219,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 220,
+          "layout": "mediaTextLeft",
+          "w": 216
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 216,
+        "h": 239
+      },
+      {
+        "w": 216,
+        "h": 217
+      },
+      {
+        "w": 216,
+        "h": 219
+      },
+      {
+        "w": 216,
+        "h": 220
+      },
+      {
+        "w": 216,
+        "h": 220
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "prioritizing-emotional-wellness-through-menopause",
+    "local": {
+      "currentSlug": "prioritizing-emotional-wellness-through-menopause",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 176,
+          "layout": "center",
+          "w": 150
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 150,
+        "h": 150
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "nourish-to-flourish-the-food-mood-connection",
+    "local": {
+      "currentSlug": "nourish-to-flourish-the-food-mood-connection",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 169,
+          "layout": "center",
+          "w": 300
+        },
+        {
+          "float": "none",
+          "h": 416,
+          "layout": "mediaTextLeft",
+          "w": 216
+        },
+        {
+          "float": "none",
+          "h": 165,
+          "layout": "center",
+          "w": 150
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 300,
+        "h": 169
+      },
+      {
+        "w": 216,
+        "h": 216
+      },
+      {
+        "w": 150,
+        "h": 165
+      }
+    ]
+  },
+  {
+    "vp": "mobile",
+    "slug": "lets-talk-about-energy",
+    "local": {
+      "currentSlug": "lets-talk-about-energy",
+      "hasExcerpt": false,
+      "imgs": [
+        {
+          "float": "none",
+          "h": 188,
+          "layout": "mediaTextRight",
+          "w": 335
+        },
+        {
+          "float": "none",
+          "h": 188,
+          "layout": "mediaTextLeft",
+          "w": 335
+        }
+      ],
+      "originalLinks": 0,
+      "overflow": false,
+      "sidebarLinks": [
+        "/thrive-weekly/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "/thrive-weekly/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "/thrive-weekly/international-mens-day-edition-celebrating-men-and-boys"
+      ],
+      "summit": true
+    },
+    "expected": [
+      {
+        "w": 540,
+        "h": 304
+      },
+      {
+        "w": 540,
+        "h": 304
+      }
+    ]
+  }
+]

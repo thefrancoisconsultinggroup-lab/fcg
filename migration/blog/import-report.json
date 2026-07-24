@@ -1,0 +1,332 @@
+{
+  "generatedAt": "2026-07-24T12:27:22.830Z",
+  "dryRun": false,
+  "wordpressBaseUrl": "https://francoisconsultinggroup.com",
+  "wordpressEndpointsUsed": [
+    "https://francoisconsultinggroup.com/wp-json",
+    "https://francoisconsultinggroup.com/wp-json/wp/v2/types",
+    "https://francoisconsultinggroup.com/wp-json/wp/v2/posts?_embed=1&per_page=100&page=*",
+    "https://francoisconsultinggroup.com/wp-json/wp/v2/categories?per_page=100",
+    "https://francoisconsultinggroup.com/wp-json/wp/v2/tags?per_page=100",
+    "https://francoisconsultinggroup.com/wp-json/wp/v2/users?per_page=100",
+    "https://francoisconsultinggroup.com/wp-json/wp/v2/media/:id",
+    "https://francoisconsultinggroup.com/thrive-weekly/"
+  ],
+  "sanityProjectId": "t39ewo0k",
+  "sanityDataset": "production",
+  "totalWordpressPostsInspected": 41,
+  "wordpressPostPagesInspected": 1,
+  "thriveWeeklyPostsSelected": 41,
+  "postsPrepared": 41,
+  "postsImported": 41,
+  "postsSkipped": 0,
+  "authorsPrepared": 1,
+  "authorsImported": 1,
+  "categoriesPrepared": 5,
+  "categoriesImported": 5,
+  "tagsPrepared": 0,
+  "tagsImported": 0,
+  "featuredImagesUploaded": 0,
+  "inlineImagesUploaded": 5,
+  "duplicateAssetsReused": 146,
+  "imagePresentationSummary": {
+    "alignmentCounts": {
+      "left": 101,
+      "center": 8,
+      "right": 1,
+      "none": 0,
+      "full": 0
+    },
+    "sizeCounts": {
+      "small": 42,
+      "medium": 15,
+      "large": 30,
+      "full": 23
+    },
+    "sampleImagePresentations": [
+      {
+        "postSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/2-3.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 386,
+        "displayHeight": 500,
+        "originalWidth": 386,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1544",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/3-3.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 386,
+        "displayHeight": 500,
+        "originalWidth": 386,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1543",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/4-3.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 386,
+        "displayHeight": 500,
+        "originalWidth": 386,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1542",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/5-3.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 386,
+        "displayHeight": 500,
+        "originalWidth": 386,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1541",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/2-2.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 386,
+        "displayHeight": 500,
+        "originalWidth": 386,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1532",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/3-2.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 386,
+        "displayHeight": 500,
+        "originalWidth": 386,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1531",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "international-mens-day-edition-celebrating-men-and-boys",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/2.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "full",
+        "displayWidth": 900,
+        "displayHeight": 572,
+        "originalWidth": 900,
+        "originalHeight": 572,
+        "classes": [
+          "wp-image-1497",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "international-mens-day-edition-celebrating-men-and-boys",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/3.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "large",
+        "displayWidth": 695,
+        "displayHeight": 900,
+        "originalWidth": 695,
+        "originalHeight": 900,
+        "classes": [
+          "wp-image-1496",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "international-mens-day-edition-celebrating-men-and-boys",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/5.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "large",
+        "displayWidth": 695,
+        "displayHeight": 900,
+        "originalWidth": 695,
+        "originalHeight": 900,
+        "classes": [
+          "wp-image-1494",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "when-giving-blood-becomes-a-national-conversation",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/2-1.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 399,
+        "displayHeight": 600,
+        "originalWidth": 399,
+        "originalHeight": 600,
+        "classes": [
+          "wp-image-1516",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "when-giving-blood-becomes-a-national-conversation",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/3-1.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 500,
+        "displayHeight": 334,
+        "originalWidth": 500,
+        "originalHeight": 334,
+        "classes": [
+          "wp-image-1515",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "when-giving-blood-becomes-a-national-conversation",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/4-1.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 500,
+        "displayHeight": 298,
+        "originalWidth": 500,
+        "originalHeight": 298,
+        "classes": [
+          "wp-image-1514",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "when-giving-blood-becomes-a-national-conversation",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/5-1.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "small",
+        "displayWidth": 229,
+        "displayHeight": 600,
+        "originalWidth": 229,
+        "originalHeight": 600,
+        "classes": [
+          "wp-image-1513",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "when-giving-blood-becomes-a-national-conversation",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/6.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "medium",
+        "displayWidth": 500,
+        "displayHeight": 406,
+        "originalWidth": 500,
+        "originalHeight": 406,
+        "classes": [
+          "wp-image-1512",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/03/2-2.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "small",
+        "displayWidth": 279,
+        "displayHeight": 500,
+        "originalWidth": 279,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1473",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      },
+      {
+        "postSlug": "comfort-food-for-the-soul-finding-calm-connection-community-around-the-table",
+        "sourceUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/3.png",
+        "layout": "mediaTextLeft",
+        "alignment": "left",
+        "size": "small",
+        "displayWidth": 280,
+        "displayHeight": 500,
+        "originalWidth": 280,
+        "originalHeight": 500,
+        "classes": [
+          "wp-image-1479",
+          "size-full",
+          "wp-block-media-text__media"
+        ]
+      }
+    ]
+  },
+  "failedAssetDownloads": [],
+  "bodyConversionWarnings": [],
+  "brokenLinks": [],
+  "migrationErrors": [],
+  "customPostTypes": [
+    "nav_menu_item",
+    "wp_block",
+    "wp_template",
+    "wp_template_part",
+    "wp_global_styles",
+    "wp_navigation",
+    "wp_font_family",
+    "wp_font_face",
+    "project"
+  ],
+  "tagsAvailable": 0,
+  "archiveSignals": {
+    "archiveUrl": "https://francoisconsultinggroup.com/thrive-weekly/",
+    "rootLevelArticleUrls": [
+      "https://francoisconsultinggroup.com/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96/",
+      "https://francoisconsultinggroup.com/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled/",
+      "https://francoisconsultinggroup.com/international-mens-day-edition-celebrating-men-and-boys/",
+      "https://francoisconsultinggroup.com/when-giving-blood-becomes-a-national-conversation/",
+      "https://francoisconsultinggroup.com/comfort-food-for-the-soul-finding-calm-connection-community-around-the-table/"
+    ]
+  },
+  "realImportResult": "Imported 41 blog posts."
+}

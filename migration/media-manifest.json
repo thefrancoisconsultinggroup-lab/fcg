@@ -1,0 +1,1235 @@
+{
+  "generatedAt": "2026-07-13T16:07:55.414Z",
+  "totalDownloadedMediaSize": 24518364,
+  "assets": [
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neumi-Skin.webp",
+      "localPath": "/assets/migrated/neumi-wellness/neumi-wellness-hero-neumi-skin.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/neumi-wellness",
+      "wordpressMediaId": 97,
+      "originalFilename": "Neumi-Skin.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 32564,
+      "downloadedFileSize": 32564,
+      "sha256": "638a2dcbc4cbfc3ff6e465e9356c022e5dbd816097b42842734d4244f8b8cd8b",
+      "intendedUse": "hero",
+      "currentlyUsedInNewSite": true,
+      "selectedAsHeroAsset": true,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/Power10_Logo_v8-scaled.webp",
+      "localPath": "/assets/migrated/shared/brand-power10-logo-v8-scaled.webp",
+      "sourcePage": "https://francoisconsultinggroup.com",
+      "wordpressMediaId": 1235,
+      "originalFilename": "Power10_Logo_v8-scaled.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 2560,
+        "height": 1440
+      },
+      "originalFileSize": 107996,
+      "downloadedFileSize": 107996,
+      "sha256": "9a1f11d53ccac37fa895d341017762a2532540c60bb76870e1eb81e6ef1786f4",
+      "intendedUse": "brand mark",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/American-Brain-Council-Banner-Logo-500x275-1.jpg",
+      "localPath": "/assets/migrated/shared/brand-american-brain-council-banner-logo-500x275-1.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com",
+      "wordpressMediaId": 1232,
+      "originalFilename": "American-Brain-Council-Banner-Logo-500x275-1.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 500,
+        "height": 275
+      },
+      "originalFileSize": 20629,
+      "downloadedFileSize": 20629,
+      "sha256": "630cf55351192ccc973a38696a0c29a6b864ec4037fa0e6ae56c7f80bbf28208",
+      "intendedUse": "brand mark",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/FCG-Faith.jpg",
+      "localPath": "/assets/migrated/shared/brand-fcg-faith.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com",
+      "wordpressMediaId": 1005,
+      "originalFilename": "FCG-Faith.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "originalFileSize": 109008,
+      "downloadedFileSize": 109008,
+      "sha256": "ac9a2c66adfa6a5aad537f5837ffd7cb6600925b6d3e5f966419276cfbfac769",
+      "intendedUse": "brand mark",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/cropped-Francois-Logo.png",
+      "localPath": "/assets/migrated/shared/brand-cropped-francois-logo.png",
+      "sourcePage": "https://francoisconsultinggroup.com",
+      "wordpressMediaId": 629,
+      "originalFilename": "cropped-Francois-Logo.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "originalFileSize": 29899,
+      "downloadedFileSize": 29899,
+      "sha256": "09b3de86f385da376add22578fa0007a1a6ba61a56aca4894699abc9d8c393ba",
+      "intendedUse": "brand mark",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/divi-logo-mark-white.png",
+      "localPath": "/assets/migrated/shared/brand-divi-logo-mark-white.png",
+      "sourcePage": "https://francoisconsultinggroup.com",
+      "wordpressMediaId": 490,
+      "originalFilename": "divi-logo-mark-white.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 400,
+        "height": 400
+      },
+      "originalFileSize": 6253,
+      "downloadedFileSize": 6253,
+      "sha256": "79bef003f74ca0364f203cec51ad5da19ca6a71df5e9a204a19c7eda940fa728",
+      "intendedUse": "brand mark",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Francois-Logo.png",
+      "localPath": "/assets/migrated/shared/brand-francois-logo.png",
+      "sourcePage": "https://francoisconsultinggroup.com",
+      "wordpressMediaId": 18,
+      "originalFilename": "Francois-Logo.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 300,
+        "height": 300
+      },
+      "originalFileSize": 71210,
+      "downloadedFileSize": 71210,
+      "sha256": "cf2a7e8266e8ea5e183ffd6e8c032d43eff450022668eb46bf611008890f05db",
+      "intendedUse": "brand mark",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/1-3.png",
+      "localPath": "/assets/migrated/blog/blog-for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96-1-3.png",
+      "sourcePage": "https://francoisconsultinggroup.com/for-unto-us-a-child-is-born-unto-us-a-son-is-given-isaiah-96/",
+      "wordpressMediaId": 1545,
+      "originalFilename": "1-3.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 386,
+        "height": 500
+      },
+      "originalFileSize": 469711,
+      "downloadedFileSize": 469711,
+      "sha256": "e9be746932bbe376d52abc217f2c2d85e60d817901c444dc7cba5016b59f4545",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/1-2.png",
+      "localPath": "/assets/migrated/blog/blog-the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled-1-2.png",
+      "sourcePage": "https://francoisconsultinggroup.com/the-hidden-cost-of-uncertainty-rebuilding-trust-in-unsettled/",
+      "wordpressMediaId": 1533,
+      "originalFilename": "1-2.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 393,
+        "height": 500
+      },
+      "originalFileSize": 328149,
+      "downloadedFileSize": 328149,
+      "sha256": "0fb98a7abacec11f4d9f0eb66ab54b286279952fbfcd3b291bccd92097dc565d",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/1.png",
+      "localPath": "/assets/migrated/blog/blog-international-mens-day-edition-celebrating-men-and-boys-1.png",
+      "sourcePage": "https://francoisconsultinggroup.com/international-mens-day-edition-celebrating-men-and-boys/",
+      "wordpressMediaId": 1493,
+      "originalFilename": "1.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 834,
+        "height": 1080
+      },
+      "originalFileSize": 1573885,
+      "downloadedFileSize": 1573885,
+      "sha256": "b4fbb8309f3370e549f384f14eddbbecd27b29fd45db2ba453fcfe701f499d55",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/04/1-1.png",
+      "localPath": "/assets/migrated/blog/blog-when-giving-blood-becomes-a-national-conversation-1-1.png",
+      "sourcePage": "https://francoisconsultinggroup.com/when-giving-blood-becomes-a-national-conversation/",
+      "wordpressMediaId": 1510,
+      "originalFilename": "1-1.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 618,
+        "height": 800
+      },
+      "originalFileSize": 891360,
+      "downloadedFileSize": 891360,
+      "sha256": "177d8c9124c6213d66f609bca1a2aace95c63686adfbea1c1deaef67208ecf5f",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/03/THRIVE-WEEKLY-ISSUE-37.png",
+      "localPath": "/assets/migrated/blog/blog-comfort-food-for-the-soul-finding-calm-connection-community-around-the-table-thrive-weekly-issue-37.png",
+      "sourcePage": "https://francoisconsultinggroup.com/comfort-food-for-the-soul-finding-calm-connection-community-around-the-table/",
+      "wordpressMediaId": 1465,
+      "originalFilename": "THRIVE-WEEKLY-ISSUE-37.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 692,
+        "height": 900
+      },
+      "originalFileSize": 977829,
+      "downloadedFileSize": 977829,
+      "sha256": "b8a9962e27a188abbf0d47392560d1d5b004762587f5d997c1d9f84465192eb2",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/03/THRIVE-WEEKLY-ISSUE-36.png",
+      "localPath": "/assets/migrated/blog/blog-self-care-the-protector-of-the-soul-thrive-weekly-issue-36.png",
+      "sourcePage": "https://francoisconsultinggroup.com/self-care-the-protector-of-the-soul/",
+      "wordpressMediaId": 1451,
+      "originalFilename": "THRIVE-WEEKLY-ISSUE-36.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 901,
+        "height": 1362
+      },
+      "originalFileSize": 1368780,
+      "downloadedFileSize": 1368780,
+      "sha256": "2cd4e95b07d05d333e35e9732a3132167b104a65e20560961942e0c00d48cb07",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/03/CARIBBEAN-LIFESTYLE-WELLBEING-ISSUE-35-THRIVE-WEEKLY-NEWSLETTER-2025.png",
+      "localPath": "/assets/migrated/blog/blog-life-through-the-lens-with-elliot-francois-part-1-2-caribbean-lifestyle-wellbeing-issue-35-thrive-weekly-newsletter-.png",
+      "sourcePage": "https://francoisconsultinggroup.com/life-through-the-lens-with-elliot-francois-part-1-2/",
+      "wordpressMediaId": 1445,
+      "originalFilename": "CARIBBEAN-LIFESTYLE-WELLBEING-ISSUE-35-THRIVE-WEEKLY-NEWSLETTER-2025.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 1410,
+        "height": 1426
+      },
+      "originalFileSize": 1860791,
+      "downloadedFileSize": 1860791,
+      "sha256": "130199eca1830c7bbea10f81c51bb8be5dc1bbc55731446e1020ad5e2ff0d1f4",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/03/THRIVE-WEEKLY-ISSUE-34-e1773146438558.png",
+      "localPath": "/assets/migrated/blog/blog-gratitude-grace-fuel-for-mind-body-soul-and-leadership-thrive-weekly-issue-34-e1773146438558.png",
+      "sourcePage": "https://francoisconsultinggroup.com/gratitude-grace-fuel-for-mind-body-soul-and-leadership/",
+      "wordpressMediaId": 1423,
+      "originalFilename": "THRIVE-WEEKLY-ISSUE-34-e1773146438558.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 909,
+        "height": 1203
+      },
+      "originalFileSize": 2469486,
+      "downloadedFileSize": 2469486,
+      "sha256": "bd9a475af02c262040c97092614e8ca1a9c5ba12ee87ee81bf8b17f783b3136f",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/03/THRIVE-WEEKLY-ISSUE-33-Feature-e1773145883993.png",
+      "localPath": "/assets/migrated/blog/blog-resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly-thrive-weekly-issue-33-feature-e1773145883993.png",
+      "sourcePage": "https://francoisconsultinggroup.com/resilient-hopeful-united-under-god-republic-day-greetings-from-thrive-weekly/",
+      "wordpressMediaId": 1418,
+      "originalFilename": "THRIVE-WEEKLY-ISSUE-33-Feature-e1773145883993.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 902,
+        "height": 624
+      },
+      "originalFileSize": 643762,
+      "downloadedFileSize": 643762,
+      "sha256": "b924fb75c5f3d33dc15842dce2266b8967067ecb369a7a86ff1afb403e8df554",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/01/1-5-e1769778606218.png",
+      "localPath": "/assets/migrated/blog/blog-financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing-1-5-e1769778606218.png",
+      "sourcePage": "https://francoisconsultinggroup.com/financial-wellness-a-foundational-pillar-of-holistic-health-and-wellbeing/",
+      "wordpressMediaId": 1401,
+      "originalFilename": "1-5-e1769778606218.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 1000,
+        "height": 1182
+      },
+      "originalFileSize": 2076892,
+      "downloadedFileSize": 2076892,
+      "sha256": "8775a62bbd1fe8f2ded0f83073bb4484b9e4a4b2c24517ecf65f38906f93cdb3",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/01/1-4-e1769607746872.png",
+      "localPath": "/assets/migrated/blog/blog-prioritizing-brain-health-the-power-of-early-action-1-4-e1769607746872.png",
+      "sourcePage": "https://francoisconsultinggroup.com/prioritizing-brain-health-the-power-of-early-action/",
+      "wordpressMediaId": 1395,
+      "originalFilename": "1-4-e1769607746872.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 1000,
+        "height": 1070
+      },
+      "originalFileSize": 2429520,
+      "downloadedFileSize": 2429520,
+      "sha256": "aa8e06c808e3ad209b9273b3920bd6d2c3a17629562c5fdf16a2ca9f2609a628",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2026/01/1-3.png",
+      "localPath": "/assets/migrated/blog/blog-just-miles-away-thriving-emotionally-when-the-world-feels-unsteady-1-3.png",
+      "sourcePage": "https://francoisconsultinggroup.com/just-miles-away-thriving-emotionally-when-the-world-feels-unsteady/",
+      "wordpressMediaId": 1380,
+      "originalFilename": "1-3.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 773,
+        "height": 1000
+      },
+      "originalFileSize": 828028,
+      "downloadedFileSize": 828028,
+      "sha256": "a73c61e517ac35f2cd6bc79d8c0e1a7ca83b7e81fd6dbee8b6c831c7a1c07326",
+      "intendedUse": "blog featured image",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Francois-Logo.png",
+      "localPath": "/assets/migrated/home/home-francois-logo.png",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 18,
+      "originalFilename": "Francois-Logo.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 300,
+        "height": 300
+      },
+      "originalFileSize": 71210,
+      "downloadedFileSize": 71210,
+      "sha256": "cf2a7e8266e8ea5e183ffd6e8c032d43eff450022668eb46bf611008890f05db",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Christine-Francois.png",
+      "localPath": "/assets/migrated/home/home-christine-francois.png",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 60,
+      "originalFilename": "Christine-Francois.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 451,
+        "height": 750
+      },
+      "originalFileSize": 611365,
+      "downloadedFileSize": 611365,
+      "sha256": "40cf5a49a154849890271dbd61218b184793629bf7786c978c1ef7d71f4dd618",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NutriSwish.webp",
+      "localPath": "/assets/migrated/home/home-nutriswish.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 98,
+      "originalFilename": "NutriSwish.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 13378,
+      "downloadedFileSize": 13378,
+      "sha256": "acfc0a2bfeab7433ed7ac1611a9323a71b388c71f49c35cf834cd1a9d549f32d",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neumi-Skin.webp",
+      "localPath": "/assets/migrated/home/home-neumi-skin.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 97,
+      "originalFilename": "Neumi-Skin.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 32564,
+      "downloadedFileSize": 32564,
+      "sha256": "638a2dcbc4cbfc3ff6e465e9356c022e5dbd816097b42842734d4244f8b8cd8b",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neuro-1.webp",
+      "localPath": "/assets/migrated/home/home-neuro-1.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 99,
+      "originalFilename": "Neuro-1.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 11168,
+      "downloadedFileSize": 11168,
+      "sha256": "a999a5e766277fef95072903efd51fc40d4bb0a4d23d539f4bdf32ad35267cc5",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Hers.webp",
+      "localPath": "/assets/migrated/home/home-hers.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 95,
+      "originalFilename": "Hers.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 12932,
+      "downloadedFileSize": 12932,
+      "sha256": "b539b74bce6f2abb0e3ecfdb719a28c60d378df17079c91d85cf6ce1db48babb",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NEUMI-HAIR-1.webp",
+      "localPath": "/assets/migrated/home/home-neumi-hair-1.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 100,
+      "originalFilename": "NEUMI-HAIR-1.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 6544,
+      "downloadedFileSize": 6544,
+      "sha256": "33cd19ebed386ead36155933094f880867a6390fb5247193175256248ef8a5f1",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Ocean-View.webp",
+      "localPath": "/assets/migrated/home/home-ocean-view.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/",
+      "wordpressMediaId": 55,
+      "originalFilename": "Ocean-View.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "originalFileSize": 389304,
+      "downloadedFileSize": 389304,
+      "sha256": "ab6b7e061dbba49dffdf81b01b293360aa832728e87398dd1e73271d02e5421d",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/3-6.png",
+      "localPath": "/assets/migrated/about-us/about-us-3-6.png",
+      "sourcePage": "https://francoisconsultinggroup.com/about-us",
+      "wordpressMediaId": 1012,
+      "originalFilename": "3-6.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 722,
+        "height": 1200
+      },
+      "originalFileSize": 1171330,
+      "downloadedFileSize": 1171330,
+      "sha256": "5db7bcc273f374dae2a7913928f3ac1e69f72345b5b7f51967efbfa8dda8aace",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/American-Brain-Council-Banner-Logo-500x275-1.jpg",
+      "localPath": "/assets/migrated/about-us/about-us-american-brain-council-banner-logo-500x275-1.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/about-us",
+      "wordpressMediaId": 1232,
+      "originalFilename": "American-Brain-Council-Banner-Logo-500x275-1.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 500,
+        "height": 275
+      },
+      "originalFileSize": 20629,
+      "downloadedFileSize": 20629,
+      "sha256": "630cf55351192ccc973a38696a0c29a6b864ec4037fa0e6ae56c7f80bbf28208",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/Power10_Logo_v8-scaled.webp",
+      "localPath": "/assets/migrated/about-us/about-us-power10-logo-v8-scaled.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/about-us",
+      "wordpressMediaId": 1235,
+      "originalFilename": "Power10_Logo_v8-scaled.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 2560,
+        "height": 1440
+      },
+      "originalFileSize": 107996,
+      "downloadedFileSize": 107996,
+      "sha256": "9a1f11d53ccac37fa895d341017762a2532540c60bb76870e1eb81e6ef1786f4",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Our-Core-Values.jpg",
+      "localPath": "/assets/migrated/about-us/about-us-our-core-values.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/about-us",
+      "wordpressMediaId": 205,
+      "originalFilename": "Our-Core-Values.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 900,
+        "height": 507
+      },
+      "originalFileSize": 58188,
+      "downloadedFileSize": 58188,
+      "sha256": "a01695bdf3e95bcee9e0bfb12ca915ea6a73986322ad954d8e55f9ff2b53c695",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/1.webp",
+      "localPath": "/assets/migrated/faith/faith-1.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/faith",
+      "wordpressMediaId": 993,
+      "originalFilename": "1.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 900
+      },
+      "originalFileSize": 125940,
+      "downloadedFileSize": 125940,
+      "sha256": "279391ac08ca4d47ffb95a27ac8d4a70303503f9e547756d04d76092fee1a48e",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/2.webp",
+      "localPath": "/assets/migrated/faith/faith-2.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/faith",
+      "wordpressMediaId": 994,
+      "originalFilename": "2.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 900
+      },
+      "originalFileSize": 76750,
+      "downloadedFileSize": 76750,
+      "sha256": "1e14d99317c571fcfb130a7b3fce29165bc4130ac4123b1246e59585e5a3eaaa",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/3.webp",
+      "localPath": "/assets/migrated/faith/faith-3.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/faith",
+      "wordpressMediaId": 995,
+      "originalFilename": "3.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 900
+      },
+      "originalFileSize": 111076,
+      "downloadedFileSize": 111076,
+      "sha256": "5cc32a06c8f6e35a4b46df13a889cd21761fc9f5f06ed1ac208ddaea1787d26d",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/4.webp",
+      "localPath": "/assets/migrated/faith/faith-4.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/faith",
+      "wordpressMediaId": 996,
+      "originalFilename": "4.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 900
+      },
+      "originalFileSize": 67250,
+      "downloadedFileSize": 67250,
+      "sha256": "e7cd0ccd356540ccd021b08feba455809d57e6e7471905818431472742715aa5",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/5.webp",
+      "localPath": "/assets/migrated/faith/faith-5.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/faith",
+      "wordpressMediaId": 997,
+      "originalFilename": "5.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 900
+      },
+      "originalFileSize": 164304,
+      "downloadedFileSize": 164304,
+      "sha256": "5e1576e3127ddb368d2cdccbf07b130c6868af7f82f2f9d3d4a6022e8c5c00c2",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/6.webp",
+      "localPath": "/assets/migrated/faith/faith-6.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/faith",
+      "wordpressMediaId": 998,
+      "originalFilename": "6.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1200,
+        "height": 900
+      },
+      "originalFileSize": 96992,
+      "downloadedFileSize": 96992,
+      "sha256": "ab27ebf40de4258357d2b1acdb593a096044a0016e1c882b8cfcb6911f4006cd",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/Integrated-Wellness-Programme.png",
+      "localPath": "/assets/migrated/programs-services/programs-services-integrated-wellness-programme.png",
+      "sourcePage": "https://francoisconsultinggroup.com/programs-services",
+      "wordpressMediaId": 1149,
+      "originalFilename": "Integrated-Wellness-Programme.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "originalFileSize": 1856202,
+      "downloadedFileSize": 1856202,
+      "sha256": "0cd0f5680bda967033a8dd46342d8d02195e5d58b800ceae6c9ecad86aa739a9",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/1-on-1.jpg",
+      "localPath": "/assets/migrated/programs-services/programs-services-1-on-1.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/programs-services",
+      "wordpressMediaId": 220,
+      "originalFilename": "1-on-1.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 900,
+        "height": 507
+      },
+      "originalFileSize": 61084,
+      "downloadedFileSize": 61084,
+      "sha256": "de850174caf5fec2807644b0b00b5d75d94810b0af44ec37ba3c946bcfc8e6fc",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Integrated-Leadership-Corporate-Wellness-Program.jpg",
+      "localPath": "/assets/migrated/programs-services/programs-services-integrated-leadership-corporate-wellness-program.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/programs-services",
+      "wordpressMediaId": 219,
+      "originalFilename": "Integrated-Leadership-Corporate-Wellness-Program.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 900,
+        "height": 507
+      },
+      "originalFileSize": 117217,
+      "downloadedFileSize": 117217,
+      "sha256": "9c02c85b5c3f78e99db41add44655748419f8073a7882adc75bcd7fed3cafe93",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Consulting-Packages.jpg",
+      "localPath": "/assets/migrated/programs-services/programs-services-consulting-packages.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/programs-services",
+      "wordpressMediaId": 221,
+      "originalFilename": "Consulting-Packages.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 900,
+        "height": 507
+      },
+      "originalFileSize": 61454,
+      "downloadedFileSize": 61454,
+      "sha256": "ed239a238d9bb7c2909df4b05a7b6e3609ca7f49d4cb638fc4adcb2749e8555f",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/2-9.png",
+      "localPath": "/assets/migrated/team/team-2-9.png",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 1011,
+      "originalFilename": "2-9.png",
+      "mimeType": "image/png",
+      "originalDimensions": {
+        "width": 722,
+        "height": 1200
+      },
+      "originalFileSize": 1251331,
+      "downloadedFileSize": 1251331,
+      "sha256": "bb55c2f9b1f7cc92eaf6f936e505ee2005eb0b50e4d61f5eb2f6ebaa1dd43792",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/Judy-1.jpg",
+      "localPath": "/assets/migrated/team/team-judy-1.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 1028,
+      "originalFilename": "Judy-1.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 762,
+        "height": 912
+      },
+      "originalFileSize": 376103,
+      "downloadedFileSize": 376103,
+      "sha256": "0caa98f142376095ac89c4050d667cb8a1dad3f8b11302523b360f80313dba20",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Wendy.jpg",
+      "localPath": "/assets/migrated/team/team-wendy.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 764,
+      "originalFilename": "Wendy.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 2003,
+        "height": 1569
+      },
+      "originalFileSize": 670167,
+      "downloadedFileSize": 670167,
+      "sha256": "470b0c2ad146bd67ba71912c649ae2fbbf85a9158cff0a79bbfe6286207e7ee2",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": false,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/image-2-1-1.jpg",
+      "localPath": "/assets/migrated/team/team-image-2-1-1.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 1032,
+      "originalFilename": "image-2-1-1.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 722,
+        "height": 1000
+      },
+      "originalFileSize": 397953,
+      "downloadedFileSize": 397953,
+      "sha256": "1d893d7e2221402d3a9f1d39f8fc8cbb2f8606793ad5c7f3b280e19376251f96",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Troy.jpg",
+      "localPath": "/assets/migrated/team/team-troy.jpg",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 771,
+      "originalFilename": "Troy.jpg",
+      "mimeType": "image/jpeg",
+      "originalDimensions": {
+        "width": 900,
+        "height": 900
+      },
+      "originalFileSize": 157219,
+      "downloadedFileSize": 157219,
+      "sha256": "fb310f916bf2ff1e3c168d42c6b52ccbbb0e187bdd9bb3275016893389117b7c",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Lisa.webp",
+      "localPath": "/assets/migrated/team/team-lisa.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 777,
+      "originalFilename": "Lisa.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 500,
+        "height": 500
+      },
+      "originalFileSize": 13482,
+      "downloadedFileSize": 13482,
+      "sha256": "fd546f3f375f33db1265bd29d242eee5e0a95d14e99b3cfb6628f85e9b719978",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Derval.webp",
+      "localPath": "/assets/migrated/team/team-derval.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "wordpressMediaId": 775,
+      "originalFilename": "Derval.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 1100,
+        "height": 1455
+      },
+      "originalFileSize": 34894,
+      "downloadedFileSize": 34894,
+      "sha256": "770ab82075ab2fdb88611c5d61f7c07a079e797823011a18d009d88940dd71ce",
+      "intendedUse": "team/content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": false,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NutriSwish.webp",
+      "localPath": "/assets/migrated/neumi-wellness/neumi-wellness-nutriswish.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/neumi-wellness",
+      "wordpressMediaId": 98,
+      "originalFilename": "NutriSwish.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 13378,
+      "downloadedFileSize": 13378,
+      "sha256": "acfc0a2bfeab7433ed7ac1611a9323a71b388c71f49c35cf834cd1a9d549f32d",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neumi-Skin.webp",
+      "localPath": "/assets/migrated/neumi-wellness/neumi-wellness-neumi-skin.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/neumi-wellness",
+      "wordpressMediaId": 97,
+      "originalFilename": "Neumi-Skin.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 32564,
+      "downloadedFileSize": 32564,
+      "sha256": "638a2dcbc4cbfc3ff6e465e9356c022e5dbd816097b42842734d4244f8b8cd8b",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neuro-1.webp",
+      "localPath": "/assets/migrated/neumi-wellness/neumi-wellness-neuro-1.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/neumi-wellness",
+      "wordpressMediaId": 99,
+      "originalFilename": "Neuro-1.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 11168,
+      "downloadedFileSize": 11168,
+      "sha256": "a999a5e766277fef95072903efd51fc40d4bb0a4d23d539f4bdf32ad35267cc5",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Hers.webp",
+      "localPath": "/assets/migrated/neumi-wellness/neumi-wellness-hers.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/neumi-wellness",
+      "wordpressMediaId": 95,
+      "originalFilename": "Hers.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 12932,
+      "downloadedFileSize": 12932,
+      "sha256": "b539b74bce6f2abb0e3ecfdb719a28c60d378df17079c91d85cf6ce1db48babb",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NEUMI-HAIR-1.webp",
+      "localPath": "/assets/migrated/neumi-wellness/neumi-wellness-neumi-hair-1.webp",
+      "sourcePage": "https://francoisconsultinggroup.com/neumi-wellness",
+      "wordpressMediaId": 100,
+      "originalFilename": "NEUMI-HAIR-1.webp",
+      "mimeType": "image/webp",
+      "originalDimensions": {
+        "width": 480,
+        "height": 480
+      },
+      "originalFileSize": 6544,
+      "downloadedFileSize": 6544,
+      "sha256": "33cd19ebed386ead36155933094f880867a6390fb5247193175256248ef8a5f1",
+      "intendedUse": "page content media",
+      "currentlyUsedInNewSite": false,
+      "selectedAsHeroAsset": false,
+      "appearsDuplicatedElsewhere": true,
+      "lowResolution": true,
+      "shouldEventuallyBeReplaced": false,
+      "supersededByUserProvidedLocalAsset": false
+    }
+  ],
+  "duplicateGroups": [
+    [
+      "/assets/migrated/neumi-wellness/neumi-wellness-hero-neumi-skin.webp",
+      "/assets/migrated/home/home-neumi-skin.webp",
+      "/assets/migrated/neumi-wellness/neumi-wellness-neumi-skin.webp"
+    ],
+    [
+      "/assets/migrated/shared/brand-power10-logo-v8-scaled.webp",
+      "/assets/migrated/about-us/about-us-power10-logo-v8-scaled.webp"
+    ],
+    [
+      "/assets/migrated/shared/brand-american-brain-council-banner-logo-500x275-1.jpg",
+      "/assets/migrated/about-us/about-us-american-brain-council-banner-logo-500x275-1.jpg"
+    ],
+    [
+      "/assets/migrated/shared/brand-francois-logo.png",
+      "/assets/migrated/home/home-francois-logo.png"
+    ],
+    [
+      "/assets/migrated/home/home-nutriswish.webp",
+      "/assets/migrated/neumi-wellness/neumi-wellness-nutriswish.webp"
+    ],
+    [
+      "/assets/migrated/home/home-neuro-1.webp",
+      "/assets/migrated/neumi-wellness/neumi-wellness-neuro-1.webp"
+    ],
+    [
+      "/assets/migrated/home/home-hers.webp",
+      "/assets/migrated/neumi-wellness/neumi-wellness-hers.webp"
+    ],
+    [
+      "/assets/migrated/home/home-neumi-hair-1.webp",
+      "/assets/migrated/neumi-wellness/neumi-wellness-neumi-hair-1.webp"
+    ]
+  ],
+  "largeFiles": [],
+  "deferredVideoSources": [
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/WELCOME_MESSAGE_FCG_DEC_7__2025_clean.mp4",
+      "removedLocalPath": "/assets/migrated/shared/brand-welcome-message-fcg-dec-7-2025-clean.mp4",
+      "reason": "Large production video copy removed after audit; existing local/user-provided video or CSS fallback should be used until Mux migration."
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/2.mp4",
+      "removedLocalPath": "/assets/migrated/home/home-2.mp4",
+      "reason": "Large production video copy removed after audit; existing local/user-provided video or CSS fallback should be used until Mux migration."
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Thrive-Weekly-FV.mp4",
+      "removedLocalPath": "/assets/migrated/team/team-thrive-weekly-fv.mp4",
+      "reason": "Large production video copy removed after audit; existing local/user-provided video or CSS fallback should be used until Mux migration."
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Thrive-Weekly-FV.mp4",
+      "removedLocalPath": "/assets/migrated/neumi-wellness/neumi-wellness-thrive-weekly-fv.mp4",
+      "reason": "Large production video copy removed after audit; existing local/user-provided video or CSS fallback should be used until Mux migration."
+    },
+    {
+      "originalUrl": "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Error-404.mp4",
+      "removedLocalPath": "/assets/migrated/contact/contact-error-404.mp4",
+      "reason": "Large production video copy removed after audit; existing local/user-provided video or CSS fallback should be used until Mux migration."
+    }
+  ]
+}

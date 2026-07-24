@@ -1,0 +1,662 @@
+{
+  "generatedAt": "2026-07-13T16:06:18.247Z",
+  "sourceBaseUrl": "https://francoisconsultinggroup.com",
+  "pages": {
+    "home": {
+      "productionUrl": "https://francoisconsultinggroup.com/",
+      "newUrl": "/",
+      "wordpressId": 53,
+      "title": "Home-2",
+      "slug": "home-2",
+      "status": "publish",
+      "publishedDate": "2025-08-27T19:36:10",
+      "modifiedDate": "2025-09-05T17:57:36",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 2,
+            "heading": "The"
+          },
+          {
+            "level": 2,
+            "heading": "François"
+          },
+          {
+            "level": 2,
+            "heading": "Consulting"
+          },
+          {
+            "level": 2,
+            "heading": "Group"
+          },
+          {
+            "level": 2,
+            "heading": "Welcome"
+          },
+          {
+            "level": 2,
+            "heading": "My Why"
+          },
+          {
+            "level": 2,
+            "heading": "Welcome"
+          },
+          {
+            "level": 4,
+            "heading": "NutriSwish"
+          },
+          {
+            "level": 4,
+            "heading": "Neumi Skin"
+          },
+          {
+            "level": 4,
+            "heading": "Neuro Your"
+          },
+          {
+            "level": 4,
+            "heading": "Hers"
+          },
+          {
+            "level": 4,
+            "heading": "Neumi Hair"
+          }
+        ],
+        "paragraphs": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
+          "Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.",
+          "My journey into wellness and transformation is anchored in faith. I’ve walked through grief, watched illness unravel someone I loved, and made choices no woman ever expects to make. But through it all, I never walked alone. God was there, whispering, guiding, comforting, and sometimes carrying me when I had no strength left. I believe nothing in my life has been an accident, not even the night a tiny stray kitten chose our doorstep and helped restart our hearts.",
+          "That moment was the beginning of a new chapter; one where healing, love, and purpose found their way back in. I believe that health is sacred, that our bodies and souls are deeply connected, and that every person deserves to feel whole. My work today is a direct extension of that belief. I’m not just here to help people improve their health. I’m here to remind them that they’re not alone, that they’re seen, and that restoration is possible, no matter how far gone things may seem. And if you’re reading this&#8230; you’re not here by coincidence either.",
+          "Your body at full potential",
+          "Anti-Aging For Your Hair™",
+          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+        ]
+      },
+      "extractedLinks": [
+        {
+          "href": "#",
+          "text": ""
+        },
+        {
+          "href": "https://neumi.com/dragonberry1691/Home/OurProducts_HerSwish",
+          "text": ""
+        },
+        {
+          "href": "https://neumi.com/dragonberry1691",
+          "text": "neumi Shop"
+        }
+      ],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/2.mp4",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Francois-Logo.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Christine-Francois.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NutriSwish.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neumi-Skin.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neuro-1.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Hers.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NEUMI-HAIR-1.webp",
+        "https://i.ytimg.com/vi/FkQuawiGWUw/maxresdefault.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Ocean-View.webp"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "medium",
+      "notes": []
+    },
+    "home2": {
+      "productionUrl": "https://francoisconsultinggroup.com/home-2",
+      "newUrl": "/",
+      "wordpressId": 53,
+      "title": "Home-2",
+      "slug": "home-2",
+      "status": "publish",
+      "publishedDate": "2025-08-27T19:36:10",
+      "modifiedDate": "2025-09-05T17:57:36",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 2,
+            "heading": "The"
+          },
+          {
+            "level": 2,
+            "heading": "François"
+          },
+          {
+            "level": 2,
+            "heading": "Consulting"
+          },
+          {
+            "level": 2,
+            "heading": "Group"
+          },
+          {
+            "level": 2,
+            "heading": "Welcome"
+          },
+          {
+            "level": 2,
+            "heading": "My Why"
+          },
+          {
+            "level": 2,
+            "heading": "Welcome"
+          },
+          {
+            "level": 4,
+            "heading": "NutriSwish"
+          },
+          {
+            "level": 4,
+            "heading": "Neumi Skin"
+          },
+          {
+            "level": 4,
+            "heading": "Neuro Your"
+          },
+          {
+            "level": 4,
+            "heading": "Hers"
+          },
+          {
+            "level": 4,
+            "heading": "Neumi Hair"
+          }
+        ],
+        "paragraphs": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.",
+          "Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.",
+          "My journey into wellness and transformation is anchored in faith. I’ve walked through grief, watched illness unravel someone I loved, and made choices no woman ever expects to make. But through it all, I never walked alone. God was there, whispering, guiding, comforting, and sometimes carrying me when I had no strength left. I believe nothing in my life has been an accident, not even the night a tiny stray kitten chose our doorstep and helped restart our hearts.",
+          "That moment was the beginning of a new chapter; one where healing, love, and purpose found their way back in. I believe that health is sacred, that our bodies and souls are deeply connected, and that every person deserves to feel whole. My work today is a direct extension of that belief. I’m not just here to help people improve their health. I’m here to remind them that they’re not alone, that they’re seen, and that restoration is possible, no matter how far gone things may seem. And if you’re reading this&#8230; you’re not here by coincidence either.",
+          "Your body at full potential",
+          "Anti-Aging For Your Hair™",
+          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+        ]
+      },
+      "extractedLinks": [
+        {
+          "href": "#",
+          "text": ""
+        },
+        {
+          "href": "https://neumi.com/dragonberry1691/Home/OurProducts_HerSwish",
+          "text": ""
+        },
+        {
+          "href": "https://neumi.com/dragonberry1691",
+          "text": "neumi Shop"
+        }
+      ],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/2.mp4",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Francois-Logo.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Christine-Francois.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NutriSwish.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neumi-Skin.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neuro-1.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Hers.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NEUMI-HAIR-1.webp",
+        "https://i.ytimg.com/vi/FkQuawiGWUw/maxresdefault.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/08/Ocean-View.webp"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "medium",
+      "notes": [
+        "Legacy page inspected for duplication with home."
+      ]
+    },
+    "aboutUs": {
+      "productionUrl": "https://francoisconsultinggroup.com/about-us",
+      "newUrl": "/about-us",
+      "wordpressId": 198,
+      "title": "About Us",
+      "slug": "about-us",
+      "status": "publish",
+      "publishedDate": "2025-10-05T15:20:57",
+      "modifiedDate": "2025-12-16T16:06:19",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 4,
+            "heading": "Vision"
+          },
+          {
+            "level": 4,
+            "heading": "Mission"
+          },
+          {
+            "level": 2,
+            "heading": "Strategic Partners"
+          },
+          {
+            "level": 2,
+            "heading": "Our Core Values"
+          },
+          {
+            "level": 3,
+            "heading": "Guided by Purpose"
+          },
+          {
+            "level": 5,
+            "heading": "Collaboration Over Competition"
+          },
+          {
+            "level": 5,
+            "heading": "Whole-Person Empowerment"
+          },
+          {
+            "level": 5,
+            "heading": "Integrity in Action"
+          },
+          {
+            "level": 5,
+            "heading": "Inclusion and Cultural Intelligence"
+          },
+          {
+            "level": 5,
+            "heading": "Visionary Growth"
+          }
+        ],
+        "paragraphs": [
+          "Our Team is a collective of passionate change agents with a shared commitment to catalyzing personal and organizational transformation. Through our Integrated Leadership & Corporate Wellness (ILCW) program, we partner with visionary, like-minded organizations and professionals to help individuals, families, and communities thrive, starting within the workplace. We believe that organizations are powerful access points for lasting change, and our work is designed to elevate leadership, enhance well-being, and build resilient, purpose-driven cultures from the inside out.",
+          "To be the partner of choice across the Caribbean and Pan American region for Integrated Leadership and Immersive Holistic Corporate Wellness, delivering transformative programs that elevate people, performance, and purpose from the C-suite to the front line.",
+          "To serve as a trusted hub and catalyst for holistic well-being, resilient leadership, and collaborative growth, by designing and delivering tailored wellness experiences that:",
+          "empower individuals to reclaim their health, vitality, and voice.",
+          "enable teams to connect, trust, and thrive.",
+          "Invite every partner and contributor into a shared-value ecosystem where everyone wins.",
+          "Through this mission, we create a movement of wellness-centered leadership where inner alignment fuels outer impact.",
+          "Nicole Quan Kep is the founder of Power10HK and KEP-STAR, two Hong Kong–based enterprises that reflect her passion for connecting people, performance, and purpose across borders.",
+          "With over 25 years of international corporate experience and 15 years in athletic coaching and team management, Nicole has developed and advanced a distinctive approach to leadership and organizational wellness. At FDM Group—an award-winning global business and technology consultancy powering the people behind tech and innovation—she developed and advanced programs that enhance employee performance and growth, grounded in her coaching expertise and deep understanding of Customer Relationship Management (CRM). Her work helped elevate cultures of excellence, career progression, and employee well-being within the IT and Financial Services sectors.",
+          "Through Power10HK, Nicole integrates athletic training principles into corporate development strategies, creating transformative team-building experiences that drive connection, resilience, and measurable results.",
+          "As founder of KEP-STAR, she brings a Master’s Degree in Economics and Trade from Chongqing University and extensive experience in China sourcing and event management, enabling clients to access unparalleled networks and opportunities throughout Asia.",
+          "Nicole’s dual enterprises complement Francois Consulting Group’s Integrated Leadership & Corporate Wellness programs, amplifying their shared mission to foster high-performing, values-aligned teams and sustainable international growth.",
+          "Collaboration Over Competition",
+          "We believe in building bridges, not silos. Every partner, provider, and client contributes to a dynamic ecosystem of mutual benefit and collective success.",
+          "We see individuals as more than job titles. We design experiences that nurture the mind, body, spirit, and professional self.",
+          "We walk our talk, leading by example, making decisions aligned with our values, and holding space for honest conversations and accountable results.",
+          "Inclusion and Cultural Intelligence",
+          "We respect the diversity of the Caribbean and broader Pan-American landscape, and we aim to serve with empathy, equity, and cultural fluency.",
+          "We anticipate needs before they arise. By listening deeply and iterating boldly, we build programs and partnerships that evolve and endure."
+        ]
+      },
+      "extractedLinks": [
+        {
+          "href": "https://www.abcbrain.org/",
+          "text": ""
+        },
+        {
+          "href": "https://power10hk.com/",
+          "text": ""
+        }
+      ],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/3-6.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/21A1862-683x1024.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/American-Brain-Council-Banner-Logo-500x275-1.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/12/Power10_Logo_v8-scaled.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Our-Core-Values.jpg"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "medium",
+      "notes": []
+    },
+    "faith": {
+      "productionUrl": "https://francoisconsultinggroup.com/faith",
+      "newUrl": "/faith",
+      "wordpressId": 991,
+      "title": "Faith",
+      "slug": "faith",
+      "status": "publish",
+      "publishedDate": "2025-11-25T13:52:57",
+      "modifiedDate": "2025-11-25T13:58:18",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 2,
+            "heading": "Faith"
+          }
+        ],
+        "paragraphs": []
+      },
+      "extractedLinks": [],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/1.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/2.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/3.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/4.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/5.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/6.webp"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "low",
+      "notes": []
+    },
+    "programsServices": {
+      "productionUrl": "https://francoisconsultinggroup.com/programs-services",
+      "newUrl": "/programs-services",
+      "wordpressId": 214,
+      "title": "Programs & Services",
+      "slug": "programs-services",
+      "status": "publish",
+      "publishedDate": "2025-10-06T17:59:54",
+      "modifiedDate": "2025-12-19T16:05:03",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 2,
+            "heading": "Integrated Leadership and Corporate Wellness"
+          },
+          {
+            "level": 2,
+            "heading": "What We Offer"
+          },
+          {
+            "level": 3,
+            "heading": "Tailored solutions to strengthen leadership, foster team collaboration, and promote holistic wellness across your organization."
+          },
+          {
+            "level": 4,
+            "heading": "1:1 Executive Coaching"
+          },
+          {
+            "level": 4,
+            "heading": "Team Workshops"
+          },
+          {
+            "level": 4,
+            "heading": "Consulting Packages"
+          },
+          {
+            "level": 2,
+            "heading": "Consulting Packages"
+          },
+          {
+            "level": 3,
+            "heading": "Custom solutions that integrate leadership growth with holistic employee well-being for lasting organizational impact."
+          },
+          {
+            "level": 4,
+            "heading": "Inquire"
+          },
+          {
+            "level": 1,
+            "heading": "Get a Custom Quote"
+          }
+        ],
+        "paragraphs": [
+          "Integrated Leadership and Corporate Wellness",
+          "Our Integrated Leadership & Corporate Wellness Program is designed to elevate performance, engagement, and organizational resilience by combining leadership development with holistic employee well-being. Through personalized executive coaching, interactive team workshops, and tailored consulting packages, we help companies foster a culture of trust, collaboration, and lasting wellness — empowering both leaders and teams to thrive.",
+          "Tailored solutions to strengthen leadership, foster team collaboration, and promote holistic wellness across your organization.",
+          "Personalized coaching sessions designed to strengthen leadership skills, enhance decision-making, and foster resilience. Our executive coaching empowers leaders to navigate complex challenges while modeling wellness-driven behaviors for their teams.",
+          "Interactive workshops that build collaboration, trust, and effective communication within teams. Participants engage in practical exercises that integrate leadership principles with wellness strategies to boost morale, productivity, and engagement.",
+          "Tailored consulting solutions that align leadership development and corporate wellness with your organization’s strategic goals. Flexible packages include actionable recommendations, implementation support, and options to request a custom quote for your unique needs.",
+          "Custom solutions that integrate leadership growth with holistic employee well-being for lasting organizational impact.",
+          "1. Two (2) Interactive Workshops per annum (Max. 3 hours)",
+          "(Select your preferred topics from the list provided below and align your organization’s initiatives and focus with any of the UN International Days of Recognition provided)",
+          "2. Three (3) months Subscription to Beyond Yoga Services ? (months run consecutively) and includes:",
+          "● unlimited access to classes in-studio",
+          "● includes access to online platform (live-streams and class library)",
+          "● includes sponsored *by-donation* class weekly",
+          "● includes two optional private classes in-studio or on-site (teacher-restricted)",
+          "3. Two (2) Personalized Coaching Sessions (1-on-1 coaching, fully customizable to the client’s needs for (1) key leader or high–potential employee)",
+          "Flexible focus areas: Leadership growth, confidence-building, personal development, productivity, career strategy, or any area of personal/professional concern.",
+          "1. Four (4) Interactive Workshops per annum (Max. 3 hours)",
+          "(Select your preferred topics from the list provided below and align your organization’s initiatives and focus with any of the UN International Days of Recognition provided)",
+          "2. Six (6) months Subscription to Beyond Yoga Services ? (months run consecutively) and includes:",
+          "● unlimited access to classes in-studio",
+          "● includes access to online platform (live-streams and class library)",
+          "● includes sponsored *by-donation* class weekly",
+          "● includes two optional private classes in-studio or on-site (teacher-restricted)",
+          "3. Four (4) Personalized Coaching Sessions (1-on-1 coaching, fully customizable to the client’s needs for (1) key leader or high–potential employee)",
+          "Flexible focus areas: Professional development, personal fulfilment, leadership skills, stress management, decision-making, or any other topic relevant to the client.",
+          "1. Six (6) Interactive Workshops per annum (Max. 3 hours)",
+          "(Select your preferred topics from the list provided below and align your organization’s initiatives and focus with any of the UN International Days of Recognition provided)",
+          "2. One (1) year’s Subscription to Beyond Yoga Services ? 12-month subscription (runs consecutively) and includes:",
+          "● unlimited access to classes in-studio",
+          "● includes access to online platform (live streams and class library)",
+          "● includes sponsored *by-donation* class weekly",
+          "● includes two optional private classes in-studio or on-site (teacher restricted)",
+          "3. Six (6) Personalized Coaching Sessions (1-on-1 coaching, fully customizable to the client’s needs for one (1) key leader or high–potential employee)",
+          "Flexible focus areas: Career advancement, leadership development, personal growth, work-life balance, resilience, emotional intelligence, confidence-building, or any other area of concern.",
+          "Not sure which package fits best? Inquire today. We’ll help you choose between our Gold, Diamond, and Platinum plans or craft a custom package just for you.",
+          "Inquiry Inquiry Gold Platinum Diamond Custom"
+        ]
+      },
+      "extractedLinks": [
+        {
+          "href": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team/",
+          "text": "Meet The Team"
+        }
+      ],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/Integrated-Wellness-Programme.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/1-on-1.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Integrated-Leadership-Corporate-Wellness-Program.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Consulting-Packages.jpg"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "medium",
+      "notes": []
+    },
+    "team": {
+      "productionUrl": "https://francoisconsultinggroup.com/integrated-leadership-and-corporate-wellness-team",
+      "newUrl": "/integrated-leadership-and-corporate-wellness-team",
+      "wordpressId": 758,
+      "title": "Integrated Leadership and Corporate Wellness ? Team",
+      "slug": "integrated-leadership-and-corporate-wellness-team",
+      "status": "publish",
+      "publishedDate": "2025-10-30T13:48:57",
+      "modifiedDate": "2025-11-29T04:48:07",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 2,
+            "heading": "Meet The Team"
+          },
+          {
+            "level": 2,
+            "heading": "Integrated Leadership and Corporate Wellness ? Team"
+          },
+          {
+            "level": 4,
+            "heading": "Christine D. François"
+          },
+          {
+            "level": 4,
+            "heading": "Judy Oxley Fullerton"
+          },
+          {
+            "level": 4,
+            "heading": "Captain Wendy Yawching"
+          },
+          {
+            "level": 4,
+            "heading": "Karl Thompson"
+          },
+          {
+            "level": 4,
+            "heading": "Troy Hadeed"
+          },
+          {
+            "level": 4,
+            "heading": "Lisa Feveck"
+          },
+          {
+            "level": 4,
+            "heading": "Derval Barzey"
+          }
+        ],
+        "paragraphs": [
+          "Integrated Leadership and Corporate Wellness ? Team",
+          "Founder and Managing Partner, Francois Consulting Group (FCG), Executive Trainer",
+          "Christine D. François is a dynamic corporate communications, well-being and business consultant and event management professional with a proven track record of excellence in training and development. She is also the regional expansion team lead for a US-based wellness technology company. Having experienced the trauma of losing her spouse and other loved ones to NCDs, Christine brings her passion for empowering individuals and organizations to achieve their highest potential through holistic wellness practices. Christine is a former Employee Engagement Manager ? Health and Wellness of one of the region’s leading financial institutions and brings over a decade of experience in business development, sales consulting, and project management to her role as an executive trainer.",
+          "Professional Certification",
+          "● Professional Diploma in Marketing – The Chartered Institute of Marketing, UK",
+          "● Diplomate (DLCC) – London Chamber of Commerce and Industry, UK",
+          "1. Bertnox Thompson ? Vice President, J.P. Morgan Chase (Fmr.)",
+          "2. Marteka Swaby, Founder, Benevolent Health, London, England, United Kingdom.",
+          "3. Dr David Somekh, Network Director EHFF, European Health Futures Forum, England, UK",
+          "Judy Oxley Fullerton?s expertise extends across regulatory compliance and strategic marketing. Her proficiency in business planning, coaching, sales, and team building underscores her capacity to navigate diverse challenges and foster organizational success. Moreover, Judy’s adeptness at training both staff and customers ensure seamless alignment with company objectives, bolstering operational efficiency and customer satisfaction alike.",
+          "Professional Certification",
+          "● MSc Organizational Leadership",
+          "● Post Graduate Diploma ? The Chartered Institute of Marketing UK",
+          "● Financial Management Diploma – Association of Chartered Certified Accountants",
+          "● Personality DISC Assessment Consultant",
+          "● Certified Professional Transformation Coach – Coach Masters Academy",
+          "1. Ms. Dianne Charles – Distinguished Toastmaster, Registered Dietitian, Founder, El Shaddai Nutrition and Dietetic Services, Trinidad",
+          "2. Ms. Melissa Alexander – Manager, Fund Administration, First Citizens Depository Services Limited, Trinidad",
+          "Wendy Yawching is an accomplished leader, pioneering female aviator, and certified Master Feng Shui Consultant with a passion for personal and professional transformation. Wendy made history as the first female Captain of Trinidad and Tobago’s national airline, the first Trinidadian woman to reach Mt. Everest Base Camp, and the country’s first certified Master Feng Shui Consultant.",
+          "With a 28-year aviation career, Wendy retired as a Captain with Caribbean Airlines and later founded Healing Spaces Caribbean, offering Feng Shui consultations, workshops, and motivational speaking. As Environmental Director for Tobago’s Yahweh Foundation, she launched an award-winning environmental program for students. Wendy’s accomplishments, including being named a ?Living Caribbean Legend? in 2023, reflect her leadership, dedication, and commitment to inspiring others. She is the self-published author of the transformational book, The Courage to Fly and has been invited to speak on transformational themes locally and regionally.",
+          "Her diverse skills in leadership, transformation, and wellness make Wendy an invaluable asset to our team.",
+          "1. Penelope Camps, Founder and CEO ? Yahweh Foundation, Tobago",
+          "2. Lisa Alban, Chair, International Feng Shui Guild",
+          "Specialist ? Applied Financial Education",
+          "Karl Thompson is an accomplished business and financial consultant with decades of experience in the financial sector and other segments of the economy. He has consulted households, businesses and governments nationally, regionally and globally.  Karl is a former Wall Street Banker, a successful entrepreneur and consultant, as well as an accomplished author. He has provided invaluable services to households, businesses and governments. He is known for his strong interest in business development and believes that human beings are the primary assets of any nation.",
+          "Karl’s passion lies in instilling the principles of financial education and economic sustainability in organizations and in the home ? an essential foundation for economic development. He firmly believes that a financially educated leadership team can significantly drive an organization?s success while positively impacting the broader community. As Special Advisor to  this program, Karl brings invaluable expertise, stability, and innovative strategies that empower leaders to achieve financial resilience and growth. With a wealth of knowledge, a deep understanding of financial planning, and a warm sense of humor, Karl’s approach is both impactful and engaging.",
+          "In addition to his career achievements, Karl is a husband, father, and has authored books on finance, and the role of the father in a household.",
+          "● Organizational Financial Wellness & Sustainability",
+          "● Leadership Financial Strategy & Planning",
+          "● Building Financial Resilience in Leadership Teams",
+          "● The Role of Financial Education in Community Economic Development",
+          "Troy Hadeed is an entrepreneur, author, yoga teacher, and social entrepreneur with over 20+ years of experience in the fields of mindfulness, emotional regulation, perspective-shifting and the ongoing exploration of the human condition. The first instant he stepped onto a corporate stage he realized how much of an impact we can have on social culture and wellbeing by shifting perspectives and cultures within the workplace. Human relationships are at the core of them both and if we can provide our workspaces with the tools to cultivate better relationships, not only will it increase workplace relations along with efficiency and profits, but also change the world.",
+          "Lisa Feveck is a dedicated dietitian, educator, author and transformation coach who is passionate about supporting women with their health issues, especially through midlife and menopause. She understands the unique cultural and personal challenges faced by Caribbean women during this phase and is on a mission to simplify healthy eating, making nutrition more approachable and less stressful.",
+          "With a compassionate and holistic approach, Lisa prioritizes overall health and well-being, especially for those who prefer not to or cannot use medications. Her personalized coaching programs blend nutrition, fitness and mindset strategies, empowering women to embrace menopause with confidence and joy. Lisa believes this time is not just another chapter in a woman’s life but a chance to rediscover herself  and explore new possibilities.",
+          "Environmental Sustainability Advisor",
+          "Derval Barzey is a Speaker, Podcast Host and Environmental Sustainability Consultant. In 2020 she founded The Climate Conscious Podcast. She is dedicated to enhancing public awareness and amplifying the Caribbean perspective on climate action and sustainable development.",
+          "With a background in Energy and Environment, Derval brings over a decade of experience in areas such as Environmental and Social Impact Assessments, Risk Management Systems, and Sustainable",
+          "Energy Policy. Her expertise also includes Environmental Social and Governance frameworks. She has held roles in industry, and the public and private sectors.",
+          "Derval’s qualifications include:",
+          "MBA in Sustainable Energy Management-University of the West Indies",
+          "BSc in Environmental and Natural Resources Management, and Agribusiness ? University of the West Indies",
+          "Sustainability and Climate Risk Certificate ? Global Association of Risk Professionals (GARP)",
+          "Derval is actively involved in regional climate justice advocacy, hosting the Caribbean Women for Climate Justice (CW4CJ) conference and contributing to the Caribbean Climate Justice Alliance."
+        ]
+      },
+      "extractedLinks": [],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Thrive-Weekly-FV.mp4",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/2-9.png",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/Judy-1.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Wendy.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/11/image-2-1-1.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Troy.jpg",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Lisa.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Derval.webp"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "medium",
+      "notes": []
+    },
+    "neumiWellness": {
+      "productionUrl": "https://francoisconsultinggroup.com/neumi-wellness",
+      "newUrl": "/neumi-wellness",
+      "wordpressId": 342,
+      "title": "Neumi Wellness",
+      "slug": "neumi-wellness",
+      "status": "publish",
+      "publishedDate": "2025-10-15T16:36:08",
+      "modifiedDate": "2025-12-16T14:31:44",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 2,
+            "heading": "Neumi Wellness"
+          },
+          {
+            "level": 2,
+            "heading": "Lifestyle"
+          },
+          {
+            "level": 3,
+            "heading": "The 30-second ritual that changes everything"
+          },
+          {
+            "level": 4,
+            "heading": "NutriSwish"
+          },
+          {
+            "level": 4,
+            "heading": "Neumi Skin"
+          },
+          {
+            "level": 4,
+            "heading": "Neuro"
+          },
+          {
+            "level": 4,
+            "heading": "Hers"
+          },
+          {
+            "level": 4,
+            "heading": "Neumi Hair"
+          }
+        ],
+        "paragraphs": [
+          "The 30-second ritual that changes everything",
+          "Traditional supplements waste 80% of nutrients.  Neumi?s HydraStat™ Delivery sends them straight to your cells.",
+          "The proof is in their results: Clinical trials, thousands of testimonials, viral videos.",
+          "Your body at full potential",
+          "Anti-Aging For Your Hair™",
+          "But seek first the kingdom of God and his righteousness, and all these things will be added to you."
+        ]
+      },
+      "extractedLinks": [
+        {
+          "href": "https://neumi.com/dragonberry1691/Home/OurProducts_HerSwish",
+          "text": ""
+        },
+        {
+          "href": "https://neumi.com/dragonberry1691",
+          "text": "Learn More"
+        }
+      ],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Thrive-Weekly-FV.mp4",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NutriSwish.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neumi-Skin.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Neuro-1.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/Hers.webp",
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/09/NEUMI-HAIR-1.webp"
+      ],
+      "selectedHeroAsset": "/assets/migrated/neumi-wellness/neumi-wellness-hero-neumi-skin.webp",
+      "extractionConfidence": "medium",
+      "notes": []
+    },
+    "contact": {
+      "productionUrl": "https://francoisconsultinggroup.com/contact",
+      "newUrl": "/contact",
+      "wordpressId": 369,
+      "title": "Contact",
+      "slug": "contact",
+      "status": "publish",
+      "publishedDate": "2025-10-16T03:43:54",
+      "modifiedDate": "2025-12-19T15:09:28",
+      "template": null,
+      "extractedSections": {
+        "headings": [
+          {
+            "level": 1,
+            "heading": "Get in Touch"
+          }
+        ],
+        "paragraphs": [
+          "Let’s connect! Reach out with your ideas, feedback, or inquiries.",
+          "We’re always happy to chat."
+        ]
+      },
+      "extractedLinks": [],
+      "mediaReferences": [
+        "https://francoisconsultinggroup.com/wp-content/uploads/2025/10/Error-404.mp4"
+      ],
+      "selectedHeroAsset": null,
+      "extractionConfidence": "medium",
+      "notes": []
+    }
+  }
+}

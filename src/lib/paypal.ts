@@ -1,0 +1,226 @@
+import type { SummitPriceSummary } from "@/lib/summit-pricing";
+
+type PayPalAccessTokenResponse = {
+  access_token?: string;
+};
+
+type PayPalOrderResponse = {
+  id?: string;
+  links?: Array<{
+    href: string;
+    rel: string;
+  }>;
+};
+
+export type PayPalCaptureResponse = {
+  id?: string;
+  payer?: {
+    email_address?: string;
+  };
+  purchase_units?: Array<{
+    payments?: {
+      captures?: Array<{
+        amount?: {
+          currency_code?: string;
+          value?: string;
+        };
+        id?: string;
+        status?: string;
+      }>;
+    };
+  }>;
+  status?: string;
+};
+
+export function hasPayPalConfig() {
+  const credentials = paypalCredentials();
+  return Boolean(credentials.clientId && credentials.clientSecret);
+}
+
+export function getPayPalWebhookId() {
+  return process.env.PAYPAL_WEBHOOK_ID || "";
+}
+
+export function hasPayPalWebhookConfig() {
+  return Boolean(getPayPalWebhookId());
+}
+
+export async function createPayPalOrder({
+  pricing,
+  registrationId,
+  requestOrigin,
+}: {
+  pricing: SummitPriceSummary;
+  registrationId: string;
+  requestOrigin: string;
+}) {
+  const accessToken = await getPayPalAccessToken();
+  const response = await fetch(`${paypalBaseUrl()}/v2/checkout/orders`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+      "PayPal-Request-Id": `summit-create-${registrationId}`,
+    },
+    body: JSON.stringify({
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: pricing.total.toFixed(2),
+          },
+          custom_id: registrationId,
+          description: "Human Capacity Summit registration",
+        },
+      ],
+      application_context: {
+        brand_name: "Francois Consulting Group",
+        landing_page: "LOGIN",
+        return_url: `${requestOrigin}/api/human-capacity-summit/paypal/capture?registrationId=${registrationId}`,
+        cancel_url: `${requestOrigin}/api/human-capacity-summit/paypal/cancel?registrationId=${registrationId}`,
+        user_action: "PAY_NOW",
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`PayPal order creation failed with status ${response.status}`);
+  }
+
+  const order = (await response.json()) as PayPalOrderResponse;
+  const approvalUrl = order.links?.find((link) => link.rel === "approve")?.href;
+
+  if (!order.id || !approvalUrl) {
+    throw new Error("PayPal did not return an approval URL.");
+  }
+
+  return { approvalUrl, orderId: order.id };
+}
+
+export async function capturePayPalOrder(paypalOrderId: string) {
+  const accessToken = await getPayPalAccessToken();
+  const response = await fetch(`${paypalBaseUrl()}/v2/checkout/orders/${paypalOrderId}/capture`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+      "PayPal-Request-Id": `summit-capture-${paypalOrderId}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`PayPal capture failed with status ${response.status}`);
+  }
+
+  return (await response.json()) as PayPalCaptureResponse;
+}
+
+export function verifiedCaptureTotal(capture: PayPalCaptureResponse) {
+  const capturedPayment = capture.purchase_units
+    ?.flatMap((unit) => unit.payments?.captures ?? [])
+    .find((payment) => payment.status === "COMPLETED");
+
+  if (!capturedPayment?.amount || !capturedPayment.id) {
+    return null;
+  }
+
+  return {
+    captureId: capturedPayment.id,
+    currency: capturedPayment.amount.currency_code ?? "",
+    value: Number.parseFloat(capturedPayment.amount.value ?? ""),
+  };
+}
+
+export async function verifyPayPalWebhookSignature({
+  body,
+  headers,
+}: {
+  body: unknown;
+  headers: Headers;
+}) {
+  const webhookId = getPayPalWebhookId();
+  if (!webhookId) {
+    return false;
+  }
+
+  const accessToken = await getPayPalAccessToken();
+  const response = await fetch(`${paypalBaseUrl()}/v1/notifications/verify-webhook-signature`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      auth_algo: headers.get("paypal-auth-algo"),
+      cert_url: headers.get("paypal-cert-url"),
+      transmission_id: headers.get("paypal-transmission-id"),
+      transmission_sig: headers.get("paypal-transmission-sig"),
+      transmission_time: headers.get("paypal-transmission-time"),
+      webhook_event: body,
+      webhook_id: webhookId,
+    }),
+  });
+
+  if (!response.ok) {
+    return false;
+  }
+
+  const result = (await response.json()) as { verification_status?: string };
+  return result.verification_status === "SUCCESS";
+}
+
+async function getPayPalAccessToken() {
+  const { clientId, clientSecret } = paypalCredentials();
+
+  if (!clientId || !clientSecret) {
+    throw new Error("PayPal credentials are not configured.");
+  }
+
+  const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+  const response = await fetch(`${paypalBaseUrl()}/v1/oauth2/token`, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${credentials}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+  });
+
+  if (!response.ok) {
+    throw new Error(`PayPal token request failed with status ${response.status}`);
+  }
+
+  const token = (await response.json()) as PayPalAccessTokenResponse;
+  if (!token.access_token) {
+    throw new Error("PayPal token response did not include an access token.");
+  }
+
+  return token.access_token;
+}
+
+function paypalBaseUrl() {
+  if (process.env.PAYPAL_BASE_URL) {
+    return process.env.PAYPAL_BASE_URL;
+  }
+
+  const environment = process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV;
+
+  return environment === "live"
+    ? "https://api-m.paypal.com"
+    : "https://api-m.sandbox.paypal.com";
+}
+
+function paypalCredentials() {
+  const environment = process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV;
+  const isSandbox = environment !== "live";
+
+  return {
+    clientId: isSandbox
+      ? process.env.PAYPAL_SANDBOX_CLIENT_ID || process.env.PAYPAL_CLIENT_ID
+      : process.env.PAYPAL_CLIENT_ID,
+    clientSecret: isSandbox
+      ? process.env.PAYPAL_SANDBOX_SECRET_KEY || process.env.PAYPAL_CLIENT_SECRET
+      : process.env.PAYPAL_CLIENT_SECRET,
+  };
+}

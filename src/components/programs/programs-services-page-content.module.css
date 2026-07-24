@@ -1,0 +1,303 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.section {
+  position: relative;
+  padding: clamp(5.25rem, 8vw, 8rem) 0;
+}
+
+.sectionGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sectionGlow::before,
+.sectionGlow::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(54px);
+  opacity: 0.7;
+}
+
+.sectionGlow::before {
+  top: 8%;
+  left: 16%;
+  width: min(22rem, 30vw);
+  height: min(14rem, 18vw);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.11), rgba(54, 211, 242, 0.06) 42%, transparent 74%);
+}
+
+.sectionGlow::after {
+  right: 15%;
+  bottom: 10%;
+  width: min(18rem, 24vw);
+  height: min(12rem, 16vw);
+  background: radial-gradient(circle, rgba(255, 214, 77, 0.08), rgba(54, 211, 242, 0.05) 46%, transparent 76%);
+}
+
+.editorialIntro {
+  display: grid;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.introText {
+  max-width: 54rem;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #36d3f2;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.5rem, 4.4vw, 4.9rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.description {
+  margin-top: 1.35rem;
+  max-width: 44rem;
+  color: #dcefff;
+  font-size: clamp(1.05rem, 1.25vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.copy {
+  margin-top: 1.6rem;
+  max-width: 54rem;
+  color: #dcefff;
+  font-size: clamp(1rem, 1.16vw, 1.08rem);
+  line-height: 1.85;
+}
+
+.copy p {
+  margin: 0;
+}
+
+.copy p + p {
+  margin-top: 1.1rem;
+}
+
+.introActions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.servicesGrid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service {
+  position: relative;
+  min-width: 0;
+  padding: 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.8rem;
+  background: linear-gradient(180deg, rgba(7, 25, 43, 0.46), rgba(7, 25, 43, 0.22));
+  box-shadow:
+    0 18px 40px rgba(7, 7, 45, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.serviceNumber {
+  margin: 0 0 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffd64d;
+}
+
+.serviceImage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.serviceImage img {
+  object-fit: cover;
+}
+
+.serviceTitle {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+.serviceBody {
+  margin-top: 1rem;
+  color: #dcefff;
+  font-size: 0.99rem;
+  line-height: 1.8;
+}
+
+.packagesLead {
+  max-width: 42rem;
+  margin-top: 1.3rem;
+  color: #dcefff;
+  font-size: clamp(1rem, 1.12vw, 1.08rem);
+  line-height: 1.8;
+}
+
+.packagesGrid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.packageCard {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  border-radius: 1.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(7, 25, 43, 0.62), rgba(7, 25, 43, 0.28));
+  padding: 1.5rem;
+  box-shadow:
+    0 22px 46px rgba(7, 7, 45, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.packageAccentGold,
+.packageAccentPlatinum,
+.packageAccentDiamond {
+  margin-bottom: 1rem;
+  height: 4px;
+  width: 4.25rem;
+  border-radius: 999px;
+}
+
+.packageAccentGold {
+  background: linear-gradient(90deg, rgba(255, 214, 77, 0.9), rgba(255, 214, 77, 0.28));
+}
+
+.packageAccentPlatinum {
+  background: linear-gradient(90deg, rgba(228, 239, 255, 0.92), rgba(148, 188, 224, 0.3));
+}
+
+.packageAccentDiamond {
+  background: linear-gradient(90deg, rgba(128, 235, 255, 0.92), rgba(128, 235, 255, 0.28));
+}
+
+.packageName {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2rem, 2.5vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.packageDescription {
+  margin-top: 1rem;
+  color: #dcefff;
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.packageList {
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+  color: #dcefff;
+}
+
+.packageItem {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.packageItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.packageFooter {
+  margin-top: auto;
+  padding-top: 1.6rem;
+}
+
+.closingRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.closingCopy {
+  max-width: 38rem;
+  color: #dcefff;
+  font-size: clamp(1rem, 1.12vw, 1.08rem);
+  line-height: 1.8;
+}
+
+@media (max-width: 1080px) {
+  .packagesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .packageCard:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .servicesGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .servicesGrid,
+  .packagesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .packageCard:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 4.75rem 0;
+  }
+
+  .heading {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+}

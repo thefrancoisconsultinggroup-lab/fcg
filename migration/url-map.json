@@ -1,0 +1,79 @@
+[
+  {
+    "existingUrl": "/",
+    "newUrl": "/",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Home remains canonical."
+  },
+  {
+    "existingUrl": "/home-2",
+    "newUrl": "/",
+    "status": "legacy",
+    "redirectRequirement": "308 permanent",
+    "notes": "Legacy WordPress home duplicate."
+  },
+  {
+    "existingUrl": "/about-us",
+    "newUrl": "/about-us",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Preserved production slug."
+  },
+  {
+    "existingUrl": "/about",
+    "newUrl": "/about-us",
+    "status": "compatibility",
+    "redirectRequirement": "308 permanent",
+    "notes": "New project compatibility redirect."
+  },
+  {
+    "existingUrl": "/faith",
+    "newUrl": "/faith",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Preserved production slug."
+  },
+  {
+    "existingUrl": "/programs-services",
+    "newUrl": "/programs-services",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Preserved production slug."
+  },
+  {
+    "existingUrl": "/leadership-wellness",
+    "newUrl": "/programs-services",
+    "status": "compatibility",
+    "redirectRequirement": "308 permanent",
+    "notes": "New project compatibility redirect."
+  },
+  {
+    "existingUrl": "/integrated-leadership-and-corporate-wellness-team",
+    "newUrl": "/integrated-leadership-and-corporate-wellness-team",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Preserved production slug."
+  },
+  {
+    "existingUrl": "/neumi-wellness",
+    "newUrl": "/neumi-wellness",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Preserved production slug."
+  },
+  {
+    "existingUrl": "/thrive-weekly",
+    "newUrl": "/thrive-weekly",
+    "status": "blog archive",
+    "redirectRequirement": "none",
+    "notes": "Blog content reserved for later Sanity import."
+  },
+  {
+    "existingUrl": "/contact",
+    "newUrl": "/contact",
+    "status": "primary",
+    "redirectRequirement": "none",
+    "notes": "Preserved production slug."
+  }
+]
