@@ -39,14 +39,28 @@ export async function POST(request: Request) {
 
   const registrationId = crypto.randomUUID();
   const requestOrigin = new URL(request.url).origin;
+  let order: Awaited<ReturnType<typeof createPayPalOrder>>;
 
   try {
-    const order = await createPayPalOrder({
+    order = await createPayPalOrder({
       pricing: validated.registration.pricing,
       registrationId,
       requestOrigin,
     });
+  } catch (error) {
+    console.error("PayPal order creation failed for Summit registration.", {
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
+    return NextResponse.json(
+      {
+        message:
+          "We could not open PayPal checkout because PayPal did not create the order. Please try again or contact Francois Consulting Group directly.",
+      },
+      { status: 502 },
+    );
+  }
 
+  try {
     await createSummitPaymentRecord({
       id: registrationId,
       paypalOrderId: order.orderId,
@@ -60,11 +74,14 @@ export async function POST(request: Request) {
       orderId: order.orderId,
       registrationId,
     });
-  } catch {
+  } catch (error) {
+    console.error("Summit payment record could not be saved after PayPal order creation.", {
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
     return NextResponse.json(
       {
         message:
-          "We could not open PayPal checkout just yet. Please try again or contact Francois Consulting Group directly.",
+          "We could not save the Summit registration before opening PayPal checkout. Please try again or contact Francois Consulting Group directly.",
       },
       { status: 502 },
     );
