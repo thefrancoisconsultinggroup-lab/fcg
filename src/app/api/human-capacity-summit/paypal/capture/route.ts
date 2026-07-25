@@ -9,6 +9,7 @@ import {
 import {
   capturePayPalOrder,
   capturePaymentSummary,
+  isPayPalFundingDeclined,
   PayPalApiError,
   paypalRuntimeDiagnostics,
   verifiedCaptureTotal,
@@ -63,6 +64,16 @@ export async function GET(request: Request) {
     try {
       capture = await capturePayPalOrder(paypalOrderId);
     } catch (error) {
+      if (error instanceof PayPalApiError && isPayPalFundingDeclined(error)) {
+        await updateSummitPaymentRecord(record.id, {
+          lastPaymentErrorAt: new Date().toISOString(),
+          lastPaymentErrorCode: "INSTRUMENT_DECLINED",
+          lastPaymentErrorMessage: "PayPal could not complete the payment with the selected funding source.",
+          status: "declined",
+        });
+        return NextResponse.redirect(`${redirectBase}?payment=declined&registration=${record.id}#summit-registration`);
+      }
+
       console.error("PayPal capture API failed for approved Summit order.", {
         body: error instanceof PayPalApiError ? error.details.body : undefined,
         error: error instanceof Error ? error.message : "Unknown error",

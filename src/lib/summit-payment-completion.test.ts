@@ -466,6 +466,39 @@ test("verified refund and reversal webhooks update records idempotently without 
   });
 });
 
+test("capture route maps PayPal funding declines to declined status instead of verification_required", async () => {
+  await withMockedResend(async () => {
+    const record = await seedRecord("registration-capture-declined");
+    setPayPalCaptureResponse({
+      body: JSON.stringify({
+        details: [
+          {
+            description: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
+            issue: "INSTRUMENT_DECLINED",
+          },
+        ],
+        message: "The requested action could not be performed, semantically incorrect, or failed business validation.",
+        name: "UNPROCESSABLE_ENTITY",
+      }),
+      status: 422,
+    });
+    const { GET } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const response = await GET(
+      new Request(`https://example.com/api/human-capacity-summit/paypal/capture?token=${record.paypalOrderId}&registrationId=${record.id}`),
+    );
+
+    assert.equal(response.status, 307);
+    assert.equal(
+      response.headers.get("location"),
+      `https://example.com/human-capacity-summit?payment=declined&registration=${record.id}#summit-registration`,
+    );
+
+    const stored = await getSummitPaymentRecordById(record.id);
+    assert.equal(stored?.status, "declined");
+    assert.equal(stored?.lastPaymentErrorCode, "INSTRUMENT_DECLINED");
+  });
+});
+
 test("retry endpoint reuses the existing registration after cancellation", async () => {
   await withMockedResend(async () => {
     const record = await seedRecord("registration-retry-endpoint");
@@ -574,6 +607,7 @@ function paid(record: SummitPaymentRecord): SummitPaymentRecord {
 let sentEmails: Array<{ from: string; html: string; subject: string; text: string; to: string[] }> = [];
 let failNextEmailTo = "";
 let payPalOrderResponse: unknown = undefined;
+let payPalCaptureResponse: { body: string; status: number } | undefined;
 let payPalWebhookVerification = false;
 
 function getSentEmails() {
@@ -586,6 +620,10 @@ function setFailNextEmailTo(to: string) {
 
 function setPayPalOrderResponse(response: unknown) {
   payPalOrderResponse = response;
+}
+
+function setPayPalCaptureResponse(response: { body: string; status: number } | undefined) {
+  payPalCaptureResponse = response;
 }
 
 function setPayPalWebhookVerification(verified: boolean) {
@@ -614,6 +652,7 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
   sentEmails = [];
   failNextEmailTo = "";
   payPalOrderResponse = undefined;
+  payPalCaptureResponse = undefined;
   payPalWebhookVerification = false;
 
   globalThis.fetch = (async (_url: string | URL | Request, init?: RequestInit) => {
@@ -631,6 +670,34 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
     }
 
     if (url.includes("/v2/checkout/orders/ORDER-1")) {
+      if (url.endsWith("/capture") && init?.method === "POST") {
+        if (payPalCaptureResponse) {
+          return new Response(payPalCaptureResponse.body, { status: payPalCaptureResponse.status });
+        }
+
+        return new Response(
+          JSON.stringify({
+            id: "ORDER-1",
+            payer: { email_address: "test@example.com" },
+            purchase_units: [
+              {
+                payments: {
+                  captures: [
+                    {
+                      amount: { currency_code: "USD", value: "45.00" },
+                      id: "CAPTURE-1",
+                      status: "COMPLETED",
+                    },
+                  ],
+                },
+              },
+            ],
+            status: "COMPLETED",
+          }),
+          { status: 200 },
+        );
+      }
+
       if (payPalOrderResponse === null) {
         return new Response(JSON.stringify({ debug_id: "DEBUG-LOOKUP" }), { status: 504 });
       }

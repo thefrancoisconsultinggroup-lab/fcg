@@ -40,6 +40,15 @@ export type PayPalCaptureResponse = {
   status?: string;
 };
 
+type PayPalErrorBody = {
+  details?: Array<{
+    description?: string;
+    issue?: string;
+  }>;
+  message?: string;
+  name?: string;
+};
+
 export class PayPalApiError extends Error {
   constructor(
     message: string,
@@ -92,6 +101,34 @@ export function paypalRuntimeDiagnostics() {
     hasLiveWebhookId: Boolean(process.env.PAYPAL_WEBHOOK_ID),
     usingSandboxCredentialFamily: !isLiveMode,
   };
+}
+
+export function paypalErrorDetails(error: PayPalApiError | null | undefined) {
+  if (!error?.details.body) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(error.details.body) as PayPalErrorBody;
+    const issue = parsed.details?.find((detail) => typeof detail.issue === "string")?.issue;
+    const description = parsed.details?.find((detail) => typeof detail.description === "string")?.description;
+
+    return {
+      description,
+      issue,
+      message: parsed.message,
+      name: parsed.name,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export function isPayPalFundingDeclined(error: PayPalApiError | null | undefined) {
+  const details = paypalErrorDetails(error);
+  const code = details?.issue ?? details?.name ?? "";
+
+  return ["INSTRUMENT_DECLINED", "PAYER_ACTION_REQUIRED"].includes(code.toUpperCase());
 }
 
 export async function createPayPalOrder({

@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getPayPalWebhookId, hasPayPalWebhookConfig, paypalRuntimeDiagnostics } from "@/lib/paypal";
+import {
+  getPayPalWebhookId,
+  hasPayPalWebhookConfig,
+  isPayPalFundingDeclined,
+  PayPalApiError,
+  paypalErrorDetails,
+  paypalRuntimeDiagnostics,
+} from "@/lib/paypal";
 
 type EnvSnapshot = Record<string, string | undefined>;
 
@@ -103,3 +110,38 @@ test("live mode uses live webhook and live credentials", async () => {
   );
 });
 
+test("PayPal funding-decline errors are recognized from API response bodies", () => {
+  const error = new PayPalApiError("capture failed", {
+    body: JSON.stringify({
+      details: [
+        {
+          description: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
+          issue: "INSTRUMENT_DECLINED",
+        },
+      ],
+      message: "The requested action could not be performed, semantically incorrect, or failed business validation.",
+      name: "UNPROCESSABLE_ENTITY",
+    }),
+    status: 422,
+  });
+
+  assert.deepEqual(paypalErrorDetails(error), {
+    description: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
+    issue: "INSTRUMENT_DECLINED",
+    message: "The requested action could not be performed, semantically incorrect, or failed business validation.",
+    name: "UNPROCESSABLE_ENTITY",
+  });
+  assert.equal(isPayPalFundingDeclined(error), true);
+});
+
+test("non-funding PayPal API errors are not misclassified as declines", () => {
+  const error = new PayPalApiError("capture failed", {
+    body: JSON.stringify({
+      details: [{ issue: "ORDER_ALREADY_CAPTURED" }],
+      name: "UNPROCESSABLE_ENTITY",
+    }),
+    status: 422,
+  });
+
+  assert.equal(isPayPalFundingDeclined(error), false);
+});
