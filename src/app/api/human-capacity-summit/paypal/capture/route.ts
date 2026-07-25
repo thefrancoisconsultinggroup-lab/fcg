@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { completeSummitPayment } from "@/lib/summit-payment-completion";
-import { capturePayPalOrder, verifiedCaptureTotal } from "@/lib/paypal";
+import { capturePayPalOrder, PayPalApiError, verifiedCaptureTotal } from "@/lib/paypal";
 import {
   getSummitPaymentRecordById,
   getSummitPaymentRecordByOrderId,
@@ -13,6 +13,7 @@ export async function GET(request: Request) {
   const paypalOrderId = url.searchParams.get("token") || "";
   const registrationId = url.searchParams.get("registrationId") || "";
   const redirectBase = `${url.origin}/human-capacity-summit`;
+  const thankYouUrl = `${redirectBase}/thank-you`;
 
   if (!paypalOrderId || !registrationId) {
     return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
@@ -28,13 +29,26 @@ export async function GET(request: Request) {
 
   if (isSummitPaymentCaptured(record)) {
     return NextResponse.redirect(
-      `${redirectBase}?payment=success&registration=${record.id}#summit-registration`,
+      `${thankYouUrl}?registration=${record.id}`,
     );
   }
 
   try {
     await updateSummitPaymentRecord(record.id, { status: "approved" });
-    const capture = await capturePayPalOrder(paypalOrderId);
+    let capture: Awaited<ReturnType<typeof capturePayPalOrder>>;
+
+    try {
+      capture = await capturePayPalOrder(paypalOrderId);
+    } catch (error) {
+      console.error("PayPal capture API failed for approved Summit order.", {
+        body: error instanceof PayPalApiError ? error.details.body : undefined,
+        error: error instanceof Error ? error.message : "Unknown error",
+        paypalOrderId: redactId(paypalOrderId),
+        status: error instanceof PayPalApiError ? error.details.status : undefined,
+      });
+      return NextResponse.redirect(`${redirectBase}?payment=processing#summit-registration`);
+    }
+
     const verified = verifiedCaptureTotal(capture);
 
     if (
@@ -63,11 +77,17 @@ export async function GET(request: Request) {
       return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
     }
 
-    return NextResponse.redirect(
-      `${redirectBase}?payment=success&registration=${record.id}#summit-registration`,
-    );
-  } catch {
-    await updateSummitPaymentRecord(record.id, { status: "failed" });
+    return NextResponse.redirect(`${thankYouUrl}?registration=${record.id}`);
+  } catch (error) {
+    console.error("Summit capture route failed after PayPal approval.", {
+      error: error instanceof Error ? error.message : "Unknown error",
+      paypalOrderId: redactId(paypalOrderId),
+      registrationId: redactId(registrationId),
+    });
     return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
   }
+}
+
+function redactId(value: string) {
+  return value.length > 8 ? `${value.slice(0, 4)}...${value.slice(-4)}` : "[redacted]";
 }

@@ -32,6 +32,19 @@ export type PayPalCaptureResponse = {
   status?: string;
 };
 
+export class PayPalApiError extends Error {
+  constructor(
+    message: string,
+    readonly details: {
+      body?: string;
+      status: number;
+    },
+  ) {
+    super(message);
+    this.name = "PayPalApiError";
+  }
+}
+
 export function hasPayPalConfig() {
   const credentials = paypalCredentials();
   return Boolean(credentials.clientId && credentials.clientSecret);
@@ -85,7 +98,10 @@ export async function createPayPalOrder({
   });
 
   if (!response.ok) {
-    throw new Error(`PayPal order creation failed with status ${response.status}`);
+    throw new PayPalApiError(`PayPal order creation failed with status ${response.status}`, {
+      body: await safeResponseText(response),
+      status: response.status,
+    });
   }
 
   const order = (await response.json()) as PayPalOrderResponse;
@@ -110,7 +126,10 @@ export async function capturePayPalOrder(paypalOrderId: string) {
   });
 
   if (!response.ok) {
-    throw new Error(`PayPal capture failed with status ${response.status}`);
+    throw new PayPalApiError(`PayPal capture failed with status ${response.status}`, {
+      body: await safeResponseText(response),
+      status: response.status,
+    });
   }
 
   return (await response.json()) as PayPalCaptureResponse;
@@ -188,7 +207,10 @@ async function getPayPalAccessToken() {
   });
 
   if (!response.ok) {
-    throw new Error(`PayPal token request failed with status ${response.status}`);
+    throw new PayPalApiError(`PayPal token request failed with status ${response.status}`, {
+      body: await safeResponseText(response),
+      status: response.status,
+    });
   }
 
   const token = (await response.json()) as PayPalAccessTokenResponse;
@@ -197,6 +219,14 @@ async function getPayPalAccessToken() {
   }
 
   return token.access_token;
+}
+
+async function safeResponseText(response: Response) {
+  try {
+    return (await response.text()).slice(0, 1200);
+  } catch {
+    return undefined;
+  }
 }
 
 function paypalBaseUrl() {

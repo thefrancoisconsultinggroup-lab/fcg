@@ -14,10 +14,12 @@ export async function sendSummitRegistrationEmails({
   registration: SummitRegistrationDetails;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
-  const recipient = process.env.SUMMIT_REGISTRATION_RECIPIENT_EMAIL;
-  const from = process.env.SUMMIT_REGISTRATION_FROM_EMAIL;
+  const recipient =
+    process.env.SUMMIT_REGISTRATION_RECIPIENT_EMAIL || "hello@francoisconsultinggroup.com";
+  const from =
+    process.env.SUMMIT_REGISTRATION_FROM_EMAIL || "no-reply@francoisconsultinggroup.com";
 
-  if (!apiKey || !recipient || !from) {
+  if (!apiKey) {
     return {
       ok: false as const,
       message:
