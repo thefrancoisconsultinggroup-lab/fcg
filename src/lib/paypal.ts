@@ -60,7 +60,13 @@ export function hasPayPalConfig() {
 }
 
 export function getPayPalWebhookId() {
-  return process.env.PAYPAL_WEBHOOK_ID || "";
+  const environment = paypalEnvironment();
+
+  if (environment === "live") {
+    return process.env.PAYPAL_WEBHOOK_ID || "";
+  }
+
+  return process.env.PAYPAL_SANDBOX_WEBHOOK_ID || "";
 }
 
 export function hasPayPalWebhookConfig() {
@@ -68,7 +74,7 @@ export function hasPayPalWebhookConfig() {
 }
 
 export function paypalRuntimeDiagnostics() {
-  const environment = process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV;
+  const environment = paypalEnvironment();
   const baseUrl = paypalBaseUrl();
   const credentials = paypalCredentials();
   const isLiveMode = environment === "live";
@@ -80,8 +86,10 @@ export function paypalRuntimeDiagnostics() {
     hasClientId: Boolean(credentials.clientId),
     hasClientSecret: Boolean(credentials.clientSecret),
     hasSandboxClientId: Boolean(process.env.PAYPAL_SANDBOX_CLIENT_ID),
-    hasSandboxSecret: Boolean(process.env.PAYPAL_SANDBOX_SECRET_KEY),
-    hasWebhookId: Boolean(process.env.PAYPAL_WEBHOOK_ID),
+    hasSandboxSecret:
+      Boolean(process.env.PAYPAL_SANDBOX_CLIENT_SECRET) || Boolean(process.env.PAYPAL_SANDBOX_SECRET_KEY),
+    hasSandboxWebhookId: Boolean(process.env.PAYPAL_SANDBOX_WEBHOOK_ID),
+    hasLiveWebhookId: Boolean(process.env.PAYPAL_WEBHOOK_ID),
     usingSandboxCredentialFamily: !isLiveMode,
   };
 }
@@ -319,7 +327,7 @@ function paypalBaseUrl() {
     return process.env.PAYPAL_BASE_URL;
   }
 
-  const environment = process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV;
+  const environment = paypalEnvironment();
 
   return environment === "live"
     ? "https://api-m.paypal.com"
@@ -335,7 +343,7 @@ function safeHost(url: string) {
 }
 
 function paypalCredentials() {
-  const environment = process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV;
+  const environment = paypalEnvironment();
   const isSandbox = environment !== "live";
 
   return {
@@ -343,7 +351,13 @@ function paypalCredentials() {
       ? process.env.PAYPAL_SANDBOX_CLIENT_ID || process.env.PAYPAL_CLIENT_ID
       : process.env.PAYPAL_CLIENT_ID,
     clientSecret: isSandbox
-      ? process.env.PAYPAL_SANDBOX_SECRET_KEY || process.env.PAYPAL_CLIENT_SECRET
+      ? process.env.PAYPAL_SANDBOX_CLIENT_SECRET ||
+        process.env.PAYPAL_SANDBOX_SECRET_KEY ||
+        process.env.PAYPAL_CLIENT_SECRET
       : process.env.PAYPAL_CLIENT_SECRET,
   };
+}
+
+function paypalEnvironment() {
+  return process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV ?? "sandbox";
 }

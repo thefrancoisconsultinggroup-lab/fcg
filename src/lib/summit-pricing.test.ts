@@ -151,6 +151,41 @@ test("Switching from Corporate package to Individual registration recalculates t
   assert.equal(individual.ok && individual.summary.total, 315);
 });
 
+test("Live Payment Test prices at US$1.00 on the server", () => {
+  const result = validateSummitRegistrationPayload(
+    {
+      attendeeCount: "1",
+      consent: true,
+      country: "TT",
+      email: "tester@example.com",
+      firstName: "Test",
+      lastName: "User",
+      organization: "Example Co",
+      paymentMethod: "PayPal",
+      registrationType: "live-test",
+      role: "Leader",
+    },
+    earlyBirdDate,
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(result.ok && result.registration.pricing.total, 1);
+  assert.equal(result.ok && result.registration.pricing.unitPrice, 1);
+  assert.equal(result.ok && result.registration.pricing.rateLabel, "Live Payment Test - USD 1.00");
+});
+
+test("Live Payment Test rejects more than one attendee", () => {
+  const result = calculateSummitPrice(
+    {
+      attendeeCount: 2,
+      registrationType: "live-test",
+    },
+    earlyBirdDate,
+  );
+
+  assert.equal(result.ok, false);
+});
+
 test("Browser-submitted manipulated amount is ignored", () => {
   const result = validateSummitRegistrationPayload(
     {

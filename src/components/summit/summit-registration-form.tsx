@@ -79,6 +79,7 @@ export function SummitRegistrationForm() {
   const pricingSummary = pricing.ok ? pricing.summary : null;
   const total = pricingSummary?.total ?? 0;
   const standardIndividualRate = summitIndividualRates.find((rate) => rate.value === "standard");
+  const isLivePaymentTest = form.registrationType === "live-test";
   const countdown = summitCountdown(now);
   const displayedStatus = status.state === "idle" ? returnStatus : status;
 
@@ -282,6 +283,19 @@ export function SummitRegistrationForm() {
                     <small>Early bird and regular packages for 10 or 20 attendees</small>
                   </span>
                 </label>
+                <label className={styles.typeCard}>
+                  <input
+                    type="radio"
+                    name="registrationType"
+                    value="live-test"
+                    checked={form.registrationType === "live-test"}
+                    onChange={() => updateRegistrationType("live-test")}
+                  />
+                  <span>
+                    <strong>Live Payment Test</strong>
+                    <small>Temporary US$1.00 PayPal checkout for live gateway verification</small>
+                  </span>
+                </label>
               </div>
             </fieldset>
 
@@ -365,7 +379,9 @@ export function SummitRegistrationForm() {
                   type="number"
                   min="1"
                   max={
-                    form.registrationType === "corporate"
+                    isLivePaymentTest
+                      ? 1
+                      : form.registrationType === "corporate"
                       ? summitCorporatePackages.find(
                           (corporatePackage) => corporatePackage.value === form.corporatePackage,
                         )?.capacity
@@ -423,6 +439,22 @@ export function SummitRegistrationForm() {
             </div>
             <p className={styles.fieldHint}>
               The active rate is applied automatically based on the registration date.
+            </p>
+          </section>
+        ) : isLivePaymentTest ? (
+          <section className={styles.fieldset} aria-label="Live payment test">
+            <p className={styles.summaryKicker}>Temporary test option</p>
+            <div className={styles.optionGrid}>
+              <div className={styles.rateCard} data-active data-disabled={false}>
+                <span>
+                  <strong>Live Payment Test</strong>
+                  <small>Temporary US$1.00 PayPal checkout for live gateway verification</small>
+                </span>
+                <PriceDisplay price={1} />
+              </div>
+            </div>
+            <p className={styles.fieldHint}>
+              This option is intentionally temporary and should be removed after live payment testing is complete.
             </p>
           </section>
         ) : (

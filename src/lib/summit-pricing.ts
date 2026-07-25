@@ -1,4 +1,4 @@
-export type SummitRegistrationType = "individual" | "corporate";
+export type SummitRegistrationType = "individual" | "corporate" | "live-test";
 export type SummitIndividualRateValue = "early-bird" | "advance" | "standard";
 export type SummitCorporateRateWindow = "early-bird" | "standard";
 export type SummitCorporatePackageValue =
@@ -6,6 +6,7 @@ export type SummitCorporatePackageValue =
   | "corporate-early-bird-20"
   | "corporate-10"
   | "corporate-20";
+export type SummitRateValue = SummitIndividualRateValue | SummitCorporatePackageValue | "live-test";
 
 export const summitTimeZone = "America/Port_of_Spain";
 export const summitDateLabel = "October 2, 2026";
@@ -25,7 +26,7 @@ export type SummitPriceSummary = {
   originalPrice?: number;
   rateDetail: string;
   rateLabel: string;
-  rateValue: SummitIndividualRateValue | SummitCorporatePackageValue;
+  rateValue: SummitRateValue;
   total: number;
   unitPrice?: number;
 };
@@ -172,6 +173,28 @@ export function calculateSummitPrice(selection: SummitPricingSelection, now = ne
         rateValue: rate.value,
         total: rate.price * attendeeCount,
         unitPrice: rate.price,
+      },
+    };
+  }
+
+  if (selection.registrationType === "live-test") {
+    if (attendeeCount !== 1) {
+      return {
+        ok: false,
+        message: "The live payment test option is limited to one attendee and a US$1.00 total.",
+      };
+    }
+
+    return {
+      ok: true,
+      summary: {
+        attendeeCount: 1,
+        categoryLabel: "Live payment test",
+        rateDetail: "Temporary live PayPal verification payment",
+        rateLabel: "Live Payment Test - USD 1.00",
+        rateValue: "live-test",
+        total: 1,
+        unitPrice: 1,
       },
     };
   }

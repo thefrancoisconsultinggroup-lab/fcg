@@ -594,6 +594,7 @@ function setPayPalWebhookVerification(verified: boolean) {
 
 async function withMockedResend<T>(callback: () => Promise<T>) {
   const previousApiKey = process.env.RESEND_API_KEY;
+  const previousPayPalEnvironment = process.env.PAYPAL_ENVIRONMENT;
   const previousPayPalBaseUrl = process.env.PAYPAL_BASE_URL;
   const previousPayPalClientId = process.env.PAYPAL_CLIENT_ID;
   const previousPayPalClientSecret = process.env.PAYPAL_CLIENT_SECRET;
@@ -602,6 +603,7 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
   const tempDir = await mkdtemp(path.join(tmpdir(), "summit-payment-test-"));
 
   process.env.RESEND_API_KEY = "test-resend-key";
+  process.env.PAYPAL_ENVIRONMENT = "live";
   process.env.PAYPAL_BASE_URL = "https://paypal.test";
   process.env.PAYPAL_CLIENT_ID = "client-id";
   process.env.PAYPAL_CLIENT_SECRET = "client-secret";
@@ -672,6 +674,7 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
     } else {
       process.env.RESEND_API_KEY = previousApiKey;
     }
+    restoreEnv("PAYPAL_ENVIRONMENT", previousPayPalEnvironment);
     restoreEnv("PAYPAL_BASE_URL", previousPayPalBaseUrl);
     restoreEnv("PAYPAL_CLIENT_ID", previousPayPalClientId);
     restoreEnv("PAYPAL_CLIENT_SECRET", previousPayPalClientSecret);

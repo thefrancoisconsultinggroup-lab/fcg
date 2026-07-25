@@ -47,7 +47,7 @@ export async function POST(request: Request) {
 
   if (!hasPayPalWebhookConfig()) {
     console.warn(
-      "PayPal webhook processing is disabled because PAYPAL_WEBHOOK_ID is not configured.",
+      "PayPal webhook processing is disabled because the configured PayPal webhook ID is not set for this environment.",
     );
     return NextResponse.json(
       {
