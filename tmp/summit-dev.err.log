@@ -9541,3 +9541,523 @@ https://react.dev/link/hydration-mismatch
                               >
     ...
  
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="human-capa...">
+      <SegmentTrieNode>
+      <Page>
+        <script>
+        <HumanCapacitySummitPage>
+          <div className="human-capa...">
+            <SummitWaterTheme>
+            <SummitOpeningTransition>
+            ...
+              <Container>
+                <div className="mx-auto w-...">
+                  ...
+                    <motion.div className="will-chang..." initial={{opacity:0,y:48}} whileInView={{opacity:1,y:0}} ...>
+                      <div className="will-chang..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                        <SummitRegistrationForm>
+                          <form className="human-capa..." onSubmit={function handleSubmit}>
+                            <div className="human-capa...">
+                              <div className="human-capa...">
+                                <div className="human-capa...">
+                                  <fieldset className="human-capa...">
+                                    <legend>
+                                    <div className="human-capa...">
+                                      <label className="human-capa...">
+                                        <input
+                                          type="radio"
+                                          name="registrationType"
+                                          value="individual"
+                                          checked={true}
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                        ...
+                                      <label className="human-capa...">
+                                        <input
+                                          type="radio"
+                                          name="registrationType"
+                                          value="corporate"
+                                          checked={false}
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                        ...
+                                  <div className="human-capa...">
+                                    <FormField label="First Name" htmlFor="summit-fir..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-fir...">
+                                        <span>
+                                        <input
+                                          id="summit-first-name"
+                                          name="firstName"
+                                          autoComplete="given-name"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Last Name" htmlFor="summit-las..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-las...">
+                                        <span>
+                                        <input
+                                          id="summit-last-name"
+                                          name="lastName"
+                                          autoComplete="family-name"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Email" htmlFor="summit-email" required={true}>
+                                      <label className="human-capa..." htmlFor="summit-email">
+                                        <span>
+                                        <input
+                                          id="summit-email"
+                                          name="email"
+                                          type="email"
+                                          autoComplete="email"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Mobile / W..." htmlFor="summit-phone">
+                                      <label className="human-capa..." htmlFor="summit-phone">
+                                        <span>
+                                        <input
+                                          id="summit-phone"
+                                          name="phone"
+                                          type="tel"
+                                          autoComplete="tel"
+                                          placeholder="Including country code"
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Country" htmlFor="summit-cou..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-cou...">
+                                        <span>
+                                        <input
+                                          id="summit-country"
+                                          name="country"
+                                          autoComplete="country-name"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Organization" htmlFor="summit-org..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-org...">
+                                        <span>
+                                        <input
+                                          id="summit-organization"
+                                          name="organization"
+                                          autoComplete="organization"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Role / Title" htmlFor="summit-role" required={true}>
+                                      <label className="human-capa..." htmlFor="summit-role">
+                                        <span>
+                                        <input
+                                          id="summit-role"
+                                          name="role"
+                                          autoComplete="organization-title"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Number Att..." htmlFor="summit-att..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-att...">
+                                        <span>
+                                        <input
+                                          id="summit-attendee-count"
+                                          name="attendeeCount"
+                                          type="number"
+                                          min="1"
+                                          max={undefined}
+                                          required={true}
+                                          value="1"
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                <input
+                                  aria-hidden="true"
+                                  autoComplete="off"
+                                  className="human-capacity-summit-module__LXkusq__honeypot"
+                                  name="website"
+                                  tabIndex={-1}
+                                  value=""
+                                  onChange={function onChange}
+-                                 style={{caret-color:"transparent"}}
+                                >
+                                <div>
+                                <FormField label="What do yo..." htmlFor="summit-hopes">
+                                  <label className="human-capa..." htmlFor="summit-hopes">
+                                    <span>
+                                    <textarea
+                                      id="summit-hopes"
+                                      name="hopes"
+                                      rows={4}
+                                      value=""
+                                      onChange={function onChange}
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                <label className="human-capa...">
+                                  <input
+                                    type="checkbox"
+                                    name="consent"
+                                    required={true}
+                                    checked={false}
+                                    onChange={function onChange}
+-                                   style={{caret-color:"transparent"}}
+                                  >
+                                  ...
+                              <aside className="human-capa...">
+                                <section>
+                                <section>
+                                <fieldset className="human-capa...">
+                                  <legend>
+                                  <p>
+                                  <div className="human-capa...">
+                                    <label className="human-capa...">
+                                      <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="PayPal"
+                                        checked={true}
+                                        onChange={function onChange}
+-                                       style={{caret-color:"transparent"}}
+                                      >
+                                      ...
+                                ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="human-capa...">
+      <SegmentTrieNode>
+      <Page>
+        <script>
+        <HumanCapacitySummitPage>
+          <div className="human-capa...">
+            <SummitWaterTheme>
+            <SummitOpeningTransition>
+            ...
+              <Container>
+                <div className="mx-auto w-...">
+                  ...
+                    <motion.div className="will-chang..." initial={{opacity:0,y:48}} whileInView={{opacity:1,y:0}} ...>
+                      <div className="will-chang..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                        <SummitRegistrationForm>
+                          <form className="human-capa..." onSubmit={function handleSubmit}>
+                            <div className="human-capa...">
+                              <div className="human-capa...">
+                                <div className="human-capa...">
+                                  <fieldset className="human-capa...">
+                                    <legend>
+                                    <div className="human-capa...">
+                                      <label className="human-capa...">
+                                        <input
+                                          type="radio"
+                                          name="registrationType"
+                                          value="individual"
+                                          checked={true}
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                        ...
+                                      <label className="human-capa...">
+                                        <input
+                                          type="radio"
+                                          name="registrationType"
+                                          value="corporate"
+                                          checked={false}
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                        ...
+                                  <div className="human-capa...">
+                                    <FormField label="First Name" htmlFor="summit-fir..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-fir...">
+                                        <span>
+                                        <input
+                                          id="summit-first-name"
+                                          name="firstName"
+                                          autoComplete="given-name"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Last Name" htmlFor="summit-las..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-las...">
+                                        <span>
+                                        <input
+                                          id="summit-last-name"
+                                          name="lastName"
+                                          autoComplete="family-name"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Email" htmlFor="summit-email" required={true}>
+                                      <label className="human-capa..." htmlFor="summit-email">
+                                        <span>
+                                        <input
+                                          id="summit-email"
+                                          name="email"
+                                          type="email"
+                                          autoComplete="email"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Mobile / W..." htmlFor="summit-phone">
+                                      <label className="human-capa..." htmlFor="summit-phone">
+                                        <span>
+                                        <input
+                                          id="summit-phone"
+                                          name="phone"
+                                          type="tel"
+                                          autoComplete="tel"
+                                          placeholder="Including country code"
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Country" htmlFor="summit-cou..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-cou...">
+                                        <span>
+                                        <input
+                                          id="summit-country"
+                                          name="country"
+                                          autoComplete="country-name"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Organization" htmlFor="summit-org..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-org...">
+                                        <span>
+                                        <input
+                                          id="summit-organization"
+                                          name="organization"
+                                          autoComplete="organization"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Role / Title" htmlFor="summit-role" required={true}>
+                                      <label className="human-capa..." htmlFor="summit-role">
+                                        <span>
+                                        <input
+                                          id="summit-role"
+                                          name="role"
+                                          autoComplete="organization-title"
+                                          required={true}
+                                          value=""
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                    <FormField label="Number Att..." htmlFor="summit-att..." required={true}>
+                                      <label className="human-capa..." htmlFor="summit-att...">
+                                        <span>
+                                        <input
+                                          id="summit-attendee-count"
+                                          name="attendeeCount"
+                                          type="number"
+                                          min="1"
+                                          max={undefined}
+                                          required={true}
+                                          value="1"
+                                          onChange={function onChange}
+-                                         style={{caret-color:"transparent"}}
+                                        >
+                                <input
+                                  aria-hidden="true"
+                                  autoComplete="off"
+                                  className="human-capacity-summit-module__LXkusq__honeypot"
+                                  name="website"
+                                  tabIndex={-1}
+                                  value=""
+                                  onChange={function onChange}
+-                                 style={{caret-color:"transparent"}}
+                                >
+                                <div>
+                                <FormField label="What do yo..." htmlFor="summit-hopes">
+                                  <label className="human-capa..." htmlFor="summit-hopes">
+                                    <span>
+                                    <textarea
+                                      id="summit-hopes"
+                                      name="hopes"
+                                      rows={4}
+                                      value=""
+                                      onChange={function onChange}
+-                                     style={{caret-color:"transparent"}}
+                                    >
+                                <label className="human-capa...">
+                                  <input
+                                    type="checkbox"
+                                    name="consent"
+                                    required={true}
+                                    checked={false}
+                                    onChange={function onChange}
+-                                   style={{caret-color:"transparent"}}
+                                  >
+                                  ...
+                              <aside className="human-capa...">
+                                <section>
+                                <section>
+                                <fieldset className="human-capa...">
+                                  <legend>
+                                  <p>
+                                  <div className="human-capa...">
+                                    <label className="human-capa...">
+                                      <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="PayPal"
+                                        checked={true}
+                                        onChange={function onChange}
+-                                       style={{caret-color:"transparent"}}
+                                      >
+                                      ...
+                                ...
+ 
+[browser] Image with src "/assets/summit/christine-francois.png?v=20260724" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[browser] Uncaught Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at Array.map (<anonymous>)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:82:29)
+    at Array.map (<anonymous>:1:18)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:72:40)
+    at Array.map (<anonymous>:1:18)
+    at HumanCapacitySummitPage (src\components\summit\human-capacity-summit-page.tsx:57:38)
+    at Page (src\app\human-capacity-summit\page.tsx:54:7)
+  80 |                         >
+  81 |                           <div className={styles.speakerPortrait}>
+> 82 |                             <Image
+     |                             ^
+  83 |                               src={`${speaker.image}?v=${speakerImageVersion}`}
+  84 |                               alt={speaker.name}
+  85 |                               width={430}
+⨯ Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at ignore-listed frames {
+  digest: '4023414958@E426'
+}
+[browser] ⨯ unhandledRejection: Error: cleanup
+    at k (chrome-extension://fjoaledfpmneenckfbpdfhkmimnjocfa/csSpoofGeoMain.bundle.js:1:10065)
+    at <unknown> (chrome-extension://fjoaledfpmneenckfbpdfhkmimnjocfa/csSpoofGeoMain.bundle.js:1:10945)
+[browser] Uncaught Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at Array.map (<anonymous>)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:82:29)
+    at Array.map (<anonymous>:1:18)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:72:40)
+    at Array.map (<anonymous>:1:18)
+    at HumanCapacitySummitPage (src\components\summit\human-capacity-summit-page.tsx:57:38)
+    at Page (src\app\human-capacity-summit\page.tsx:54:7)
+  80 |                         >
+  81 |                           <div className={styles.speakerPortrait}>
+> 82 |                             <Image
+     |                             ^
+  83 |                               src={`${speaker.image}?v=${speakerImageVersion}`}
+  84 |                               alt={speaker.name}
+  85 |                               width={430}
+⨯ Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at ignore-listed frames {
+  digest: '4023414958@E426'
+}
+[browser] Uncaught Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at Array.map (<anonymous>)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:82:29)
+    at Array.map (<anonymous>:1:18)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:72:40)
+    at Array.map (<anonymous>:1:18)
+    at HumanCapacitySummitPage (src\components\summit\human-capacity-summit-page.tsx:57:38)
+    at Page (src\app\human-capacity-summit\page.tsx:54:7)
+  80 |                         >
+  81 |                           <div className={styles.speakerPortrait}>
+> 82 |                             <Image
+     |                             ^
+  83 |                               src={`${speaker.image}?v=${speakerImageVersion}`}
+  84 |                               alt={speaker.name}
+  85 |                               width={430}
+⨯ Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at ignore-listed frames {
+  digest: '4023414958@E426'
+}
+[browser] You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled (src/components/layout/site-header.tsx:16:40)
+[browser] Uncaught Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at Array.map (<anonymous>)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:82:29)
+    at Array.map (<anonymous>:1:18)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:72:40)
+    at Array.map (<anonymous>:1:18)
+    at HumanCapacitySummitPage (src\components\summit\human-capacity-summit-page.tsx:57:38)
+    at Page (src\app\human-capacity-summit\page.tsx:54:7)
+  80 |                         >
+  81 |                           <div className={styles.speakerPortrait}>
+> 82 |                             <Image
+     |                             ^
+  83 |                               src={`${speaker.image}?v=${speakerImageVersion}`}
+  84 |                               alt={speaker.name}
+  85 |                               width={430}
+⨯ Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at ignore-listed frames {
+  digest: '4023414958@E426'
+}
+[browser] Uncaught Error: Invalid src prop (/assets/images/droplet.jpeg?v=20260724) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+    at Array.map (<anonymous>)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:82:29)
+    at Array.map (<anonymous>:1:18)
+    at <anonymous> (src\components\summit\human-capacity-summit-page.tsx:72:40)
+    at Array.map (<anonymous>:1:18)
+    at HumanCapacitySummitPage (src\components\summit\human-capacity-summit-page.tsx:57:38)
+    at Page (src\app\human-capacity-summit\page.tsx:54:7)
+  80 |                         >
+  81 |                           <div className={styles.speakerPortrait}>
+> 82 |                             <Image
+     |                             ^
+  83 |                               src={`${speaker.image}?v=${speakerImageVersion}`}
+  84 |                               alt={speaker.name}
+  85 |                               width={430}

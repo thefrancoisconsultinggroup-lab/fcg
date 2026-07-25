@@ -27,6 +27,7 @@ export type SummitPaymentRecord = {
   captureId?: string;
   capturedAt?: string;
   createdAt: string;
+  emailSentAt?: string;
   id: string;
   payerEmail?: string;
   paypalOrderId: string;

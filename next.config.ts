@@ -43,6 +43,10 @@ const nextConfig: NextConfig = {
         pathname: "/assets/summit/**",
         search: "?v=20260724",
       },
+      {
+        pathname: "/assets/images/**",
+        search: "?v=20260724",
+      },
     ],
     remotePatterns: [
       {

@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { ContactFormSection } from "@/components/contact/contact-form-section";
 import { ContactHero } from "@/components/contact/contact-hero";
 import { MigratedPageContent } from "@/components/sections/migrated-page-content";
 import { contactPageContent } from "@/data/pages/contact";
@@ -68,6 +69,7 @@ export function ContactPageScene() {
       <ContactHero targetId="contact-body" />
       <div id="contact-body" ref={bodyShellRef} className="relative z-10 overflow-hidden">
         <MigratedPageContent sections={contactPageContent.sections} />
+        <ContactFormSection />
       </div>
     </div>
   );

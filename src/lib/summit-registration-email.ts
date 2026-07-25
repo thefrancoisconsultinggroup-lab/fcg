@@ -1,5 +1,6 @@
 import type { SummitPriceSummary } from "@/lib/summit-pricing";
 import type { SummitRegistrationDetails } from "@/lib/summit-registration-records";
+import { escapeHtml, sendSiteEmail } from "@/lib/site-email";
 
 export async function sendSummitRegistrationEmails({
   captureId,
@@ -25,8 +26,7 @@ export async function sendSummitRegistrationEmails({
   }
 
   const fullName = `${registration.firstName} ${registration.lastName}`;
-  const emailResponse = await sendEmail({
-    apiKey,
+  const emailResponse = await sendSiteEmail({
     from,
     to: [recipient],
     replyTo: registration.email,
@@ -43,8 +43,7 @@ export async function sendSummitRegistrationEmails({
     };
   }
 
-  await sendEmail({
-    apiKey,
+  await sendSiteEmail({
     from,
     to: [registration.email],
     subject: "Your Human Capacity Summit payment and registration are confirmed",
@@ -53,40 +52,6 @@ export async function sendSummitRegistrationEmails({
   }).catch(() => undefined);
 
   return { ok: true as const };
-}
-
-async function sendEmail({
-  apiKey,
-  from,
-  to,
-  replyTo,
-  subject,
-  html,
-  text,
-}: {
-  apiKey: string;
-  from: string;
-  html: string;
-  replyTo?: string;
-  subject: string;
-  text: string;
-  to: string[];
-}) {
-  return fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      html,
-      reply_to: replyTo,
-      subject,
-      text,
-      to,
-    }),
-  });
 }
 
 function registrationHtml({
@@ -171,13 +136,4 @@ function acknowledgementText(fullName: string, pricing: SummitPriceSummary) {
     "Your Human Capacity Summit registration and payment have been confirmed.",
     `Total paid: $${pricing.total.toLocaleString("en-US")} USD`,
   ].join("\n");
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
 }

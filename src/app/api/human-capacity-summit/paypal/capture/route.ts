@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
+import { completeSummitPayment } from "@/lib/summit-payment-completion";
 import { capturePayPalOrder, verifiedCaptureTotal } from "@/lib/paypal";
-import { sendSummitRegistrationEmails } from "@/lib/summit-registration-email";
 import {
   getSummitPaymentRecordById,
   getSummitPaymentRecordByOrderId,
@@ -40,27 +40,27 @@ export async function GET(request: Request) {
     if (
       capture.status !== "COMPLETED" ||
       !verified ||
-      verified.currency !== "USD" ||
-      verified.value !== record.pricing.total
+      verified.currency !== "USD"
     ) {
       await updateSummitPaymentRecord(record.id, { status: "failed" });
       return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
     }
 
-    const updatedRecord = await updateSummitPaymentRecord(record.id, {
-      captureId: verified.captureId,
-      capturedAt: new Date().toISOString(),
-      payerEmail: capture.payer?.email_address,
-      status: "paid",
+    const completion = await completeSummitPayment({
+      record,
+      capture: {
+        captureId: verified.captureId,
+        currency: verified.currency,
+        orderId: paypalOrderId,
+        payerEmail: capture.payer?.email_address,
+        status: capture.status,
+        value: verified.value,
+      },
     });
 
-    if (updatedRecord) {
-      await sendSummitRegistrationEmails({
-        captureId: verified.captureId,
-        paypalOrderId,
-        pricing: updatedRecord.pricing,
-        registration: updatedRecord.registration,
-      });
+    if (!completion.ok) {
+      await updateSummitPaymentRecord(record.id, { status: "failed" });
+      return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
     }
 
     return NextResponse.redirect(

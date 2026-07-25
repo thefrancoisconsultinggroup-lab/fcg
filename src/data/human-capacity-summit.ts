@@ -70,7 +70,7 @@ export const summitSpeakers = [
     group: "founding",
     capacity: "Human Capacity",
     role: "Corporate Wellness Strategist | American Brain Council Certified",
-    image: "/assets/summit/christine-francois.png",
+    image: "/assets/summit/christine.jpeg",
   },
   {
     name: "Capt. Wendy Yawching",
@@ -91,14 +91,14 @@ export const summitSpeakers = [
     group: "contributing",
     capacity: "Human Capacity",
     role: "Contributing Voice",
-    image: "/assets/summit/anonymous-profile.svg",
+    image: "/assets/images/droplet.jpeg",
   },
   {
     name: "To Be Announced",
     group: "contributing",
     capacity: "Human Capacity",
     role: "Contributing Voice",
-    image: "/assets/summit/anonymous-profile.svg",
+    image: "/assets/images/droplet.jpeg",
   },
 ] as const;
 

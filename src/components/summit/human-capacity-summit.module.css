@@ -448,6 +448,10 @@
   object-fit: cover;
 }
 
+.speakerCardChristine .speakerPortrait img {
+  transform: scale(1.12);
+}
+
 .speakerCapacity {
   margin-top: 0.7rem;
   color: var(--summit-ink);

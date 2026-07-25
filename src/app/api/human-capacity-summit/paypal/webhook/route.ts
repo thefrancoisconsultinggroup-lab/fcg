@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { completeSummitPayment } from "@/lib/summit-payment-completion";
 import { hasPayPalWebhookConfig, verifyPayPalWebhookSignature } from "@/lib/paypal";
 import {
   getSummitPaymentRecordByOrderId,
@@ -8,8 +9,15 @@ import {
 type PayPalWebhookEvent = {
   event_type?: string;
   resource?: {
+    amount?: {
+      currency_code?: string;
+      value?: string;
+    };
     custom_id?: string;
     id?: string;
+    payer?: {
+      email_address?: string;
+    };
     status?: string;
     supplementary_data?: {
       related_ids?: {
@@ -18,6 +26,17 @@ type PayPalWebhookEvent = {
     };
   };
 };
+
+const supportedEvents = new Set([
+  "CHECKOUT.ORDER.APPROVED",
+  "CHECKOUT.PAYMENT-APPROVAL.REVERSED",
+  "PAYMENT.CAPTURE.PENDING",
+  "PAYMENT.CAPTURE.COMPLETED",
+  "PAYMENT.CAPTURE.DENIED",
+  "PAYMENT.CAPTURE.DECLINED",
+  "PAYMENT.CAPTURE.REFUNDED",
+  "PAYMENT.CAPTURE.REVERSED",
+]);
 
 export async function POST(request: Request) {
   const event = (await request.json().catch(() => null)) as PayPalWebhookEvent | null;
@@ -49,6 +68,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Webhook signature verification failed." }, { status: 401 });
   }
 
+  if (!event.event_type || !supportedEvents.has(event.event_type)) {
+    return NextResponse.json({ ignored: true, received: true });
+  }
+
   const orderId =
     event.resource?.supplementary_data?.related_ids?.order_id ??
     event.resource?.id ??
@@ -63,17 +86,34 @@ export async function POST(request: Request) {
     await updateSummitPaymentRecord(record.id, { status: "approved" });
   }
 
+  if (event.event_type === "PAYMENT.CAPTURE.PENDING") {
+    await updateSummitPaymentRecord(record.id, { status: "approved" });
+  }
+
   if (event.event_type === "PAYMENT.CAPTURE.COMPLETED") {
-    await updateSummitPaymentRecord(record.id, {
-      captureId: event.resource?.id,
-      capturedAt: new Date().toISOString(),
-      status: "paid",
+    const completion = await completeSummitPayment({
+      record,
+      capture: {
+        captureId: event.resource?.id,
+        currency: event.resource?.amount?.currency_code,
+        orderId,
+        payerEmail: event.resource?.payer?.email_address,
+        status: event.resource?.status,
+        value: Number.parseFloat(event.resource?.amount?.value ?? ""),
+      },
     });
+
+    if (!completion.ok) {
+      console.warn("Rejected PayPal completed-capture webhook because payment details did not match the stored registration.");
+      return NextResponse.json({ message: "Webhook payment details did not match." }, { status: 422 });
+    }
   }
 
   if (
+    event.event_type === "CHECKOUT.PAYMENT-APPROVAL.REVERSED" ||
     event.event_type === "PAYMENT.CAPTURE.DENIED" ||
-    event.event_type === "PAYMENT.CAPTURE.DECLINED"
+    event.event_type === "PAYMENT.CAPTURE.DECLINED" ||
+    event.event_type === "PAYMENT.CAPTURE.REVERSED"
   ) {
     await updateSummitPaymentRecord(record.id, { status: "failed" });
   }

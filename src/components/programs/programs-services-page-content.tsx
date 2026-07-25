@@ -11,6 +11,7 @@ import {
   programsServicesIntro,
   programsServicesOfferings,
 } from "@/data/pages/programs-services";
+import { ProgramInquiryForm } from "./program-inquiry-form";
 import styles from "./programs-services-page-content.module.css";
 
 export function ProgramsServicesPageContent() {
@@ -102,16 +103,20 @@ export function ProgramsServicesPageContent() {
                   ))}
                 </ul>
                 <div className={styles.packageFooter}>
-                  <Link
-                    href={programsServicesCtas.customQuote.href}
+                  <a
+                    href="#program-inquiry"
                     className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent-yellow px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-ink transition hover:bg-[#ffe080] focus-visible:outline-accent-yellow"
                   >
                     {programsServicesCtas.customQuote.label}
-                  </Link>
+                  </a>
                 </div>
               </ScrollReveal>
             ))}
           </div>
+
+          <ScrollReveal className={styles.inquiryShell}>
+            <ProgramInquiryForm />
+          </ScrollReveal>
         </Container>
       </section>
 
