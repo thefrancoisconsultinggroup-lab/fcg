@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SummitThankYouSync } from "@/components/summit/summit-thank-you-sync";
 
 export const metadata: Metadata = {
   title: "Thank You | The Human Capacity Summit",
@@ -10,9 +11,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SummitThankYouPage() {
+export default async function SummitThankYouPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ registration?: string }>;
+}) {
+  const { registration } = await searchParams;
+
   return (
     <main className="min-h-screen bg-[#f7e0b3] px-5 py-28 text-[#3f2a07] sm:px-8">
+      <SummitThankYouSync registrationId={registration} />
       <section className="mx-auto grid min-h-[62vh] max-w-3xl content-center justify-items-start gap-7">
         <p className="m-0 text-xs font-bold uppercase tracking-[0.28em] text-[#9b6b17]">
           Registration Confirmed

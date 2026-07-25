@@ -511,6 +511,38 @@ test("retry endpoint refuses pending and already-paid registrations", async () =
   });
 });
 
+test("paid status check retries missing summit emails exactly once", async () => {
+  const sentEmails = await withMockedResend(async () => {
+    const record = await seedRecord("registration-status-email-retry");
+    await import("@/lib/summit-registration-records").then(({ updateSummitPaymentRecord }) =>
+      updateSummitPaymentRecord(record.id, {
+        captureId: "CAPTURE-1",
+        capturedAt: "2026-07-24T01:30:00.000Z",
+        status: "paid",
+      }),
+    );
+
+    const { GET } = await import("@/app/api/human-capacity-summit/paypal/status/route");
+    await GET(
+      new Request(
+        `https://example.com/api/human-capacity-summit/paypal/status?registrationId=${record.id}`,
+      ),
+    );
+    await GET(
+      new Request(
+        `https://example.com/api/human-capacity-summit/paypal/status?registrationId=${record.id}`,
+      ),
+    );
+
+    const stored = await getSummitPaymentRecordById(record.id);
+    assert.ok(stored?.attendeeConfirmationSentAt);
+    assert.ok(stored?.adminNotificationSentAt);
+    return getSentEmails();
+  });
+
+  assert.equal(sentEmails.length, 2);
+});
+
 function completedCapture() {
   return {
     captureId: "CAPTURE-1",

@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { reconcileSummitPayment } from "@/lib/summit-payment-completion";
+import { reconcileSummitPayment, sendPendingSummitPaymentEmails } from "@/lib/summit-payment-completion";
 import { customerPaymentStatus } from "@/lib/summit-payment-customer-status";
-import { getSummitPaymentRecordById } from "@/lib/summit-registration-records";
+import type { SummitPaymentRecord } from "@/lib/summit-registration-records";
+import { getSummitPaymentRecordById, isSummitPaymentCaptured } from "@/lib/summit-registration-records";
 
 export async function GET(request: Request) {
   const registrationId = new URL(request.url).searchParams.get("registrationId") || "";
@@ -15,7 +16,12 @@ export async function GET(request: Request) {
     });
   }
 
-  return NextResponse.json(customerPaymentStatus(record));
+  if (isSummitPaymentCaptured(record) && shouldRetryPaidEmails(record)) {
+    await sendPendingSummitPaymentEmails(record);
+  }
+
+  const refreshed = await getSummitPaymentRecordById(registrationId);
+  return NextResponse.json(customerPaymentStatus(refreshed ?? record));
 }
 
 export async function POST(request: Request) {
@@ -27,7 +33,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Registration could not be found." }, { status: 404 });
   }
 
-  if (
+  if (isSummitPaymentCaptured(record) && shouldRetryPaidEmails(record)) {
+    await sendPendingSummitPaymentEmails(record);
+  } else if (
     record.status === "payment_processing" ||
     record.status === "capture_pending" ||
     record.status === "verification_required" ||
@@ -42,4 +50,8 @@ export async function POST(request: Request) {
 
   const refreshed = await getSummitPaymentRecordById(registrationId);
   return NextResponse.json(customerPaymentStatus(refreshed ?? record));
+}
+
+function shouldRetryPaidEmails(record: SummitPaymentRecord) {
+  return !record.attendeeConfirmationSentAt || !record.adminNotificationSentAt;
 }
