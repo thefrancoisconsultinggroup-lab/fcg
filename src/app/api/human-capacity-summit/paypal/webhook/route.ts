@@ -87,7 +87,7 @@ export async function POST(request: Request) {
   }
 
   if (event.event_type === "PAYMENT.CAPTURE.PENDING") {
-    await updateSummitPaymentRecord(record.id, { status: "approved" });
+    await updateSummitPaymentRecord(record.id, { status: "payment_processing" });
   }
 
   if (event.event_type === "PAYMENT.CAPTURE.COMPLETED") {
@@ -111,15 +111,34 @@ export async function POST(request: Request) {
 
   if (
     event.event_type === "CHECKOUT.PAYMENT-APPROVAL.REVERSED" ||
-    event.event_type === "PAYMENT.CAPTURE.DENIED" ||
-    event.event_type === "PAYMENT.CAPTURE.DECLINED" ||
     event.event_type === "PAYMENT.CAPTURE.REVERSED"
   ) {
-    await updateSummitPaymentRecord(record.id, { status: "failed" });
+    await updateSummitPaymentRecord(record.id, {
+      lastPaymentErrorAt: new Date().toISOString(),
+      lastPaymentErrorCode: event.event_type,
+      lastPaymentErrorMessage: "PayPal reported a reversed payment event.",
+      manualReviewReason: "PayPal reported a payment reversal after checkout.",
+      status: "reversed",
+    });
+  }
+
+  if (
+    event.event_type === "PAYMENT.CAPTURE.DENIED" ||
+    event.event_type === "PAYMENT.CAPTURE.DECLINED"
+  ) {
+    await updateSummitPaymentRecord(record.id, {
+      lastPaymentErrorAt: new Date().toISOString(),
+      lastPaymentErrorCode: event.event_type,
+      lastPaymentErrorMessage: "PayPal could not complete the payment.",
+      status: "declined",
+    });
   }
 
   if (event.event_type === "PAYMENT.CAPTURE.REFUNDED") {
-    await updateSummitPaymentRecord(record.id, { status: "refunded" });
+    await updateSummitPaymentRecord(record.id, {
+      manualReviewReason: "PayPal reported a refund for this registration payment.",
+      status: "refunded",
+    });
   }
 
   return NextResponse.json({ received: true });

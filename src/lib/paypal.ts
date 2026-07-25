@@ -10,6 +10,21 @@ type PayPalOrderResponse = {
     href: string;
     rel: string;
   }>;
+  purchase_units?: Array<{
+    payments?: {
+      captures?: Array<PayPalCapturePayment>;
+    };
+  }>;
+  status?: string;
+};
+
+type PayPalCapturePayment = {
+  amount?: {
+    currency_code?: string;
+    value?: string;
+  };
+  id?: string;
+  status?: string;
 };
 
 export type PayPalCaptureResponse = {
@@ -19,14 +34,7 @@ export type PayPalCaptureResponse = {
   };
   purchase_units?: Array<{
     payments?: {
-      captures?: Array<{
-        amount?: {
-          currency_code?: string;
-          value?: string;
-        };
-        id?: string;
-        status?: string;
-      }>;
+      captures?: Array<PayPalCapturePayment>;
     };
   }>;
   status?: string;
@@ -37,6 +45,7 @@ export class PayPalApiError extends Error {
     message: string,
     readonly details: {
       body?: string;
+      debugId?: string;
       status: number;
     },
   ) {
@@ -58,13 +67,34 @@ export function hasPayPalWebhookConfig() {
   return Boolean(getPayPalWebhookId());
 }
 
+export function paypalRuntimeDiagnostics() {
+  const environment = process.env.PAYPAL_ENVIRONMENT ?? process.env.PAYPAL_ENV;
+  const baseUrl = paypalBaseUrl();
+  const credentials = paypalCredentials();
+  const isLiveMode = environment === "live";
+
+  return {
+    apiHost: safeHost(baseUrl),
+    environment: environment || "[default-sandbox]",
+    hasBaseUrlOverride: Boolean(process.env.PAYPAL_BASE_URL),
+    hasClientId: Boolean(credentials.clientId),
+    hasClientSecret: Boolean(credentials.clientSecret),
+    hasSandboxClientId: Boolean(process.env.PAYPAL_SANDBOX_CLIENT_ID),
+    hasSandboxSecret: Boolean(process.env.PAYPAL_SANDBOX_SECRET_KEY),
+    hasWebhookId: Boolean(process.env.PAYPAL_WEBHOOK_ID),
+    usingSandboxCredentialFamily: !isLiveMode,
+  };
+}
+
 export async function createPayPalOrder({
   pricing,
   registrationId,
+  requestId,
   requestOrigin,
 }: {
   pricing: SummitPriceSummary;
   registrationId: string;
+  requestId?: string;
   requestOrigin: string;
 }) {
   const accessToken = await getPayPalAccessToken();
@@ -73,7 +103,7 @@ export async function createPayPalOrder({
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
-      "PayPal-Request-Id": `summit-create-${registrationId}`,
+      "PayPal-Request-Id": requestId ?? `summit-create-${registrationId}`,
     },
     body: JSON.stringify({
       intent: "CAPTURE",
@@ -98,8 +128,10 @@ export async function createPayPalOrder({
   });
 
   if (!response.ok) {
+    const body = await safeResponseText(response);
     throw new PayPalApiError(`PayPal order creation failed with status ${response.status}`, {
-      body: await safeResponseText(response),
+      body,
+      debugId: paypalDebugId(body),
       status: response.status,
     });
   }
@@ -126,8 +158,31 @@ export async function capturePayPalOrder(paypalOrderId: string) {
   });
 
   if (!response.ok) {
+    const body = await safeResponseText(response);
     throw new PayPalApiError(`PayPal capture failed with status ${response.status}`, {
-      body: await safeResponseText(response),
+      body,
+      debugId: paypalDebugId(body),
+      status: response.status,
+    });
+  }
+
+  return (await response.json()) as PayPalCaptureResponse;
+}
+
+export async function getPayPalOrder(paypalOrderId: string) {
+  const accessToken = await getPayPalAccessToken();
+  const response = await fetch(`${paypalBaseUrl()}/v2/checkout/orders/${paypalOrderId}`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    const body = await safeResponseText(response);
+    throw new PayPalApiError(`PayPal order lookup failed with status ${response.status}`, {
+      body,
+      debugId: paypalDebugId(body),
       status: response.status,
     });
   }
@@ -148,6 +203,23 @@ export function verifiedCaptureTotal(capture: PayPalCaptureResponse) {
     captureId: capturedPayment.id,
     currency: capturedPayment.amount.currency_code ?? "",
     value: Number.parseFloat(capturedPayment.amount.value ?? ""),
+  };
+}
+
+export function capturePaymentSummary(capture: PayPalCaptureResponse) {
+  const capturedPayment = capture.purchase_units
+    ?.flatMap((unit) => unit.payments?.captures ?? [])
+    .find((payment) => payment.id || payment.status);
+
+  if (!capturedPayment) {
+    return null;
+  }
+
+  return {
+    captureId: capturedPayment.id,
+    currency: capturedPayment.amount?.currency_code ?? "",
+    status: capturedPayment.status ?? capture.status ?? "",
+    value: Number.parseFloat(capturedPayment.amount?.value ?? ""),
   };
 }
 
@@ -229,6 +301,19 @@ async function safeResponseText(response: Response) {
   }
 }
 
+export function paypalDebugId(body?: string) {
+  if (!body) {
+    return undefined;
+  }
+
+  try {
+    const parsed = JSON.parse(body) as { debug_id?: unknown };
+    return typeof parsed.debug_id === "string" ? parsed.debug_id : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 function paypalBaseUrl() {
   if (process.env.PAYPAL_BASE_URL) {
     return process.env.PAYPAL_BASE_URL;
@@ -239,6 +324,14 @@ function paypalBaseUrl() {
   return environment === "live"
     ? "https://api-m.paypal.com"
     : "https://api-m.sandbox.paypal.com";
+}
+
+function safeHost(url: string) {
+  try {
+    return new URL(url).host;
+  } catch {
+    return "[invalid-url]";
+  }
 }
 
 function paypalCredentials() {

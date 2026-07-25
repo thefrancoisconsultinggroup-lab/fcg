@@ -1015,8 +1015,39 @@
   color: #23631d;
 }
 
+.formStatus[data-state="processing"] {
+  color: #6f4a0d;
+}
+
+.formStatus[data-state="pending"],
+.formStatus[data-state="cancelled"],
+.formStatus[data-state="manual_review"] {
+  color: #6f4a0d;
+}
+
 .formStatus[data-state="error"] {
   color: #9b2c1d;
+}
+
+.form .secondaryAction {
+  width: 100%;
+  min-height: 2.9rem;
+  border: 1px solid rgba(63, 42, 7, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.54);
+  color: var(--summit-ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.form a.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .honeypot {

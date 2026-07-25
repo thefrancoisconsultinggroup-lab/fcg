@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createPayPalOrder, hasPayPalConfig } from "@/lib/paypal";
+import { createPayPalOrder, hasPayPalConfig, PayPalApiError, paypalRuntimeDiagnostics } from "@/lib/paypal";
 import { createSummitPaymentRecord } from "@/lib/summit-registration-records";
 import {
   validateSummitRegistrationPayload,
@@ -49,12 +49,13 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("PayPal order creation failed for Summit registration.", {
+      debugId: error instanceof PayPalApiError ? error.details.debugId : undefined,
       error: error instanceof Error ? error.message : "Unknown error",
+      paypalRuntime: paypalRuntimeDiagnostics(),
     });
     return NextResponse.json(
       {
-        message:
-          "We could not open PayPal checkout because PayPal did not create the order. Please try again or contact Francois Consulting Group directly.",
+        message: "We couldn't start PayPal checkout. Please try again.",
       },
       { status: 502 },
     );

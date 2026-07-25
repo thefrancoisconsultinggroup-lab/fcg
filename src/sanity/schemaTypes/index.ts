@@ -2,6 +2,7 @@ import {authorType} from "@/sanity/schemaTypes/author";
 import {blogPostType} from "@/sanity/schemaTypes/blog-post";
 import {categoryType} from "@/sanity/schemaTypes/category";
 import {externalEmbedType} from "@/sanity/schemaTypes/external-embed";
+import {summitPaymentRecordType} from "@/sanity/schemaTypes/summit-payment-record";
 import {tagType} from "@/sanity/schemaTypes/tag";
 
 export const schemaTypes = [
@@ -10,4 +11,5 @@ export const schemaTypes = [
   categoryType,
   tagType,
   externalEmbedType,
+  summitPaymentRecordType,
 ];

@@ -1,6 +1,18 @@
 import { NextResponse } from "next/server";
-import { completeSummitPayment } from "@/lib/summit-payment-completion";
-import { capturePayPalOrder, PayPalApiError, verifiedCaptureTotal } from "@/lib/paypal";
+import {
+  completeSummitPayment,
+  isDeclinedPayPalStatus,
+  isFailedPayPalStatus,
+  isPendingPayPalStatus,
+  reconcileSummitPayment,
+} from "@/lib/summit-payment-completion";
+import {
+  capturePayPalOrder,
+  capturePaymentSummary,
+  PayPalApiError,
+  paypalRuntimeDiagnostics,
+  verifiedCaptureTotal,
+} from "@/lib/paypal";
 import {
   getSummitPaymentRecordById,
   getSummitPaymentRecordByOrderId,
@@ -28,6 +40,17 @@ export async function GET(request: Request) {
   }
 
   if (isSummitPaymentCaptured(record)) {
+    await completeSummitPayment({
+      record,
+      capture: {
+        captureId: record.captureId,
+        currency: "USD",
+        orderId: paypalOrderId,
+        payerEmail: record.payerEmail,
+        status: "COMPLETED",
+        value: record.pricing.total,
+      },
+    });
     return NextResponse.redirect(
       `${thankYouUrl}?registration=${record.id}`,
     );
@@ -44,20 +67,67 @@ export async function GET(request: Request) {
         body: error instanceof PayPalApiError ? error.details.body : undefined,
         error: error instanceof Error ? error.message : "Unknown error",
         paypalOrderId: redactId(paypalOrderId),
+        paypalRuntime: paypalRuntimeDiagnostics(),
         status: error instanceof PayPalApiError ? error.details.status : undefined,
       });
-      return NextResponse.redirect(`${redirectBase}?payment=processing#summit-registration`);
+      const reconciliation = await reconcileSummitPayment(record);
+      return NextResponse.redirect(
+        `${redirectBase}?payment=${paymentParamForReconciliation(reconciliation)}&registration=${record.id}#summit-registration`,
+      );
     }
 
     const verified = verifiedCaptureTotal(capture);
 
     if (
       capture.status !== "COMPLETED" ||
-      !verified ||
-      verified.currency !== "USD"
+      !verified
     ) {
-      await updateSummitPaymentRecord(record.id, { status: "failed" });
-      return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
+      const summary = capturePaymentSummary(capture);
+      const status = summary?.status || capture.status || "";
+
+      if (isPendingPayPalStatus(status)) {
+        await updateSummitPaymentRecord(record.id, { status: "payment_processing" });
+        return NextResponse.redirect(`${redirectBase}?payment=pending&registration=${record.id}#summit-registration`);
+      }
+
+      if (isDeclinedPayPalStatus(status)) {
+        await updateSummitPaymentRecord(record.id, {
+          lastPaymentErrorAt: new Date().toISOString(),
+          lastPaymentErrorCode: status,
+          lastPaymentErrorMessage: "PayPal could not complete the payment.",
+          status: "declined",
+        });
+        return NextResponse.redirect(`${redirectBase}?payment=declined&registration=${record.id}#summit-registration`);
+      }
+
+      if (isFailedPayPalStatus(status)) {
+        await updateSummitPaymentRecord(record.id, {
+          lastPaymentErrorAt: new Date().toISOString(),
+          lastPaymentErrorCode: status || "PAYPAL_CAPTURE_FAILED",
+          lastPaymentErrorMessage: "PayPal reported that the payment was not completed.",
+          status: "payment_failed",
+        });
+        return NextResponse.redirect(`${redirectBase}?payment=failed&registration=${record.id}#summit-registration`);
+      }
+
+      await updateSummitPaymentRecord(record.id, {
+        lastPaymentErrorAt: new Date().toISOString(),
+        lastPaymentErrorCode: status || "PAYPAL_CAPTURE_UNVERIFIED",
+        lastPaymentErrorMessage: "PayPal capture could not be verified.",
+        status: "verification_required",
+      });
+      return NextResponse.redirect(`${redirectBase}?payment=verification_required&registration=${record.id}#summit-registration`);
+    }
+
+    if (verified.currency !== "USD") {
+      await updateSummitPaymentRecord(record.id, {
+        lastPaymentErrorAt: new Date().toISOString(),
+        lastPaymentErrorCode: "PAYPAL_CURRENCY_MISMATCH",
+        lastPaymentErrorMessage: "PayPal capture currency did not match the expected Summit registration currency.",
+        manualReviewReason: "PayPal capture returned an unexpected currency.",
+        status: "manual_review",
+      });
+      return NextResponse.redirect(`${redirectBase}?payment=manual_review&registration=${record.id}#summit-registration`);
     }
 
     const completion = await completeSummitPayment({
@@ -73,8 +143,14 @@ export async function GET(request: Request) {
     });
 
     if (!completion.ok) {
-      await updateSummitPaymentRecord(record.id, { status: "failed" });
-      return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
+      await updateSummitPaymentRecord(record.id, {
+        lastPaymentErrorAt: new Date().toISOString(),
+        lastPaymentErrorCode: completion.reason,
+        lastPaymentErrorMessage: "PayPal capture did not match the stored Summit registration.",
+        manualReviewReason: "PayPal completed capture failed Summit registration verification.",
+        status: "manual_review",
+      });
+      return NextResponse.redirect(`${redirectBase}?payment=manual_review&registration=${record.id}#summit-registration`);
     }
 
     return NextResponse.redirect(`${thankYouUrl}?registration=${record.id}`);
@@ -82,12 +158,38 @@ export async function GET(request: Request) {
     console.error("Summit capture route failed after PayPal approval.", {
       error: error instanceof Error ? error.message : "Unknown error",
       paypalOrderId: redactId(paypalOrderId),
+      paypalRuntime: paypalRuntimeDiagnostics(),
       registrationId: redactId(registrationId),
     });
+    if (record) {
+      await updateSummitPaymentRecord(record.id, {
+        lastPaymentErrorAt: new Date().toISOString(),
+        lastPaymentErrorCode: "CAPTURE_HANDLER_ERROR",
+        lastPaymentErrorMessage: "Payment capture result could not be verified.",
+        status: "verification_required",
+      });
+      return NextResponse.redirect(`${redirectBase}?payment=verification_required&registration=${record.id}#summit-registration`);
+    }
     return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
   }
 }
 
 function redactId(value: string) {
   return value.length > 8 ? `${value.slice(0, 4)}...${value.slice(-4)}` : "[redacted]";
+}
+
+function paymentParamForReconciliation(result: Awaited<ReturnType<typeof reconcileSummitPayment>>) {
+  if (!result.ok) {
+    return "manual_review";
+  }
+
+  if (result.status === "paid") {
+    return "success";
+  }
+
+  if (result.status === "pending") {
+    return "pending";
+  }
+
+  return result.status;
 }
