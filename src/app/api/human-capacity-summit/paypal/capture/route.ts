@@ -97,7 +97,7 @@ export async function GET(request: Request) {
       await updateSummitPaymentRecord(record.id, {
         lastPaymentDiagnostics: diagnostics,
       });
-      const reconciliation = await reconcileSummitPayment(record);
+      const reconciliation = await settleUncertainCaptureOutcome(record);
       return NextResponse.redirect(
         `${redirectBase}?payment=${paymentParamForReconciliation(reconciliation)}&registration=${record.id}#summit-registration`,
       );
@@ -156,7 +156,12 @@ export async function GET(request: Request) {
         lastPaymentErrorMessage: "PayPal capture could not be verified.",
         status: "verification_required",
       });
-      return NextResponse.redirect(`${redirectBase}?payment=verification_required&registration=${record.id}#summit-registration`);
+      const reconciliation = await settleUncertainCaptureOutcome(
+        (await getSummitPaymentRecordById(record.id)) ?? record,
+      );
+      return NextResponse.redirect(
+        `${redirectBase}?payment=${paymentParamForReconciliation(reconciliation)}&registration=${record.id}#summit-registration`,
+      );
     }
 
     if (verified.currency !== "USD") {
@@ -267,6 +272,54 @@ async function captureErrorDiagnostics(paypalOrderId: string, error: unknown) {
   } catch {
     return diagnostics;
   }
+}
+
+async function settleUncertainCaptureOutcome(record: NonNullable<Awaited<ReturnType<typeof getSummitPaymentRecordById>>>) {
+  let currentRecord = record;
+
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    if (currentRecord.status === "declined") {
+      return { ok: true as const, status: "declined" as const };
+    }
+
+    if (currentRecord.status === "payment_failed") {
+      return { ok: true as const, status: "payment_failed" as const };
+    }
+
+    if (isSummitPaymentCaptured(currentRecord)) {
+      return {
+        ok: true as const,
+        status: "paid" as const,
+        completed: await completeSummitPayment({
+          record: currentRecord,
+          capture: {
+            captureId: currentRecord.captureId,
+            currency: "USD",
+            orderId: currentRecord.paypalOrderId,
+            payerEmail: currentRecord.payerEmail,
+            status: "COMPLETED",
+            value: currentRecord.pricing.total,
+          },
+        }),
+      };
+    }
+
+    const reconciliation = await reconcileSummitPayment(currentRecord);
+    if (!reconciliation.ok || reconciliation.status !== "verification_required" || attempt === 3) {
+      return reconciliation;
+    }
+
+    await waitForCaptureSettlement(1500);
+    currentRecord = (await getSummitPaymentRecordById(record.id)) ?? currentRecord;
+  }
+
+  return { ok: true as const, status: "verification_required" as const };
+}
+
+function waitForCaptureSettlement(timeoutMs: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeoutMs);
+  });
 }
 
 function redactId(value: string) {

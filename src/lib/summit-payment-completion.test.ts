@@ -557,6 +557,53 @@ test("capture route preserves safe diagnostics when PayPal returns a declined ca
   });
 });
 
+test("capture route rechecks briefly and redirects to declined when PayPal settles an uncertain capture as declined", async () => {
+  await withMockedResend(async () => {
+    const record = await seedRecord("registration-capture-delayed-decline");
+    setPayPalOrderResponseSequence([
+      {
+        id: "ORDER-1",
+        status: "APPROVED",
+      },
+      {
+        id: "ORDER-1",
+        purchase_units: [
+          {
+            payments: {
+              captures: [
+                {
+                  amount: { currency_code: "USD", value: "45.00" },
+                  id: "CAPTURE-LATE-DECLINE",
+                  status: "DECLINED",
+                },
+              ],
+            },
+          },
+        ],
+        status: "APPROVED",
+      },
+    ]);
+    setPayPalCaptureResponse({
+      body: JSON.stringify({ name: "RESOURCE_NOT_FOUND" }),
+      status: 404,
+    });
+    const { GET } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const response = await GET(
+      new Request(`https://example.com/api/human-capacity-summit/paypal/capture?token=${record.paypalOrderId}&registrationId=${record.id}`),
+    );
+
+    assert.equal(response.status, 307);
+    assert.equal(
+      response.headers.get("location"),
+      `https://example.com/human-capacity-summit?payment=declined&registration=${record.id}#summit-registration`,
+    );
+
+    const stored = await getSummitPaymentRecordById(record.id);
+    assert.equal(stored?.status, "declined");
+    assert.equal(stored?.lastPaymentDiagnostics?.finalCaptureStatus, "DECLINED");
+  });
+});
+
 test("declined capture webhooks preserve safe event diagnostics", async () => {
   await withMockedResend(async () => {
     process.env.PAYPAL_WEBHOOK_ID = "WEBHOOK-1";
@@ -715,6 +762,7 @@ function paid(record: SummitPaymentRecord): SummitPaymentRecord {
 let sentEmails: Array<{ from: string; html: string; subject: string; text: string; to: string[] }> = [];
 let failNextEmailTo = "";
 let payPalOrderResponse: unknown = undefined;
+let payPalOrderResponseSequence: unknown[] | undefined;
 let payPalCaptureResponse: { body: string; status: number } | undefined;
 let payPalWebhookVerification = false;
 
@@ -728,6 +776,10 @@ function setFailNextEmailTo(to: string) {
 
 function setPayPalOrderResponse(response: unknown) {
   payPalOrderResponse = response;
+}
+
+function setPayPalOrderResponseSequence(responseSequence: unknown[] | undefined) {
+  payPalOrderResponseSequence = responseSequence;
 }
 
 function setPayPalCaptureResponse(response: { body: string; status: number } | undefined) {
@@ -760,6 +812,7 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
   sentEmails = [];
   failNextEmailTo = "";
   payPalOrderResponse = undefined;
+  payPalOrderResponseSequence = undefined;
   payPalCaptureResponse = undefined;
   payPalWebhookVerification = false;
 
@@ -809,6 +862,14 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
       if (payPalOrderResponse === null) {
         return new Response(JSON.stringify({ debug_id: "DEBUG-LOOKUP" }), { status: 504 });
       }
+
+      if (payPalOrderResponseSequence?.length) {
+        const nextResponse = payPalOrderResponseSequence.shift();
+        return new Response(JSON.stringify(nextResponse), {
+          status: 200,
+        });
+      }
+
       return new Response(JSON.stringify(payPalOrderResponse ?? { id: "ORDER-1", status: "APPROVED" }), {
         status: 200,
       });

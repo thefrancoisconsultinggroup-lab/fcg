@@ -154,9 +154,19 @@ export async function reconcileSummitPayment(record: SummitPaymentRecord): Promi
 
   const summary = capturePaymentSummary(order);
   const status = summary?.status || order.status || "";
+  const diagnostics = {
+    captureHttpStatus: 200,
+    captureId: summary?.captureId,
+    finalCaptureStatus: summary?.status || undefined,
+    finalOrderStatus: order.status || undefined,
+    paypalOrderId: record.paypalOrderId,
+    recordedAt: new Date().toISOString(),
+    source: "capture_response" as const,
+  };
 
   if (isPendingPayPalStatus(status)) {
     await updateSummitPaymentRecord(record.id, {
+      lastPaymentDiagnostics: diagnostics,
       lastPaymentErrorAt: undefined,
       lastPaymentErrorCode: undefined,
       lastPaymentErrorMessage: undefined,
@@ -167,6 +177,7 @@ export async function reconcileSummitPayment(record: SummitPaymentRecord): Promi
 
   if (isDeclinedPayPalStatus(status)) {
     await updateSummitPaymentRecord(record.id, {
+      lastPaymentDiagnostics: diagnostics,
       lastPaymentErrorAt: new Date().toISOString(),
       lastPaymentErrorCode: status,
       lastPaymentErrorMessage: "PayPal could not complete the payment.",
@@ -177,6 +188,7 @@ export async function reconcileSummitPayment(record: SummitPaymentRecord): Promi
 
   if (isFailedPayPalStatus(status)) {
     await updateSummitPaymentRecord(record.id, {
+      lastPaymentDiagnostics: diagnostics,
       lastPaymentErrorAt: new Date().toISOString(),
       lastPaymentErrorCode: status || "PAYPAL_CAPTURE_FAILED",
       lastPaymentErrorMessage: "PayPal reported that the payment was not completed.",
@@ -186,6 +198,7 @@ export async function reconcileSummitPayment(record: SummitPaymentRecord): Promi
   }
 
   await updateSummitPaymentRecord(record.id, {
+    lastPaymentDiagnostics: diagnostics,
     lastPaymentErrorAt: new Date().toISOString(),
     lastPaymentErrorCode: status || "PAYPAL_STATUS_UNCERTAIN",
     lastPaymentErrorMessage: "PayPal payment status is still being verified.",
