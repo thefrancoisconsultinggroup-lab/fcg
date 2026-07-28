@@ -7,6 +7,8 @@ import {
 } from "@/lib/summit-registration-records";
 
 type PayPalWebhookEvent = {
+  id?: string;
+  summary?: string;
   event_type?: string;
   resource?: {
     amount?: {
@@ -126,7 +128,25 @@ export async function POST(request: Request) {
     event.event_type === "PAYMENT.CAPTURE.DENIED" ||
     event.event_type === "PAYMENT.CAPTURE.DECLINED"
   ) {
+    const diagnostics = {
+      captureId: event.resource?.id,
+      finalCaptureStatus: event.resource?.status,
+      paypalOrderId: orderId,
+      recordedAt: new Date().toISOString(),
+      source: "capture_webhook" as const,
+      webhookEventId: event.id,
+      webhookEventType: event.event_type,
+      webhookSummary: event.summary,
+    };
+
+    console.warn("PayPal capture declined webhook received for Summit registration.", {
+      diagnostics,
+      paypalOrderId: orderId ? `${orderId.slice(0, 4)}...${orderId.slice(-4)}` : "[redacted]",
+      registrationId: `${record.id.slice(0, 4)}...${record.id.slice(-4)}`,
+    });
+
     await updateSummitPaymentRecord(record.id, {
+      lastPaymentDiagnostics: diagnostics,
       lastPaymentErrorAt: new Date().toISOString(),
       lastPaymentErrorCode: event.event_type,
       lastPaymentErrorMessage: "PayPal could not complete the payment.",

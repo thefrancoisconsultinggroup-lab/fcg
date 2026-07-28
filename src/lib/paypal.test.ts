@@ -126,6 +126,7 @@ test("PayPal funding-decline errors are recognized from API response bodies", ()
   });
 
   assert.deepEqual(paypalErrorDetails(error), {
+    debugId: undefined,
     description: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
     issue: "INSTRUMENT_DECLINED",
     message: "The requested action could not be performed, semantically incorrect, or failed business validation.",

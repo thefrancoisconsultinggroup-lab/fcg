@@ -151,7 +151,7 @@ test("Switching from Corporate package to Individual registration recalculates t
   assert.equal(individual.ok && individual.summary.total, 315);
 });
 
-test("Live Payment Test prices at US$1.00 on the server", () => {
+test("Live Payment Test prices at US$5.00 on the server", () => {
   const result = validateSummitRegistrationPayload(
     {
       attendeeCount: "1",
@@ -169,9 +169,9 @@ test("Live Payment Test prices at US$1.00 on the server", () => {
   );
 
   assert.equal(result.ok, true);
-  assert.equal(result.ok && result.registration.pricing.total, 1);
-  assert.equal(result.ok && result.registration.pricing.unitPrice, 1);
-  assert.equal(result.ok && result.registration.pricing.rateLabel, "Live Payment Test - USD 1.00");
+  assert.equal(result.ok && result.registration.pricing.total, 5);
+  assert.equal(result.ok && result.registration.pricing.unitPrice, 5);
+  assert.equal(result.ok && result.registration.pricing.rateLabel, "Live Payment Test - USD 5.00");
 });
 
 test("Live Payment Test rejects more than one attendee", () => {

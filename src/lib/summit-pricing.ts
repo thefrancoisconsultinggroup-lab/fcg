@@ -181,7 +181,7 @@ export function calculateSummitPrice(selection: SummitPricingSelection, now = ne
     if (attendeeCount !== 1) {
       return {
         ok: false,
-        message: "The live payment test option is limited to one attendee and a US$1.00 total.",
+        message: "The live payment test option is limited to one attendee and a US$5.00 total.",
       };
     }
 
@@ -191,10 +191,10 @@ export function calculateSummitPrice(selection: SummitPricingSelection, now = ne
         attendeeCount: 1,
         categoryLabel: "Live payment test",
         rateDetail: "Temporary live PayPal verification payment",
-        rateLabel: "Live Payment Test - USD 1.00",
+        rateLabel: "Live Payment Test - USD 5.00",
         rateValue: "live-test",
-        total: 1,
-        unitPrice: 1,
+        total: 5,
+        unitPrice: 5,
       },
     };
   }

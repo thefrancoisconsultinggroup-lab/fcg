@@ -114,6 +114,7 @@ export function paypalErrorDetails(error: PayPalApiError | null | undefined) {
     const description = parsed.details?.find((detail) => typeof detail.description === "string")?.description;
 
     return {
+      debugId: error.details.debugId,
       description,
       issue,
       message: parsed.message,
@@ -122,6 +123,17 @@ export function paypalErrorDetails(error: PayPalApiError | null | undefined) {
   } catch {
     return null;
   }
+}
+
+export function captureOutcomeSummary(capture: PayPalCaptureResponse) {
+  const captures = capture.purchase_units?.flatMap((unit) => unit.payments?.captures ?? []) ?? [];
+  const payment = captures.find((item) => item.id || item.status);
+
+  return {
+    captureId: payment?.id,
+    captureStatus: payment?.status ?? (captures.length > 0 ? capture.status ?? "" : ""),
+    orderStatus: capture.status ?? "",
+  };
 }
 
 export function isPayPalFundingDeclined(error: PayPalApiError | null | undefined) {

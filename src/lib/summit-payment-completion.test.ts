@@ -496,6 +496,114 @@ test("capture route maps PayPal funding declines to declined status instead of v
     const stored = await getSummitPaymentRecordById(record.id);
     assert.equal(stored?.status, "declined");
     assert.equal(stored?.lastPaymentErrorCode, "INSTRUMENT_DECLINED");
+    assert.deepEqual(stored?.lastPaymentDiagnostics, {
+      captureHttpStatus: 422,
+      finalOrderStatus: "APPROVED",
+      paypalDescription: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
+      paypalIssue: "INSTRUMENT_DECLINED",
+      paypalName: "UNPROCESSABLE_ENTITY",
+      paypalOrderId: "ORDER-1",
+      recordedAt: stored?.lastPaymentDiagnostics?.recordedAt,
+      source: "capture_api_error",
+    });
+  });
+});
+
+test("capture route preserves safe diagnostics when PayPal returns a declined capture response body", async () => {
+  await withMockedResend(async () => {
+    const record = await seedRecord("registration-capture-declined-response");
+    setPayPalCaptureResponse({
+      body: JSON.stringify({
+        id: "ORDER-1",
+        purchase_units: [
+          {
+            payments: {
+              captures: [
+                {
+                  amount: { currency_code: "USD", value: "45.00" },
+                  id: "CAPTURE-DECLINED",
+                  status: "DECLINED",
+                },
+              ],
+            },
+          },
+        ],
+        status: "APPROVED",
+      }),
+      status: 200,
+    });
+    const { GET } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const response = await GET(
+      new Request(`https://example.com/api/human-capacity-summit/paypal/capture?token=${record.paypalOrderId}&registrationId=${record.id}`),
+    );
+
+    assert.equal(response.status, 307);
+    assert.equal(
+      response.headers.get("location"),
+      `https://example.com/human-capacity-summit?payment=declined&registration=${record.id}#summit-registration`,
+    );
+
+    const stored = await getSummitPaymentRecordById(record.id);
+    assert.equal(stored?.status, "declined");
+    assert.deepEqual(stored?.lastPaymentDiagnostics, {
+      captureHttpStatus: 200,
+      captureId: "CAPTURE-DECLINED",
+      finalCaptureStatus: "DECLINED",
+      finalOrderStatus: "APPROVED",
+      paypalOrderId: "ORDER-1",
+      recordedAt: stored?.lastPaymentDiagnostics?.recordedAt,
+      source: "capture_response",
+    });
+  });
+});
+
+test("declined capture webhooks preserve safe event diagnostics", async () => {
+  await withMockedResend(async () => {
+    process.env.PAYPAL_WEBHOOK_ID = "WEBHOOK-1";
+    const record = await seedRecord("registration-webhook-declined");
+    const { POST } = await import("@/app/api/human-capacity-summit/paypal/webhook/route");
+
+    setPayPalWebhookVerification(true);
+    await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/webhook", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "paypal-auth-algo": "SHA256withRSA",
+          "paypal-cert-url": "https://paypal.test/cert.pem",
+          "paypal-transmission-id": "transmission",
+          "paypal-transmission-sig": "signature",
+          "paypal-transmission-time": "2026-07-24T00:00:00Z",
+        },
+        body: JSON.stringify({
+          id: "WH-DECLINED",
+          event_type: "PAYMENT.CAPTURE.DECLINED",
+          summary: "A payment capture for $ 45.0 USD was declined.",
+          resource: {
+            id: "CAPTURE-DECLINED",
+            status: "DECLINED",
+            supplementary_data: {
+              related_ids: {
+                order_id: record.paypalOrderId,
+              },
+            },
+          },
+        }),
+      }),
+    );
+
+    const stored = await getSummitPaymentRecordById(record.id);
+    assert.equal(stored?.status, "declined");
+    assert.deepEqual(stored?.lastPaymentDiagnostics, {
+      captureId: "CAPTURE-DECLINED",
+      finalCaptureStatus: "DECLINED",
+      paypalOrderId: "ORDER-1",
+      recordedAt: stored?.lastPaymentDiagnostics?.recordedAt,
+      source: "capture_webhook",
+      webhookEventId: "WH-DECLINED",
+      webhookEventType: "PAYMENT.CAPTURE.DECLINED",
+      webhookSummary: "A payment capture for $ 45.0 USD was declined.",
+    });
   });
 });
 

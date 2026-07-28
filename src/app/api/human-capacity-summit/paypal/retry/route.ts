@@ -67,6 +67,7 @@ export async function POST(request: Request) {
     await updateSummitPaymentRecord(retryableRecord.id, {
       captureId: undefined,
       capturedAt: undefined,
+      lastPaymentDiagnostics: undefined,
       lastPaymentErrorAt: undefined,
       lastPaymentErrorCode: undefined,
       lastPaymentErrorMessage: undefined,

@@ -7,10 +7,13 @@ import {
   reconcileSummitPayment,
 } from "@/lib/summit-payment-completion";
 import {
+  captureOutcomeSummary,
   capturePayPalOrder,
   capturePaymentSummary,
+  getPayPalOrder,
   isPayPalFundingDeclined,
   PayPalApiError,
+  paypalErrorDetails,
   paypalRuntimeDiagnostics,
   verifiedCaptureTotal,
 } from "@/lib/paypal";
@@ -64,22 +67,35 @@ export async function GET(request: Request) {
     try {
       capture = await capturePayPalOrder(paypalOrderId);
     } catch (error) {
+      const diagnostics = await captureErrorDiagnostics(paypalOrderId, error);
+
       if (error instanceof PayPalApiError && isPayPalFundingDeclined(error)) {
         await updateSummitPaymentRecord(record.id, {
           lastPaymentErrorAt: new Date().toISOString(),
-          lastPaymentErrorCode: "INSTRUMENT_DECLINED",
-          lastPaymentErrorMessage: "PayPal could not complete the payment with the selected funding source.",
+          lastPaymentDiagnostics: diagnostics,
+          lastPaymentErrorCode: diagnostics.paypalIssue || "INSTRUMENT_DECLINED",
+          lastPaymentErrorMessage:
+            diagnostics.paypalDescription ||
+            "PayPal could not complete the payment with the selected funding source.",
           status: "declined",
+        });
+        console.warn("PayPal capture declined for Summit registration.", {
+          diagnostics,
+          paypalOrderId: redactId(paypalOrderId),
+          registrationId: redactId(record.id),
         });
         return NextResponse.redirect(`${redirectBase}?payment=declined&registration=${record.id}#summit-registration`);
       }
 
       console.error("PayPal capture API failed for approved Summit order.", {
-        body: error instanceof PayPalApiError ? error.details.body : undefined,
+        diagnostics,
         error: error instanceof Error ? error.message : "Unknown error",
         paypalOrderId: redactId(paypalOrderId),
         paypalRuntime: paypalRuntimeDiagnostics(),
-        status: error instanceof PayPalApiError ? error.details.status : undefined,
+        registrationId: redactId(record.id),
+      });
+      await updateSummitPaymentRecord(record.id, {
+        lastPaymentDiagnostics: diagnostics,
       });
       const reconciliation = await reconcileSummitPayment(record);
       return NextResponse.redirect(
@@ -95,14 +111,25 @@ export async function GET(request: Request) {
     ) {
       const summary = capturePaymentSummary(capture);
       const status = summary?.status || capture.status || "";
+      const diagnostics = captureResponseDiagnostics(paypalOrderId, capture);
+
+      console.warn("PayPal capture returned a non-completed Summit payment state.", {
+        diagnostics,
+        paypalOrderId: redactId(paypalOrderId),
+        registrationId: redactId(record.id),
+      });
 
       if (isPendingPayPalStatus(status)) {
-        await updateSummitPaymentRecord(record.id, { status: "payment_processing" });
+        await updateSummitPaymentRecord(record.id, {
+          lastPaymentDiagnostics: diagnostics,
+          status: "payment_processing",
+        });
         return NextResponse.redirect(`${redirectBase}?payment=pending&registration=${record.id}#summit-registration`);
       }
 
       if (isDeclinedPayPalStatus(status)) {
         await updateSummitPaymentRecord(record.id, {
+          lastPaymentDiagnostics: diagnostics,
           lastPaymentErrorAt: new Date().toISOString(),
           lastPaymentErrorCode: status,
           lastPaymentErrorMessage: "PayPal could not complete the payment.",
@@ -113,6 +140,7 @@ export async function GET(request: Request) {
 
       if (isFailedPayPalStatus(status)) {
         await updateSummitPaymentRecord(record.id, {
+          lastPaymentDiagnostics: diagnostics,
           lastPaymentErrorAt: new Date().toISOString(),
           lastPaymentErrorCode: status || "PAYPAL_CAPTURE_FAILED",
           lastPaymentErrorMessage: "PayPal reported that the payment was not completed.",
@@ -122,6 +150,7 @@ export async function GET(request: Request) {
       }
 
       await updateSummitPaymentRecord(record.id, {
+        lastPaymentDiagnostics: diagnostics,
         lastPaymentErrorAt: new Date().toISOString(),
         lastPaymentErrorCode: status || "PAYPAL_CAPTURE_UNVERIFIED",
         lastPaymentErrorMessage: "PayPal capture could not be verified.",
@@ -132,6 +161,7 @@ export async function GET(request: Request) {
 
     if (verified.currency !== "USD") {
       await updateSummitPaymentRecord(record.id, {
+        lastPaymentDiagnostics: captureResponseDiagnostics(paypalOrderId, capture),
         lastPaymentErrorAt: new Date().toISOString(),
         lastPaymentErrorCode: "PAYPAL_CURRENCY_MISMATCH",
         lastPaymentErrorMessage: "PayPal capture currency did not match the expected Summit registration currency.",
@@ -157,6 +187,7 @@ export async function GET(request: Request) {
       await updateSummitPaymentRecord(record.id, {
         lastPaymentErrorAt: new Date().toISOString(),
         lastPaymentErrorCode: completion.reason,
+        lastPaymentDiagnostics: captureResponseDiagnostics(paypalOrderId, capture),
         lastPaymentErrorMessage: "PayPal capture did not match the stored Summit registration.",
         manualReviewReason: "PayPal completed capture failed Summit registration verification.",
         status: "manual_review",
@@ -176,12 +207,65 @@ export async function GET(request: Request) {
       await updateSummitPaymentRecord(record.id, {
         lastPaymentErrorAt: new Date().toISOString(),
         lastPaymentErrorCode: "CAPTURE_HANDLER_ERROR",
+        lastPaymentDiagnostics: {
+          paypalOrderId,
+          recordedAt: new Date().toISOString(),
+          source: "capture_api_error",
+        },
         lastPaymentErrorMessage: "Payment capture result could not be verified.",
         status: "verification_required",
       });
       return NextResponse.redirect(`${redirectBase}?payment=verification_required&registration=${record.id}#summit-registration`);
     }
     return NextResponse.redirect(`${redirectBase}?payment=failed#summit-registration`);
+  }
+}
+
+function captureResponseDiagnostics(
+  paypalOrderId: string,
+  capture: Awaited<ReturnType<typeof capturePayPalOrder>>,
+) {
+  const outcome = captureOutcomeSummary(capture);
+
+  return {
+    captureHttpStatus: 200,
+    captureId: outcome.captureId,
+    finalCaptureStatus: outcome.captureStatus || undefined,
+    finalOrderStatus: outcome.orderStatus || undefined,
+    paypalOrderId,
+    recordedAt: new Date().toISOString(),
+    source: "capture_response" as const,
+  };
+}
+
+async function captureErrorDiagnostics(paypalOrderId: string, error: unknown) {
+  const errorDetails = error instanceof PayPalApiError ? paypalErrorDetails(error) : null;
+  const diagnostics = {
+    captureHttpStatus: error instanceof PayPalApiError ? error.details.status : undefined,
+    captureId: undefined as string | undefined,
+    finalCaptureStatus: undefined as string | undefined,
+    finalOrderStatus: undefined as string | undefined,
+    paypalDebugId: errorDetails?.debugId,
+    paypalDescription: errorDetails?.description,
+    paypalIssue: errorDetails?.issue,
+    paypalName: errorDetails?.name,
+    paypalOrderId,
+    recordedAt: new Date().toISOString(),
+    source: "capture_api_error" as const,
+  };
+
+  try {
+    const order = await getPayPalOrder(paypalOrderId);
+    const outcome = captureOutcomeSummary(order);
+
+    return {
+      ...diagnostics,
+      captureId: outcome.captureId,
+      finalCaptureStatus: outcome.captureStatus || undefined,
+      finalOrderStatus: outcome.orderStatus || undefined,
+    };
+  } catch {
+    return diagnostics;
   }
 }
 

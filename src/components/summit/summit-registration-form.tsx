@@ -293,7 +293,7 @@ export function SummitRegistrationForm() {
                   />
                   <span>
                     <strong>Live Payment Test</strong>
-                    <small>Temporary US$1.00 PayPal checkout for live gateway verification</small>
+                    <small>Temporary US$5.00 PayPal checkout for live gateway verification</small>
                   </span>
                 </label>
               </div>
@@ -448,9 +448,9 @@ export function SummitRegistrationForm() {
               <div className={styles.rateCard} data-active data-disabled={false}>
                 <span>
                   <strong>Live Payment Test</strong>
-                  <small>Temporary US$1.00 PayPal checkout for live gateway verification</small>
+                  <small>Temporary US$5.00 PayPal checkout for live gateway verification</small>
                 </span>
-                <PriceDisplay price={1} />
+                <PriceDisplay price={5} />
               </div>
             </div>
             <p className={styles.fieldHint}>

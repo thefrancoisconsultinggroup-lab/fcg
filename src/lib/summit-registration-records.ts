@@ -42,6 +42,23 @@ export type SummitPayPalOrderAttempt = {
   status: SummitPaymentStatus;
 };
 
+export type SummitPaymentDiagnostics = {
+  captureHttpStatus?: number;
+  captureId?: string;
+  finalCaptureStatus?: string;
+  finalOrderStatus?: string;
+  paypalDebugId?: string;
+  paypalDescription?: string;
+  paypalIssue?: string;
+  paypalName?: string;
+  paypalOrderId: string;
+  recordedAt: string;
+  source: "capture_api_error" | "capture_response" | "capture_webhook";
+  webhookEventId?: string;
+  webhookEventType?: string;
+  webhookSummary?: string;
+};
+
 export type SummitRefundStatus = "requested" | "pending" | "completed" | "failed" | "verification_required";
 
 export type SummitRefundRecord = {
@@ -104,6 +121,7 @@ export type SummitPaymentRecord = {
   lastPaymentErrorAt?: string;
   lastPaymentErrorCode?: string;
   lastPaymentErrorMessage?: string;
+  lastPaymentDiagnostics?: SummitPaymentDiagnostics;
   manualReviewReason?: string;
   id: string;
   payerEmail?: string;
