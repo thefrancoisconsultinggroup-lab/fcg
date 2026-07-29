@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HumanCapacitySummitPage } from "@/components/summit/human-capacity-summit-page";
+import { getPayPalClientId, getPayPalEnvironment } from "@/lib/paypal";
 
 const title = "The Human Capacity Summit";
 const description =
@@ -45,13 +46,19 @@ const eventStructuredData = {
 };
 
 export default function Page() {
+  const paypalClientId = getPayPalClientId();
+  const paypalEnvironment = getPayPalEnvironment();
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventStructuredData) }}
       />
-      <HumanCapacitySummitPage />
+      <HumanCapacitySummitPage
+        paypalClientId={paypalClientId}
+        paypalEnvironment={paypalEnvironment}
+      />
     </>
   );
 }

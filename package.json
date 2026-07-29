@@ -13,6 +13,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@headlessui/react": "^2.2.10",
+    "@paypal/react-paypal-js": "^10.2.1",
     "@portabletext/react": "^6.2.0",
     "@sanity/client": "^7.23.2",
     "@sanity/image-url": "^2.1.1",

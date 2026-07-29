@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { summitPaymentMethods } from "@/data/human-capacity-summit";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   calculateSummitPrice,
   getActiveSummitCorporatePackages,
@@ -14,9 +13,10 @@ import {
   type SummitCorporatePackageValue,
   type SummitRegistrationType,
 } from "@/lib/summit-pricing";
+import { SummitPayPalCheckout } from "./summit-paypal-checkout";
 import styles from "./human-capacity-summit.module.css";
 
-type PaymentMethod = (typeof summitPaymentMethods)[number];
+type PaymentMethod = "PayPal";
 
 type FormStatus =
   | { action?: never; registrationId?: never; state: "idle"; message: "" }
@@ -52,15 +52,24 @@ const initialForm: FormState = {
   registrationType: "individual",
   corporatePackage: summitCorporatePackages[0].value,
   attendeeCount: "1",
-  paymentMethod: summitPaymentMethods[0],
+  paymentMethod: "PayPal",
   hopes: "",
   consent: false,
   website: "",
 };
 
-export function SummitRegistrationForm() {
+export function SummitRegistrationForm({
+  paypalClientId,
+  paypalEnvironment,
+}: {
+  paypalClientId: string;
+  paypalEnvironment: "production" | "sandbox";
+}) {
   const [form, setForm] = useState<FormState>(initialForm);
+  const formRef = useRef<HTMLFormElement>(null);
   const [now, setNow] = useState(() => new Date());
+  const [retryRegistrationId, setRetryRegistrationId] = useState<string | null>(null);
+  const [isPaymentBusy, setIsPaymentBusy] = useState(false);
   const [status, setStatus] = useState<FormStatus>({ state: "idle", message: "" });
   const [returnStatus, setReturnStatus] = useState<FormStatus>(() => paymentReturnStatus());
 
@@ -82,6 +91,7 @@ export function SummitRegistrationForm() {
   const isLivePaymentTest = form.registrationType === "live-test";
   const countdown = summitCountdown(now);
   const displayedStatus = status.state === "idle" ? returnStatus : status;
+  const activeRegistrationId = retryRegistrationId ?? displayedStatus.registrationId;
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60_000);
@@ -136,6 +146,7 @@ export function SummitRegistrationForm() {
 
   function updateRegistrationType(registrationType: SummitRegistrationType) {
     setStatus({ state: "idle", message: "" });
+    setRetryRegistrationId(null);
     setForm((current) => ({
       ...current,
       attendeeCount: "1",
@@ -144,37 +155,75 @@ export function SummitRegistrationForm() {
     }));
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus({ state: "submitting", message: "Opening secure PayPal checkout..." });
+
+    if (validateFormBeforePayment()) {
+      setStatus({
+        state: "processing",
+        message: "Choose PayPal or Debit or Credit Card below to continue with secure checkout.",
+      });
+    }
+  }
+
+  function validateFormBeforePayment() {
+    if (!formRef.current?.reportValidity()) {
+      setStatus({
+        state: "error",
+        message: "Please complete the required registration fields before starting PayPal checkout.",
+      });
+      return false;
+    }
 
     if (!pricing.ok) {
       setStatus({ state: "error", message: pricing.message });
-      return;
+      return false;
     }
 
-    const response = await fetch("/api/human-capacity-summit/paypal/create-order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    return true;
+  }
+
+  async function createOrder() {
+    if (isPaymentBusy) {
+      throw new Error("A PayPal payment is already being processed.");
+    }
+
+    if (!validateFormBeforePayment()) {
+      throw new Error("Please complete the Summit registration form before continuing.");
+    }
+
+    setIsPaymentBusy(true);
+    setStatus({ state: "submitting", message: "Opening secure PayPal checkout..." });
+
+    const isRetry = Boolean(retryRegistrationId);
+    const response = await fetch(
+      isRetry ? "/api/human-capacity-summit/paypal/retry" : "/api/human-capacity-summit/paypal/create-order",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(isRetry ? { registrationId: retryRegistrationId } : form),
+      },
+    );
 
     const result = (await response.json().catch(() => ({}))) as {
-      approvalUrl?: string;
       message?: string;
+      orderId?: string;
+      registrationId?: string;
     };
 
-    if (!response.ok || !result.approvalUrl) {
+    if (!response.ok || !result.orderId || !result.registrationId) {
+      setIsPaymentBusy(false);
       setStatus({
+        action: isRetry && retryRegistrationId ? "retry" : undefined,
+        registrationId: retryRegistrationId ?? result.registrationId,
         state: "error",
-        message:
-          result.message ??
-          "We couldn't start PayPal checkout. Please try again.",
+        message: result.message ?? "We couldn't start PayPal checkout. Please try again.",
       });
-      return;
+      throw new Error(result.message ?? "We couldn't start PayPal checkout.");
     }
 
-    window.location.assign(result.approvalUrl);
+    setRetryRegistrationId(result.registrationId);
+    return result.orderId;
   }
 
   async function handleRetryPayment() {
@@ -183,35 +232,12 @@ export function SummitRegistrationForm() {
       return;
     }
 
-    setStatus({ state: "submitting", message: "Opening secure PayPal checkout..." });
-
-    const response = await fetch("/api/human-capacity-summit/paypal/retry", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ registrationId: displayedStatus.registrationId }),
-    });
-
-    const result = (await response.json().catch(() => ({}))) as {
-      approvalUrl?: string;
-      message?: string;
-      status?: PaymentStatusResponse;
-    };
-
-    if (response.ok && result.approvalUrl) {
-      window.location.assign(result.approvalUrl);
-      return;
-    }
-
-    if (result.status) {
-      setStatus(formStatusFromPaymentResponse(result.status, displayedStatus.registrationId));
-      return;
-    }
-
+    setRetryRegistrationId(displayedStatus.registrationId);
     setStatus({
-      action: "retry",
+      action: "none",
       registrationId: displayedStatus.registrationId,
-      state: "error",
-      message: result.message ?? "We couldn't start PayPal checkout. Please try again.",
+      state: "processing",
+      message: "Choose PayPal or Debit or Credit Card below to try your payment again.",
     });
   }
 
@@ -249,8 +275,108 @@ export function SummitRegistrationForm() {
     setStatus(formStatusFromPaymentResponse(result, displayedStatus.registrationId));
   }
 
+  async function handlePayPalApprove(orderId: string, actions: { restart?: () => Promise<void> | void }) {
+    if (!activeRegistrationId) {
+      setIsPaymentBusy(false);
+      setStatus({
+        state: "error",
+        message: "We couldn't match this PayPal payment to your registration. Please try again.",
+      });
+      return;
+    }
+
+    setStatus({
+      action: "check",
+      registrationId: activeRegistrationId,
+      state: "processing",
+      message: "Verifying your PayPal payment...",
+    });
+
+    const response = await fetch("/api/human-capacity-summit/paypal/capture", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId, registrationId: activeRegistrationId }),
+    });
+
+    const result = (await response.json().catch(() => ({}))) as {
+      debug_id?: string;
+      details?: Array<{ description?: string; issue?: string }>;
+      payerActionUrl?: string;
+      registrationId?: string;
+      status?: string;
+      thankYouUrl?: string;
+    };
+
+    const detail = result.details?.[0];
+
+    if (detail?.issue === "INSTRUMENT_DECLINED" && typeof actions.restart === "function") {
+      setIsPaymentBusy(false);
+      setStatus({
+        action: "retry",
+        registrationId: activeRegistrationId,
+        state: "error",
+        message:
+          "PayPal could not complete the payment with the selected funding source. Please choose another PayPal option and try again.",
+      });
+      await actions.restart();
+      return;
+    }
+
+    if (detail?.issue === "PAYER_ACTION_REQUIRED" && result.payerActionUrl) {
+      window.location.assign(result.payerActionUrl);
+      return;
+    }
+
+    if (response.ok && result.thankYouUrl) {
+      window.location.assign(result.thankYouUrl);
+      return;
+    }
+
+    setIsPaymentBusy(false);
+    setStatus(
+      statusFromCaptureResponse({
+        description: detail?.description,
+        issue: detail?.issue,
+        registrationId: result.registrationId ?? activeRegistrationId,
+        status: result.status,
+      }),
+    );
+  }
+
+  async function handlePayPalCancel() {
+    setIsPaymentBusy(false);
+
+    if (activeRegistrationId) {
+      await fetch("/api/human-capacity-summit/paypal/cancel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ registrationId: activeRegistrationId }),
+      }).catch(() => undefined);
+    }
+
+    setStatus({
+      action: "retry",
+      registrationId: activeRegistrationId,
+      state: "cancelled",
+      message:
+        "Your payment was cancelled. You have not been charged, and your Summit registration has not been confirmed.",
+    });
+  }
+
+  function handlePayPalError(message: string) {
+    setIsPaymentBusy(false);
+    setStatus({
+      action: activeRegistrationId ? "retry" : "none",
+      registrationId: activeRegistrationId,
+      state: "error",
+      message:
+        "We couldn't complete PayPal checkout right now. Please try again or contact Francois Consulting Group if the problem continues.",
+    });
+    console.error("Summit PayPal checkout failed on the client.", { message });
+  }
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form ref={formRef} className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.formLayout}>
         <div className={styles.formMain}>
           <div className={styles.formSection}>
@@ -598,28 +724,16 @@ export function SummitRegistrationForm() {
           </section>
 
           <fieldset className={styles.fieldset}>
-            <legend>Payment method</legend>
-            <p className={styles.fieldHint}>PayPal is the only payment method available for now.</p>
-            <div className={styles.paymentRow}>
-              {summitPaymentMethods.map((method) => (
-                <label key={method} className={styles.paymentOption}>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value={method}
-                    checked={form.paymentMethod === method}
-                    onChange={(event) =>
-                      updateField("paymentMethod", event.target.value as PaymentMethod)
-                    }
-                  />
-                  <span className={styles.paypalLogo} aria-label="PayPal">
-                    <span>Pay</span>
-                    <span>Pal</span>
-                  </span>
-                  <span>{method}</span>
-                </label>
-              ))}
-            </div>
+            <legend>Secure payment</legend>
+            <SummitPayPalCheckout
+              clientId={paypalClientId}
+              disabled={isPaymentBusy}
+              environment={paypalEnvironment}
+              onApprove={handlePayPalApprove}
+              onCancel={handlePayPalCancel}
+              onCreateOrder={createOrder}
+              onError={handlePayPalError}
+            />
           </fieldset>
 
           <div className={styles.totalRow}>
@@ -627,14 +741,19 @@ export function SummitRegistrationForm() {
             <strong>${total.toLocaleString("en-US")}</strong>
           </div>
 
-          <button type="submit" disabled={displayedStatus.state === "submitting"}>
-            {displayedStatus.state === "submitting" ? "Submitting..." : "Submit Registration"}
+          <button type="submit" disabled={isPaymentBusy}>
+            Review registration before payment
           </button>
-          <p aria-live="polite" className={styles.formStatus} data-state={displayedStatus.state}>
+          <p
+            aria-live="polite"
+            aria-atomic="true"
+            className={styles.formStatus}
+            data-state={displayedStatus.state}
+          >
             {displayedStatus.message}
           </p>
           <PaymentStatusActionButton
-            disabled={status.state === "submitting" || status.state === "processing"}
+            disabled={isPaymentBusy || status.state === "processing"}
             onCheck={handleCheckPaymentStatus}
             onRetry={handleRetryPayment}
             status={displayedStatus}
@@ -756,6 +875,58 @@ function formStatusFromPaymentResponse(
     registrationId,
     state,
     message: response.message,
+  };
+}
+
+function statusFromCaptureResponse({
+  description,
+  issue,
+  registrationId,
+  status,
+}: {
+  description?: string;
+  issue?: string;
+  registrationId?: string;
+  status?: string;
+}): FormStatus {
+  if (status === "PENDING") {
+    return {
+      action: "check",
+      registrationId,
+      state: "pending",
+      message:
+        "Your payment is still being processed. Your registration will be confirmed once PayPal completes the payment.",
+    };
+  }
+
+  if (status === "VERIFICATION_REQUIRED") {
+    return {
+      action: "check",
+      registrationId,
+      state: "processing",
+      message:
+        "We're still verifying your payment. Please do not try to pay again yet. Your registration will be confirmed as soon as the payment is verified.",
+    };
+  }
+
+  if (status === "MANUAL_REVIEW") {
+    return {
+      action: "contact",
+      registrationId,
+      state: "manual_review",
+      message:
+        description ||
+        "We're reviewing this payment with PayPal. Please contact Francois Consulting Group before trying another payment.",
+    };
+  }
+
+  return {
+    action: issue === "INSTRUMENT_DECLINED" ? "retry" : "contact",
+    registrationId,
+    state: "error",
+    message:
+      description ||
+      "PayPal could not complete your payment, so your Summit registration has not yet been confirmed.",
   };
 }
 

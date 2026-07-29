@@ -4,8 +4,10 @@ import {
   getPayPalWebhookId,
   hasPayPalWebhookConfig,
   isPayPalFundingDeclined,
+  isPayPalPayerActionRequired,
   PayPalApiError,
   paypalErrorDetails,
+  paypalPayerActionHref,
   paypalRuntimeDiagnostics,
 } from "@/lib/paypal";
 
@@ -126,11 +128,22 @@ test("PayPal funding-decline errors are recognized from API response bodies", ()
   });
 
   assert.deepEqual(paypalErrorDetails(error), {
+    body: {
+      details: [
+        {
+          description: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
+          issue: "INSTRUMENT_DECLINED",
+        },
+      ],
+      message: "The requested action could not be performed, semantically incorrect, or failed business validation.",
+      name: "UNPROCESSABLE_ENTITY",
+    },
     debugId: undefined,
     description: "The instrument presented was either declined by the processor or bank, or it can't be used for this payment.",
     issue: "INSTRUMENT_DECLINED",
     message: "The requested action could not be performed, semantically incorrect, or failed business validation.",
     name: "UNPROCESSABLE_ENTITY",
+    payerActionHref: undefined,
   });
   assert.equal(isPayPalFundingDeclined(error), true);
 });
@@ -145,4 +158,19 @@ test("non-funding PayPal API errors are not misclassified as declines", () => {
   });
 
   assert.equal(isPayPalFundingDeclined(error), false);
+});
+
+test("payer-action errors expose the PayPal verification URL without being misclassified as funding declines", () => {
+  const error = new PayPalApiError("capture failed", {
+    body: JSON.stringify({
+      details: [{ description: "Buyer must complete verification.", issue: "PAYER_ACTION_REQUIRED" }],
+      links: [{ href: "https://www.paypal.com/checkoutnow?token=ORDER-1", rel: "payer-action" }],
+      name: "UNPROCESSABLE_ENTITY",
+    }),
+    status: 422,
+  });
+
+  assert.equal(isPayPalFundingDeclined(error), false);
+  assert.equal(isPayPalPayerActionRequired(error), true);
+  assert.equal(paypalPayerActionHref(error), "https://www.paypal.com/checkoutnow?token=ORDER-1");
 });

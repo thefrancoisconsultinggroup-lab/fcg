@@ -7,8 +7,8 @@ type PayPalAccessTokenResponse = {
 type PayPalOrderResponse = {
   id?: string;
   links?: Array<{
-    href: string;
-    rel: string;
+    href?: string;
+    rel?: string;
   }>;
   purchase_units?: Array<{
     payments?: {
@@ -45,6 +45,10 @@ type PayPalErrorBody = {
     description?: string;
     issue?: string;
   }>;
+  links?: Array<{
+    href?: string;
+    rel?: string;
+  }>;
   message?: string;
   name?: string;
 };
@@ -66,6 +70,14 @@ export class PayPalApiError extends Error {
 export function hasPayPalConfig() {
   const credentials = paypalCredentials();
   return Boolean(credentials.clientId && credentials.clientSecret);
+}
+
+export function getPayPalClientId() {
+  return paypalCredentials().clientId || "";
+}
+
+export function getPayPalEnvironment() {
+  return paypalEnvironment() === "live" ? "production" : "sandbox";
 }
 
 export function getPayPalWebhookId() {
@@ -112,13 +124,16 @@ export function paypalErrorDetails(error: PayPalApiError | null | undefined) {
     const parsed = JSON.parse(error.details.body) as PayPalErrorBody;
     const issue = parsed.details?.find((detail) => typeof detail.issue === "string")?.issue;
     const description = parsed.details?.find((detail) => typeof detail.description === "string")?.description;
+    const payerActionHref = parsed.links?.find((link) => link.rel === "payer-action")?.href;
 
     return {
+      body: parsed,
       debugId: error.details.debugId,
       description,
       issue,
       message: parsed.message,
       name: parsed.name,
+      payerActionHref,
     };
   } catch {
     return null;
@@ -140,7 +155,18 @@ export function isPayPalFundingDeclined(error: PayPalApiError | null | undefined
   const details = paypalErrorDetails(error);
   const code = details?.issue ?? details?.name ?? "";
 
-  return ["INSTRUMENT_DECLINED", "PAYER_ACTION_REQUIRED"].includes(code.toUpperCase());
+  return code.toUpperCase() === "INSTRUMENT_DECLINED";
+}
+
+export function isPayPalPayerActionRequired(error: PayPalApiError | null | undefined) {
+  const details = paypalErrorDetails(error);
+  const code = details?.issue ?? details?.name ?? "";
+
+  return code.toUpperCase() === "PAYER_ACTION_REQUIRED";
+}
+
+export function paypalPayerActionHref(error: PayPalApiError | null | undefined) {
+  return paypalErrorDetails(error)?.payerActionHref;
 }
 
 export async function createPayPalOrder({

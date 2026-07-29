@@ -916,6 +916,24 @@
   gap: 0.75rem;
 }
 
+.paypalPanel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.paypalButtonStack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.paypalButtonSlot {
+  min-height: 3.4rem;
+}
+
+.paypalButtonSlot :global(div) {
+  max-width: none;
+}
+
 .paymentOption {
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr);

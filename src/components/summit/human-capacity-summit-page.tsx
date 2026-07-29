@@ -15,7 +15,13 @@ import styles from "./human-capacity-summit.module.css";
 
 const speakerImageVersion = "20260724";
 
-export function HumanCapacitySummitPage() {
+export function HumanCapacitySummitPage({
+  paypalClientId,
+  paypalEnvironment,
+}: {
+  paypalClientId: string;
+  paypalEnvironment: "production" | "sandbox";
+}) {
   return (
     <div className={styles.page}>
       <SummitWaterTheme />
@@ -118,7 +124,10 @@ export function HumanCapacitySummitPage() {
                 </p>
               </ScrollReveal>
               <ScrollReveal className={styles.formShell}>
-                <SummitRegistrationForm />
+                <SummitRegistrationForm
+                  paypalClientId={paypalClientId}
+                  paypalEnvironment={paypalEnvironment}
+                />
               </ScrollReveal>
             </div>
           </Container>

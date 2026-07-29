@@ -261,6 +261,189 @@ test("amount or currency mismatch sends no confirmation emails", async () => {
   });
 });
 
+test("create-order route stores the server-calculated Summit price and PayPal order id", async () => {
+  await withMockedResend(async () => {
+    const { POST } = await import("@/app/api/human-capacity-summit/paypal/create-order/route");
+    const response = await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/create-order", {
+        method: "POST",
+        body: JSON.stringify({
+          attendeeCount: "7",
+          consent: true,
+          corporatePackage: "corporate-early-bird-10",
+          country: "TT",
+          email: "team@example.com",
+          firstName: "Team",
+          lastName: "Lead",
+          organization: "Example Co",
+          paymentMethod: "PayPal",
+          registrationType: "corporate",
+          role: "Leader",
+        }),
+      }),
+    );
+
+    const body = (await response.json()) as { orderId?: string; registrationId?: string };
+    const stored = body.registrationId ? await getSummitPaymentRecordById(body.registrationId) : null;
+
+    assert.equal(response.status, 200);
+    assert.equal(body.orderId, "ORDER-RETRY");
+    assert.equal(stored?.paypalOrderId, "ORDER-RETRY");
+    assert.equal(stored?.pricing.total, 450);
+    assert.equal(stored?.pricing.attendeeCount, 7);
+    assert.equal(stored?.status, "pending_approval");
+  });
+});
+
+test("capture POST returns thank-you redirect only after a verified completed payment", async () => {
+  await withMockedResend(async () => {
+    const record = await seedRecord("registration-capture-post-success");
+    const { POST } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const response = await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/capture", {
+        method: "POST",
+        body: JSON.stringify({ orderId: record.paypalOrderId, registrationId: record.id }),
+      }),
+    );
+
+    const body = (await response.json()) as { status?: string; thankYouUrl?: string };
+    const stored = await getSummitPaymentRecordById(record.id);
+
+    assert.equal(response.status, 200);
+    assert.equal(body.status, "COMPLETED");
+    assert.equal(body.thankYouUrl, `/human-capacity-summit/thank-you?registration=${record.id}`);
+    assert.equal(stored?.status, "paid");
+    assert.equal(stored?.captureId, "CAPTURE-1");
+  });
+});
+
+test("capture POST marks amount and currency mismatches for manual review", async () => {
+  await withMockedResend(async () => {
+    const { POST } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const amountMismatch = await seedRecord("registration-capture-amount-mismatch");
+    setPayPalCaptureResponse({
+      body: JSON.stringify({
+        id: "ORDER-1",
+        payer: { email_address: "payer@example.com" },
+        purchase_units: [
+          {
+            payments: {
+              captures: [
+                {
+                  amount: { currency_code: "USD", value: "44.00" },
+                  id: "CAPTURE-AMOUNT",
+                  status: "COMPLETED",
+                },
+              ],
+            },
+          },
+        ],
+        status: "COMPLETED",
+      }),
+      status: 200,
+    });
+    const amountResponse = await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/capture", {
+        method: "POST",
+        body: JSON.stringify({ orderId: amountMismatch.paypalOrderId, registrationId: amountMismatch.id }),
+      }),
+    );
+
+    const currencyMismatch = await seedRecord("registration-capture-currency-mismatch");
+    setPayPalCaptureResponse({
+      body: JSON.stringify({
+        id: "ORDER-1",
+        payer: { email_address: "payer@example.com" },
+        purchase_units: [
+          {
+            payments: {
+              captures: [
+                {
+                  amount: { currency_code: "EUR", value: "45.00" },
+                  id: "CAPTURE-CURRENCY",
+                  status: "COMPLETED",
+                },
+              ],
+            },
+          },
+        ],
+        status: "COMPLETED",
+      }),
+      status: 200,
+    });
+    const currencyResponse = await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/capture", {
+        method: "POST",
+        body: JSON.stringify({ orderId: currencyMismatch.paypalOrderId, registrationId: currencyMismatch.id }),
+      }),
+    );
+
+    assert.equal(amountResponse.status, 422);
+    assert.equal(currencyResponse.status, 422);
+    assert.equal((await getSummitPaymentRecordById(amountMismatch.id))?.status, "manual_review");
+    assert.equal((await getSummitPaymentRecordById(currencyMismatch.id))?.status, "manual_review");
+  });
+});
+
+test("capture POST returns payer-action verification URLs so the buyer can continue with PayPal", async () => {
+  await withMockedResend(async () => {
+    const record = await seedRecord("registration-capture-payer-action");
+    setPayPalCaptureResponse({
+      body: JSON.stringify({
+        details: [{ description: "Buyer must complete verification.", issue: "PAYER_ACTION_REQUIRED" }],
+        links: [{ href: "https://www.paypal.com/checkoutnow?token=ORDER-1", rel: "payer-action" }],
+        name: "UNPROCESSABLE_ENTITY",
+      }),
+      status: 422,
+    });
+    const { POST } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const response = await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/capture", {
+        method: "POST",
+        body: JSON.stringify({ orderId: record.paypalOrderId, registrationId: record.id }),
+      }),
+    );
+
+    const body = (await response.json()) as { payerActionUrl?: string };
+    const stored = await getSummitPaymentRecordById(record.id);
+
+    assert.equal(response.status, 409);
+    assert.equal(body.payerActionUrl, "https://www.paypal.com/checkoutnow?token=ORDER-1");
+    assert.equal(stored?.status, "verification_required");
+    assert.equal(stored?.lastPaymentErrorCode, "PAYER_ACTION_REQUIRED");
+  });
+});
+
+test("capture POST preserves compliance failures as manual-review records without exposing internal details to the buyer", async () => {
+  await withMockedResend(async () => {
+    const record = await seedRecord("registration-capture-compliance");
+    setPayPalCaptureResponse({
+      body: JSON.stringify({
+        debug_id: "DEBUG-COMPLIANCE",
+        details: [{ description: "Transaction blocked for compliance review.", issue: "COMPLIANCE_VIOLATION" }],
+        name: "UNPROCESSABLE_ENTITY",
+      }),
+      status: 422,
+    });
+    const { POST } = await import("@/app/api/human-capacity-summit/paypal/capture/route");
+    const response = await POST(
+      new Request("https://example.com/api/human-capacity-summit/paypal/capture", {
+        method: "POST",
+        body: JSON.stringify({ orderId: record.paypalOrderId, registrationId: record.id }),
+      }),
+    );
+
+    const body = (await response.json()) as { details?: Array<{ issue?: string }> };
+    const stored = await getSummitPaymentRecordById(record.id);
+
+    assert.equal(response.status, 422);
+    assert.equal(body.details?.[0]?.issue, "PAYPAL_MANUAL_REVIEW");
+    assert.equal(stored?.status, "manual_review");
+    assert.equal(stored?.lastPaymentDiagnostics?.paypalIssue, "COMPLIANCE_VIOLATION");
+    assert.equal(stored?.lastPaymentDiagnostics?.paypalDebugId, "DEBUG-COMPLIANCE");
+  });
+});
+
 test("repeating capture or replaying webhook does not resend either email", async () => {
   const sentEmails = await withMockedResend(async () => {
     let record = await seedRecord("registration-repeat");
