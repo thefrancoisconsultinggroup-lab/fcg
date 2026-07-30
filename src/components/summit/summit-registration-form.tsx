@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import {
   calculateSummitPrice,
   getActiveSummitCorporatePackages,
@@ -58,6 +65,39 @@ const initialForm: FormState = {
   website: "",
 };
 
+const duplicateOrderCreationMessage = "A PayPal payment is already being started.";
+const idleStatus: FormStatus = { state: "idle", message: "" };
+
+function subscribeToMinuteClock(onStoreChange: () => void) {
+  const timer = window.setInterval(onStoreChange, 60_000);
+  return () => window.clearInterval(timer);
+}
+
+function subscribeToLocation(onStoreChange: () => void) {
+  window.addEventListener("hashchange", onStoreChange);
+  window.addEventListener("popstate", onStoreChange);
+  return () => {
+    window.removeEventListener("hashchange", onStoreChange);
+    window.removeEventListener("popstate", onStoreChange);
+  };
+}
+
+function getCountdownMinuteSnapshot() {
+  return Math.floor(Date.now() / 60_000);
+}
+
+function getLocationSnapshot() {
+  return `${window.location.search}|${window.location.hash}`;
+}
+
+function getServerCountdownNow() {
+  return null;
+}
+
+function getServerLocationSnapshot() {
+  return "";
+}
+
 export function SummitRegistrationForm({
   paypalClientId,
   paypalEnvironment,
@@ -67,11 +107,21 @@ export function SummitRegistrationForm({
 }) {
   const [form, setForm] = useState<FormState>(initialForm);
   const formRef = useRef<HTMLFormElement>(null);
+  const orderCreationLockRef = useRef(false);
   const [now, setNow] = useState(() => new Date());
   const [retryRegistrationId, setRetryRegistrationId] = useState<string | null>(null);
-  const [isPaymentBusy, setIsPaymentBusy] = useState(false);
-  const [status, setStatus] = useState<FormStatus>({ state: "idle", message: "" });
-  const [returnStatus, setReturnStatus] = useState<FormStatus>(() => paymentReturnStatus());
+  const [isStatusBusy, setIsStatusBusy] = useState(false);
+  const [status, setStatus] = useState<FormStatus>(idleStatus);
+  const countdownMinute = useSyncExternalStore(
+    subscribeToMinuteClock,
+    getCountdownMinuteSnapshot,
+    getServerCountdownNow,
+  );
+  const locationSnapshot = useSyncExternalStore(
+    subscribeToLocation,
+    getLocationSnapshot,
+    getServerLocationSnapshot,
+  );
 
   const attendeeCount = Math.max(1, Number.parseInt(form.attendeeCount, 10) || 1);
   const activeIndividualRate = getActiveSummitIndividualRate(now);
@@ -89,7 +139,10 @@ export function SummitRegistrationForm({
   const total = pricingSummary?.total ?? 0;
   const standardIndividualRate = summitIndividualRates.find((rate) => rate.value === "standard");
   const isLivePaymentTest = form.registrationType === "live-test";
-  const countdown = summitCountdown(now);
+  const countdown = summitCountdown(
+    countdownMinute === null ? null : new Date(countdownMinute * 60_000),
+  );
+  const returnStatus = paymentReturnStatus(locationSnapshot);
   const displayedStatus = status.state === "idle" ? returnStatus : status;
   const activeRegistrationId = retryRegistrationId ?? displayedStatus.registrationId;
 
@@ -112,7 +165,7 @@ export function SummitRegistrationForm({
       .then((result: PaymentStatusResponse) => {
         const nextStatus = formStatusFromPaymentResponse(result, returnStatus.registrationId);
         if (nextStatus.state !== "idle") {
-          setReturnStatus(nextStatus);
+          setStatus(nextStatus);
         }
       })
       .catch(() => undefined);
@@ -147,6 +200,7 @@ export function SummitRegistrationForm({
   function updateRegistrationType(registrationType: SummitRegistrationType) {
     setStatus({ state: "idle", message: "" });
     setRetryRegistrationId(null);
+    resetOrderCreationGuard();
     setForm((current) => ({
       ...current,
       attendeeCount: "1",
@@ -166,7 +220,11 @@ export function SummitRegistrationForm({
     }
   }
 
-  function validateFormBeforePayment() {
+  function resetOrderCreationGuard() {
+    orderCreationLockRef.current = false;
+  }
+
+  const validateFormBeforePayment = useCallback(() => {
     if (!formRef.current?.reportValidity()) {
       setStatus({
         state: "error",
@@ -181,50 +239,61 @@ export function SummitRegistrationForm({
     }
 
     return true;
-  }
+  }, [pricing]);
 
-  async function createOrder() {
-    if (isPaymentBusy) {
-      throw new Error("A PayPal payment is already being processed.");
+  const createOrder = useCallback(async () => {
+    if (orderCreationLockRef.current) {
+      throw new Error(duplicateOrderCreationMessage);
     }
 
     if (!validateFormBeforePayment()) {
       throw new Error("Please complete the Summit registration form before continuing.");
     }
 
-    setIsPaymentBusy(true);
+    orderCreationLockRef.current = true;
     setStatus({ state: "submitting", message: "Opening secure PayPal checkout..." });
 
     const isRetry = Boolean(retryRegistrationId);
-    const response = await fetch(
-      isRetry ? "/api/human-capacity-summit/paypal/retry" : "/api/human-capacity-summit/paypal/create-order",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(isRetry ? { registrationId: retryRegistrationId } : form),
-      },
-    );
+    try {
+      const response = await fetch(
+        isRetry ? "/api/human-capacity-summit/paypal/retry" : "/api/human-capacity-summit/paypal/create-order",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(isRetry ? { registrationId: retryRegistrationId } : form),
+        },
+      );
 
-    const result = (await response.json().catch(() => ({}))) as {
-      message?: string;
-      orderId?: string;
-      registrationId?: string;
-    };
+      const result = (await response.json().catch(() => ({}))) as {
+        message?: string;
+        orderId?: string;
+        registrationId?: string;
+      };
 
-    if (!response.ok || !result.orderId || !result.registrationId) {
-      setIsPaymentBusy(false);
-      setStatus({
-        action: isRetry && retryRegistrationId ? "retry" : undefined,
-        registrationId: retryRegistrationId ?? result.registrationId,
-        state: "error",
-        message: result.message ?? "We couldn't start PayPal checkout. Please try again.",
-      });
-      throw new Error(result.message ?? "We couldn't start PayPal checkout.");
+      if (!response.ok || !result.orderId || !result.registrationId) {
+        const message = result.message ?? "We couldn't start PayPal checkout. Please try again.";
+        resetOrderCreationGuard();
+        setStatus({
+          action: isRetry && retryRegistrationId ? "retry" : undefined,
+          registrationId: retryRegistrationId ?? result.registrationId,
+          state: "error",
+          message,
+        });
+        throw new Error(message);
+      }
+
+      setRetryRegistrationId(result.registrationId);
+      return result.orderId;
+    } catch (error) {
+      resetOrderCreationGuard();
+
+      if (error instanceof Error) {
+        throw error;
+      }
+
+      throw new Error("We couldn't start PayPal checkout. Please try again.");
     }
-
-    setRetryRegistrationId(result.registrationId);
-    return result.orderId;
-  }
+  }, [form, retryRegistrationId, validateFormBeforePayment]);
 
   async function handleRetryPayment() {
     if (!displayedStatus.registrationId) {
@@ -232,6 +301,7 @@ export function SummitRegistrationForm({
       return;
     }
 
+    resetOrderCreationGuard();
     setRetryRegistrationId(displayedStatus.registrationId);
     setStatus({
       action: "none",
@@ -246,22 +316,36 @@ export function SummitRegistrationForm({
       return;
     }
 
-    setStatus({
-      action: "check",
-      registrationId: displayedStatus.registrationId,
-      state: "processing",
-      message: "Checking your PayPal payment status...",
-    });
+    setIsStatusBusy(true);
+    try {
+      setStatus({
+        action: "check",
+        registrationId: displayedStatus.registrationId,
+        state: "processing",
+        message: "Checking your PayPal payment status...",
+      });
 
-    const response = await fetch("/api/human-capacity-summit/paypal/status", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ registrationId: displayedStatus.registrationId }),
-    });
+      const response = await fetch("/api/human-capacity-summit/paypal/status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ registrationId: displayedStatus.registrationId }),
+      });
 
-    const result = (await response.json().catch(() => ({}))) as PaymentStatusResponse;
+      const result = (await response.json().catch(() => ({}))) as PaymentStatusResponse;
 
-    if (!response.ok) {
+      if (!response.ok) {
+        setStatus({
+          action: "contact",
+          registrationId: displayedStatus.registrationId,
+          state: "manual_review",
+          message:
+            "We're reviewing this payment with PayPal. Please contact Francois Consulting Group before trying another payment.",
+        });
+        return;
+      }
+
+      setStatus(formStatusFromPaymentResponse(result, displayedStatus.registrationId));
+    } catch {
       setStatus({
         action: "contact",
         registrationId: displayedStatus.registrationId,
@@ -270,14 +354,14 @@ export function SummitRegistrationForm({
           "We're reviewing this payment with PayPal. Please contact Francois Consulting Group before trying another payment.",
       });
       return;
+    } finally {
+      setIsStatusBusy(false);
     }
-
-    setStatus(formStatusFromPaymentResponse(result, displayedStatus.registrationId));
   }
 
   async function handlePayPalApprove(orderId: string, actions: { restart?: () => Promise<void> | void }) {
     if (!activeRegistrationId) {
-      setIsPaymentBusy(false);
+      resetOrderCreationGuard();
       setStatus({
         state: "error",
         message: "We couldn't match this PayPal payment to your registration. Please try again.",
@@ -292,59 +376,70 @@ export function SummitRegistrationForm({
       message: "Verifying your PayPal payment...",
     });
 
-    const response = await fetch("/api/human-capacity-summit/paypal/capture", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderId, registrationId: activeRegistrationId }),
-    });
+    try {
+      const response = await fetch("/api/human-capacity-summit/paypal/capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId, registrationId: activeRegistrationId }),
+      });
 
-    const result = (await response.json().catch(() => ({}))) as {
-      debug_id?: string;
-      details?: Array<{ description?: string; issue?: string }>;
-      payerActionUrl?: string;
-      registrationId?: string;
-      status?: string;
-      thankYouUrl?: string;
-    };
+      const result = (await response.json().catch(() => ({}))) as {
+        debug_id?: string;
+        details?: Array<{ description?: string; issue?: string }>;
+        payerActionUrl?: string;
+        registrationId?: string;
+        status?: string;
+        thankYouUrl?: string;
+      };
 
-    const detail = result.details?.[0];
+      const detail = result.details?.[0];
 
-    if (detail?.issue === "INSTRUMENT_DECLINED" && typeof actions.restart === "function") {
-      setIsPaymentBusy(false);
+      if (detail?.issue === "INSTRUMENT_DECLINED" && typeof actions.restart === "function") {
+        resetOrderCreationGuard();
+        setStatus({
+          action: "retry",
+          registrationId: activeRegistrationId,
+          state: "error",
+          message:
+            "PayPal could not complete the payment with the selected funding source. Please choose another PayPal option and try again.",
+        });
+        await actions.restart();
+        return;
+      }
+
+      if (detail?.issue === "PAYER_ACTION_REQUIRED" && result.payerActionUrl) {
+        window.location.assign(result.payerActionUrl);
+        return;
+      }
+
+      if (response.ok && result.thankYouUrl) {
+        window.location.assign(result.thankYouUrl);
+        return;
+      }
+
+      resetOrderCreationGuard();
+      setStatus(
+        statusFromCaptureResponse({
+          description: detail?.description,
+          issue: detail?.issue,
+          registrationId: result.registrationId ?? activeRegistrationId,
+          status: result.status,
+        }),
+      );
+    } catch {
+      resetOrderCreationGuard();
       setStatus({
         action: "retry",
         registrationId: activeRegistrationId,
         state: "error",
         message:
-          "PayPal could not complete the payment with the selected funding source. Please choose another PayPal option and try again.",
+          "We couldn't complete PayPal checkout right now. Please try again or contact Francois Consulting Group if the problem continues.",
       });
-      await actions.restart();
-      return;
     }
-
-    if (detail?.issue === "PAYER_ACTION_REQUIRED" && result.payerActionUrl) {
-      window.location.assign(result.payerActionUrl);
-      return;
-    }
-
-    if (response.ok && result.thankYouUrl) {
-      window.location.assign(result.thankYouUrl);
-      return;
-    }
-
-    setIsPaymentBusy(false);
-    setStatus(
-      statusFromCaptureResponse({
-        description: detail?.description,
-        issue: detail?.issue,
-        registrationId: result.registrationId ?? activeRegistrationId,
-        status: result.status,
-      }),
-    );
   }
 
   async function handlePayPalCancel() {
-    setIsPaymentBusy(false);
+    resetOrderCreationGuard();
 
     if (activeRegistrationId) {
       await fetch("/api/human-capacity-summit/paypal/cancel", {
@@ -364,13 +459,23 @@ export function SummitRegistrationForm({
   }
 
   function handlePayPalError(message: string) {
-    setIsPaymentBusy(false);
-    setStatus({
-      action: activeRegistrationId ? "retry" : "none",
-      registrationId: activeRegistrationId,
-      state: "error",
-      message:
-        "We couldn't complete PayPal checkout right now. Please try again or contact Francois Consulting Group if the problem continues.",
+    if (message === duplicateOrderCreationMessage) {
+      return;
+    }
+
+    resetOrderCreationGuard();
+    setStatus((current) => {
+      if (current.state === "error" && current.message) {
+        return current;
+      }
+
+      return {
+        action: activeRegistrationId ? "retry" : "none",
+        registrationId: activeRegistrationId,
+        state: "error",
+        message:
+          "We couldn't complete PayPal checkout right now. Please try again or contact Francois Consulting Group if the problem continues.",
+      };
     });
     console.error("Summit PayPal checkout failed on the client.", { message });
   }
@@ -727,7 +832,6 @@ export function SummitRegistrationForm({
             <legend>Secure payment</legend>
             <SummitPayPalCheckout
               clientId={paypalClientId}
-              disabled={isPaymentBusy}
               environment={paypalEnvironment}
               onApprove={handlePayPalApprove}
               onCancel={handlePayPalCancel}
@@ -741,7 +845,7 @@ export function SummitRegistrationForm({
             <strong>${total.toLocaleString("en-US")}</strong>
           </div>
 
-          <button type="submit" disabled={isPaymentBusy}>
+          <button type="submit" disabled={isStatusBusy}>
             Review registration before payment
           </button>
           <p
@@ -753,7 +857,7 @@ export function SummitRegistrationForm({
             {displayedStatus.message}
           </p>
           <PaymentStatusActionButton
-            disabled={isPaymentBusy || status.state === "processing"}
+            disabled={isStatusBusy || status.state === "processing"}
             onCheck={handleCheckPaymentStatus}
             onRetry={handleRetryPayment}
             status={displayedStatus}
@@ -764,7 +868,11 @@ export function SummitRegistrationForm({
   );
 }
 
-function summitCountdown(now: Date) {
+function summitCountdown(now: Date | null) {
+  if (!now) {
+    return { days: "--", hours: "--", minutes: "--" };
+  }
+
   const milliseconds = Math.max(0, new Date(summitStartIso).getTime() - now.getTime());
   const totalMinutes = Math.floor(milliseconds / 60_000);
   const days = Math.floor(totalMinutes / 1_440);
@@ -774,13 +882,15 @@ function summitCountdown(now: Date) {
   return { days, hours, minutes };
 }
 
-function paymentReturnStatus(): FormStatus {
-  if (typeof window === "undefined") {
+function paymentReturnStatus(location = ""): FormStatus {
+  if (!location) {
     return { state: "idle", message: "" };
   }
 
-  const paymentStatus = new URLSearchParams(window.location.search).get("payment");
-  const registrationId = new URLSearchParams(window.location.search).get("registration") || undefined;
+  const [search] = location.split("|");
+  const params = new URLSearchParams(search);
+  const paymentStatus = params.get("payment");
+  const registrationId = params.get("registration") || undefined;
 
   if (paymentStatus === "success") {
     return {

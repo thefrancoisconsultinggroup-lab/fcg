@@ -30,7 +30,6 @@ const cardButtonStyle = {
 
 type SummitPayPalCheckoutProps = {
   clientId: string;
-  disabled: boolean;
   environment: "production" | "sandbox";
   onApprove: (orderId: string, actions: { restart?: () => Promise<void> | void }) => Promise<void>;
   onCancel: () => Promise<void>;
@@ -40,7 +39,6 @@ type SummitPayPalCheckoutProps = {
 
 export function SummitPayPalCheckout({
   clientId,
-  disabled,
   environment,
   onApprove,
   onCancel,
@@ -69,7 +67,6 @@ export function SummitPayPalCheckout({
       }}
     >
       <SummitPayPalCheckoutButtons
-        disabled={disabled}
         onApprove={onApprove}
         onCancel={onCancel}
         onCreateOrder={onCreateOrder}
@@ -80,7 +77,6 @@ export function SummitPayPalCheckout({
 }
 
 function SummitPayPalCheckoutButtons({
-  disabled,
   onApprove,
   onCancel,
   onCreateOrder,
@@ -156,8 +152,6 @@ function SummitPayPalCheckoutButtons({
           <div className={styles.paypalButtonSlot}>
             <PayPalButtons
               createOrder={onCreateOrder}
-              disabled={disabled}
-              forceReRender={[disabled]}
               fundingSource={FUNDING.PAYPAL}
               onApprove={(data, actions) => onApprove(data.orderID, actions)}
               onCancel={() => onCancel()}
@@ -170,8 +164,6 @@ function SummitPayPalCheckoutButtons({
           <div className={styles.paypalButtonSlot}>
             <PayPalButtons
               createOrder={onCreateOrder}
-              disabled={disabled}
-              forceReRender={[disabled]}
               fundingSource={FUNDING.CARD}
               onApprove={(data, actions) => onApprove(data.orderID, actions)}
               onCancel={() => onCancel()}
