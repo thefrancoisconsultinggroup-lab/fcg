@@ -151,7 +151,7 @@ test("Switching from Corporate package to Individual registration recalculates t
   assert.equal(individual.ok && individual.summary.total, 315);
 });
 
-test("Live Payment Test prices at US$5.00 on the server", () => {
+test("Invalid registration type is rejected by server-side validation", () => {
   const result = validateSummitRegistrationPayload(
     {
       attendeeCount: "1",
@@ -164,21 +164,6 @@ test("Live Payment Test prices at US$5.00 on the server", () => {
       paymentMethod: "PayPal",
       registrationType: "live-test",
       role: "Leader",
-    },
-    earlyBirdDate,
-  );
-
-  assert.equal(result.ok, true);
-  assert.equal(result.ok && result.registration.pricing.total, 5);
-  assert.equal(result.ok && result.registration.pricing.unitPrice, 5);
-  assert.equal(result.ok && result.registration.pricing.rateLabel, "Live Payment Test - USD 5.00");
-});
-
-test("Live Payment Test rejects more than one attendee", () => {
-  const result = calculateSummitPrice(
-    {
-      attendeeCount: 2,
-      registrationType: "live-test",
     },
     earlyBirdDate,
   );

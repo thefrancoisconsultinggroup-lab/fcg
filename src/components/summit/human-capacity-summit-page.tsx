@@ -10,7 +10,6 @@ import {
 } from "@/data/human-capacity-summit";
 import { SummitOpeningTransition } from "./summit-opening-transition";
 import { SummitRegistrationForm } from "./summit-registration-form";
-import { SummitWaterTheme } from "./summit-water-theme";
 import styles from "./human-capacity-summit.module.css";
 
 const speakerImageVersion = "20260724";
@@ -24,7 +23,6 @@ export function HumanCapacitySummitPage({
 }) {
   return (
     <div className={styles.page}>
-      <SummitWaterTheme />
       <SummitOpeningTransition />
 
       <main className={styles.body}>
