@@ -35,8 +35,9 @@ export default function TermsAndConditionsPage() {
         <h2>2. Acceptance of these Terms</h2>
         <p>
           By using this website, submitting an enquiry, or registering for The Human Capacity
-          Summit, you agree to these Terms and Conditions and to the related{" "}
-          <Link href="/privacy-policy">Privacy Policy</Link>.
+          Summit, you agree to these Terms and Conditions, the{" "}
+          <Link href={legalPolicyVersions.refund.route}>Refund and Cancellation Policy</Link>, and
+          the related <Link href="/privacy-policy">Privacy Policy</Link>.
         </p>
       </section>
 
@@ -119,9 +120,10 @@ export default function TermsAndConditionsPage() {
       <section>
         <h2>10. Cancellation, refund, and transfer policy</h2>
         <p>
-          Refund, cancellation, postponement, relocation, and transfer rights are intended to be
-          governed by a separate Refund and Cancellation Policy, which will form part of these
-          Terms once approved and published.
+          Refund, cancellation, event-cancellation, and non-transferability rules for Summit
+          registrations are governed by the separate{" "}
+          <Link href={legalPolicyVersions.refund.route}>Refund and Cancellation Policy</Link>,
+          which forms part of these Terms.
         </p>
       </section>
 
@@ -129,8 +131,8 @@ export default function TermsAndConditionsPage() {
         <h2>11. Event changes</h2>
         <p>
           Speakers, programme details, scheduling, and venue or delivery arrangements may change
-          where reasonably necessary. Postponement, relocation, or organiser cancellation rules
-          should follow the approved Refund and Cancellation Policy once published.
+          where reasonably necessary. Refund rights relating to organiser cancellation are set out
+          in the <Link href={legalPolicyVersions.refund.route}>Refund and Cancellation Policy</Link>.
         </p>
       </section>
 

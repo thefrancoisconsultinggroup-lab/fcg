@@ -817,39 +817,11 @@ export function SummitRegistrationForm({
                 onChange={(event) => updateField("policyAcceptance", event.target.checked)}
               />
               <span>
-                {isRefundPolicyPublished() ? (
-                  <>
-                    I have read and agree to the{" "}
-                    <Link href={legalPolicyVersions.terms.route} target="_blank" rel="noreferrer">
-                      Terms and Conditions
-                    </Link>{" "}
-                    and{" "}
-                    <Link
-                      href={legalPolicyVersions.refund.route}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Refund and Cancellation Policy
-                    </Link>
-                    , and acknowledge the{" "}
-                    <Link href={legalPolicyVersions.privacy.route} target="_blank" rel="noreferrer">
-                      Privacy Policy
-                    </Link>
-                    .
-                  </>
-                ) : (
-                  <>
-                    I have read and agree to the{" "}
-                    <Link href={legalPolicyVersions.terms.route} target="_blank" rel="noreferrer">
-                      Terms and Conditions
-                    </Link>{" "}
-                    and acknowledge the{" "}
-                    <Link href={legalPolicyVersions.privacy.route} target="_blank" rel="noreferrer">
-                      Privacy Policy
-                    </Link>
-                    .
-                  </>
-                )}
+                I have read and agree to the{" "}
+                <Link href={legalPolicyVersions.terms.route} target="_blank" rel="noreferrer">
+                  Terms and Conditions
+                </Link>
+                .
               </span>
             </label>
             <SummitPayPalCheckout

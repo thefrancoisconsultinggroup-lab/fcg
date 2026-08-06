@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import Link from "next/link";
 import { LegalPage } from "@/components/legal/legal-page";
 import {
+  formatPolicyDate,
   legalPageMetadata,
   legalPolicyVersions,
 } from "@/lib/legal";
 
 const description =
-  "Draft refund and cancellation policy structure for The Human Capacity Summit.";
+  "Refund and cancellation policy for Human Capacity Summit registrations.";
 
 export const metadata: Metadata = legalPageMetadata({
   description,
@@ -16,43 +17,112 @@ export const metadata: Metadata = legalPageMetadata({
 });
 
 export default function RefundCancellationPolicyPage() {
-  if (process.env.NODE_ENV === "production") {
-    notFound();
-  }
-
   return (
     <LegalPage
       title="Refund and Cancellation Policy"
-      effectiveDate=""
-      lastUpdated=""
+      effectiveDate={formatPolicyDate(legalPolicyVersions.refund.effectiveDate)}
+      lastUpdated={formatPolicyDate(legalPolicyVersions.refund.lastUpdated)}
     >
       <section>
-        <h2>Draft status</h2>
+        <h2>Our Commitment to You</h2>
         <p>
-          This route is intentionally unpublished in production until approved refund,
-          cancellation, postponement, relocation, and transfer rules are provided by the client.
+          At Francois Consulting Group, we are committed to creating an exceptional Summit
+          experience. We understand that plans can change, and we will do our best to assist while
+          also honoring the significant planning and production commitments required to deliver a
+          high-quality global event.
         </p>
       </section>
 
       <section>
-        <h2>Client decisions required before publication</h2>
+        <h2>Refund Schedule</h2>
+        <article>
+          <h3>Early Bird Registration (through August 31, 2026)</h3>
+          <p>
+            Registrations may be cancelled for a <strong>full refund</strong> if the request is
+            received within <strong>14 days of the original purchase date</strong> and no later
+            than <strong>August 31, 2026</strong>.
+          </p>
+        </article>
+        <article>
+          <h3>Advanced Registration (September 1 to September 25, 2026)</h3>
+          <p>
+            Registrations may be cancelled for a <strong>50% refund</strong> if the request is
+            received on or before <strong>September 25, 2026</strong>.
+          </p>
+        </article>
+        <article>
+          <h3>Standard Registration (September 26 to October 1, 2026)</h3>
+          <p>
+            Registrations purchased during the Standard Registration period are{" "}
+            <strong>non-refundable</strong>.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Registration Policy</h2>
+        <p>
+          Summit registrations are issued to the original purchaser and{" "}
+          <strong>may not be transferred</strong> to another individual.
+        </p>
+      </section>
+
+      <section>
+        <h2>Programme Changes</h2>
+        <p>
+          Every effort will be made to present the advertised programme, speakers, session topics,
+          and schedule. However, Francois Consulting Group reserves the right to make changes where
+          circumstances require. Such changes do not constitute grounds for a refund.
+        </p>
+      </section>
+
+      <section>
+        <h2>Event Cancellation</h2>
+        <p>
+          If the Human Capacity Summit is cancelled by Francois Consulting Group, registered
+          attendees will be offered the option of:
+        </p>
         <ul>
-          <li>Customer cancellation deadline.</li>
-          <li>Refund percentage or amount at each deadline.</li>
-          <li>Whether any registration fees or PayPal fees are non-refundable.</li>
-          <li>Whether registrations may be transferred to another attendee.</li>
-          <li>Transfer deadline and transfer procedure.</li>
-          <li>How duplicate payments will be handled.</li>
-          <li>How failed or declined payments will be handled.</li>
-          <li>Whether no-shows are refundable.</li>
-          <li>Rules for postponement, relocation, and organiser cancellation.</li>
-          <li>How programme or speaker changes affect refunds, if at all.</li>
-          <li>Force majeure treatment.</li>
-          <li>Refund request method, required information, and processing timeframe.</li>
-          <li>Whether currency-conversion differences remain the payer&apos;s responsibility.</li>
-          <li>How chargebacks and payment disputes should be handled.</li>
-          <li>Final refund-policy contact email.</li>
+          <li>A <strong>full refund</strong> of the registration fee.</li>
+          <li>
+            A transfer of the registration to the rescheduled Human Capacity Summit.
+          </li>
         </ul>
+      </section>
+
+      <section>
+        <h2>Technical Requirements</h2>
+        <p>
+          Attendees are responsible for ensuring they have a reliable internet connection, a
+          compatible device, and the ability to access the virtual event platform. Technical issues
+          arising from an attendee&apos;s equipment, internet service, or system configuration do
+          not qualify for a refund.
+        </p>
+      </section>
+
+      <section>
+        <h2>Exceptional Circumstances</h2>
+        <p>
+          Requests arising from exceptional circumstances may be considered at the sole discretion
+          of Francois Consulting Group.
+        </p>
+      </section>
+
+      <section>
+        <h2>Refund Processing</h2>
+        <p>
+          Approved refunds will be issued to the original method of payment and processed within{" "}
+          <strong>10 to 14 business days</strong> of approval.
+        </p>
+      </section>
+
+      <section>
+        <h2>Related Policies</h2>
+        <p>
+          This policy should be read together with the{" "}
+          <Link href={legalPolicyVersions.terms.route}>Terms and Conditions</Link> and{" "}
+          <Link href={legalPolicyVersions.privacy.route}>Privacy Policy</Link>.
+        </p>
       </section>
     </LegalPage>
   );
