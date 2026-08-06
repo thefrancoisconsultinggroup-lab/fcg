@@ -269,7 +269,6 @@ test("create-order route stores the server-calculated Summit price and PayPal or
         method: "POST",
         body: JSON.stringify({
           attendeeCount: "7",
-          consent: true,
           corporatePackage: "corporate-early-bird-10",
           country: "TT",
           email: "team@example.com",
@@ -277,6 +276,7 @@ test("create-order route stores the server-calculated Summit price and PayPal or
           lastName: "Lead",
           organization: "Example Co",
           paymentMethod: "PayPal",
+          policyAcceptance: true,
           registrationType: "corporate",
           role: "Leader",
         }),

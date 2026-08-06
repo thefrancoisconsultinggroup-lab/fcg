@@ -21,6 +21,7 @@ export type SummitRegistrationPayload = {
   organization?: unknown;
   paymentMethod?: unknown;
   phone?: unknown;
+  policyAcceptance?: unknown;
   registrationType?: unknown;
   role?: unknown;
   website?: unknown;
@@ -63,8 +64,12 @@ export function validateSummitRegistrationPayload(
     return { ok: false, message: "Please select PayPal as the payment method." };
   }
 
-  if (payload.consent !== true) {
-    return { ok: false, message: "Please confirm consent before submitting." };
+  if (payload.policyAcceptance !== true) {
+    return {
+      ok: false,
+      message:
+        "Please confirm that you agree to the required Summit policies before starting payment.",
+    };
   }
 
   const pricing = calculateSummitPrice(

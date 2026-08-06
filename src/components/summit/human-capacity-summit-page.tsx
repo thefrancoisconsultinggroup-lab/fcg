@@ -12,8 +12,6 @@ import { SummitOpeningTransition } from "./summit-opening-transition";
 import { SummitRegistrationForm } from "./summit-registration-form";
 import styles from "./human-capacity-summit.module.css";
 
-const speakerImageVersion = "20260724";
-
 export function HumanCapacitySummitPage({
   paypalClientId,
   paypalEnvironment,
@@ -84,11 +82,18 @@ export function HumanCapacitySummitPage({
                         >
                           <div className={styles.speakerPortrait}>
                             <Image
-                              src={`${speaker.image}?v=${speakerImageVersion}`}
+                              src={speaker.image}
                               alt={speaker.name}
                               width={430}
                               height={430}
                               sizes="(min-width: 1024px) 16rem, (min-width: 640px) 32vw, 66vw"
+                              style={{
+                                objectFit: "cover",
+                                objectPosition: speaker.imagePosition ?? "50% 50%",
+                                transform: speaker.imageScale
+                                  ? `scale(${speaker.imageScale})`
+                                  : undefined,
+                              }}
                             />
                           </div>
                           <div>

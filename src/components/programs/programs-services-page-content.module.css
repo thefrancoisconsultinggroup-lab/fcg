@@ -458,6 +458,18 @@
   color: #ffd0c7;
 }
 
+.privacyNotice {
+  margin: 0;
+  color: rgba(220, 239, 255, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.privacyNotice a {
+  color: #8fe7ff;
+  text-underline-offset: 0.18em;
+}
+
 .closingRow {
   display: flex;
   flex-wrap: wrap;

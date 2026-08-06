@@ -27,7 +27,7 @@ const capacityExpressions = [
   "Contribute positively",
 ];
 
-const impactAreas = ["Families", "Workplaces", "Communities", "Society"];
+const impactAreas = ["The Individual", "Families", "Workplaces", "Communities", "Society"];
 
 const pathways = [
   {
@@ -219,6 +219,7 @@ function HumanCapacityRipple() {
         ))}
         {impactAreas.map((label, index) => (
           <span key={label} className={`${styles.impactLabel} ${styles[`impact${index + 1}`]}`}>
+            <i />
             {label}
           </span>
         ))}

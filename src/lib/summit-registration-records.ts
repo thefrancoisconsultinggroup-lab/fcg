@@ -128,6 +128,16 @@ export type SummitPaymentRecord = {
   paypalOrderId: string;
   paypalOrderHistory?: SummitPayPalOrderAttempt[];
   pricing: SummitPriceSummary;
+  policyAcceptance?: {
+    accepted: true;
+    acceptedAt: string;
+    privacyPolicyEffectiveDate: string;
+    privacyPolicyVersion: string;
+    refundPolicyEffectiveDate?: string;
+    refundPolicyVersion?: string;
+    termsEffectiveDate: string;
+    termsVersion: string;
+  };
   registration: SummitRegistrationDetails;
   refundHistory?: SummitRefundRecord[];
   status: SummitPaymentStatus;

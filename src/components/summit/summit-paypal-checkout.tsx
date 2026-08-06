@@ -145,7 +145,8 @@ function SummitPayPalCheckoutButtons({
   return (
     <div className={styles.paypalPanel}>
       <p className={styles.fieldHint}>
-        Complete the registration form, then choose your secure PayPal checkout option below.
+        Complete the registration form, confirm the required policies, then choose your secure
+        PayPal checkout option below.
       </p>
       <div className={styles.paypalButtonStack}>
         {eligibility.paypal ? (

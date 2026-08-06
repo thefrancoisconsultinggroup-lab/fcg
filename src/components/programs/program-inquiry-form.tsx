@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent, type ReactNode } from "react";
 import styles from "./programs-services-page-content.module.css";
 
@@ -182,6 +183,13 @@ export function ProgramInquiryForm() {
           {status}
         </p>
       </div>
+      <p className={styles.privacyNotice}>
+        Your information will be handled in accordance with our{" "}
+        <Link href="/privacy-policy" target="_blank" rel="noreferrer">
+          Privacy Policy
+        </Link>
+        .
+      </p>
     </form>
   );
 }

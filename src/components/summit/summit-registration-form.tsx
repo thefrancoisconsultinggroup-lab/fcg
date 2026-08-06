@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   useCallback,
   useEffect,
@@ -10,16 +11,18 @@ import {
 } from "react";
 import {
   calculateSummitPrice,
-  getActiveSummitCorporatePackages,
   getActiveSummitIndividualRate,
+  getActiveSummitCorporatePackages,
   isSummitIndividualRateActive,
   summitDateLabel,
   summitCorporatePackages,
   summitIndividualRates,
   summitStartIso,
+  trinidadDateKey,
   type SummitCorporatePackageValue,
   type SummitRegistrationType,
 } from "@/lib/summit-pricing";
+import { isRefundPolicyPublished, legalPolicyVersions } from "@/lib/legal";
 import { SummitPayPalCheckout } from "./summit-paypal-checkout";
 import styles from "./human-capacity-summit.module.css";
 
@@ -44,7 +47,7 @@ type FormState = {
   attendeeCount: string;
   paymentMethod: PaymentMethod;
   hopes: string;
-  consent: boolean;
+  policyAcceptance: boolean;
   website: string;
 };
 
@@ -61,7 +64,7 @@ const initialForm: FormState = {
   attendeeCount: "1",
   paymentMethod: "PayPal",
   hopes: "",
-  consent: false,
+  policyAcceptance: false,
   website: "",
 };
 
@@ -144,6 +147,9 @@ export function SummitRegistrationForm({
   const returnStatus = paymentReturnStatus(locationSnapshot);
   const displayedStatus = status.state === "idle" ? returnStatus : status;
   const activeRegistrationId = retryRegistrationId ?? displayedStatus.registrationId;
+  const activeDeadlineMessage = pricingSummary
+    ? summarizeDeadline(pricingSummary.rateDetail, pricingSummary.rateLabel, now)
+    : null;
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60_000);
@@ -510,7 +516,7 @@ export function SummitRegistrationForm({
                   />
                   <span>
                     <strong>Corporate Group</strong>
-                    <small>Early bird and regular packages for 10 or 20 attendees</small>
+                    <small>Early bird and standard packages for 10 or 20 attendees</small>
                   </span>
                 </label>
               </div>
@@ -640,6 +646,7 @@ export function SummitRegistrationForm({
                       <strong>{rate.label}</strong>
                       <small>
                         {isActive ? rate.detail : `${rate.detail} - not currently available`}
+                        {isActive ? ` | ${countdownLabel(rate.endsOn, now)}` : ""}
                       </small>
                     </span>
                     <PriceDisplay
@@ -690,7 +697,10 @@ export function SummitRegistrationForm({
                       <strong>{option.label}</strong>
                       <small>
                         {isActive
-                          ? `Maximum ${option.capacity} attendees`
+                          ? `Maximum ${option.capacity} attendees | ${countdownLabel(
+                              option.endsOn,
+                              now,
+                            )}`
                           : `${option.detail} - not currently available`}
                       </small>
                     </span>
@@ -713,20 +723,13 @@ export function SummitRegistrationForm({
         />
       </FormField>
 
-      <label className={styles.consent}>
-        <input
-          type="checkbox"
-          name="consent"
-          required
-          checked={form.consent}
-          onChange={(event) => updateField("consent", event.target.checked)}
-        />
-        <span>
-          I understand that Francois Consulting Group will use the information I provide to
-          communicate with me regarding my registration for and participation in The Human
-          Capacity Summit.
-        </span>
-      </label>
+      <p className={styles.privacyMicrocopy}>
+        Your information will be handled in accordance with our{" "}
+        <Link href="/privacy-policy" target="_blank" rel="noreferrer">
+          Privacy Policy
+        </Link>
+        .
+      </p>
 
         </div>
 
@@ -748,6 +751,9 @@ export function SummitRegistrationForm({
               </span>
             </div>
             <p>{summitDateLabel} online</p>
+            {activeDeadlineMessage ? (
+              <p className={styles.deadlineHint}>{activeDeadlineMessage}</p>
+            ) : null}
           </section>
 
           <section className={styles.orderSummary} aria-live="polite">
@@ -761,6 +767,10 @@ export function SummitRegistrationForm({
                 <div>
                   <dt>{form.registrationType === "individual" ? "Rate" : "Package"}</dt>
                   <dd>{pricingSummary.rateLabel}</dd>
+                </div>
+                <div>
+                  <dt>Current window</dt>
+                  <dd>{pricingSummary.rateDetail}</dd>
                 </div>
                 <div>
                   <dt>Number attending</dt>
@@ -798,6 +808,50 @@ export function SummitRegistrationForm({
 
           <fieldset className={styles.fieldset}>
             <legend>Secure payment</legend>
+            <label className={styles.policyConsent}>
+              <input
+                type="checkbox"
+                name="policyAcceptance"
+                required
+                checked={form.policyAcceptance}
+                onChange={(event) => updateField("policyAcceptance", event.target.checked)}
+              />
+              <span>
+                {isRefundPolicyPublished() ? (
+                  <>
+                    I have read and agree to the{" "}
+                    <Link href={legalPolicyVersions.terms.route} target="_blank" rel="noreferrer">
+                      Terms and Conditions
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                      href={legalPolicyVersions.refund.route}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Refund and Cancellation Policy
+                    </Link>
+                    , and acknowledge the{" "}
+                    <Link href={legalPolicyVersions.privacy.route} target="_blank" rel="noreferrer">
+                      Privacy Policy
+                    </Link>
+                    .
+                  </>
+                ) : (
+                  <>
+                    I have read and agree to the{" "}
+                    <Link href={legalPolicyVersions.terms.route} target="_blank" rel="noreferrer">
+                      Terms and Conditions
+                    </Link>{" "}
+                    and acknowledge the{" "}
+                    <Link href={legalPolicyVersions.privacy.route} target="_blank" rel="noreferrer">
+                      Privacy Policy
+                    </Link>
+                    .
+                  </>
+                )}
+              </span>
+            </label>
             <SummitPayPalCheckout
               clientId={paypalClientId}
               environment={paypalEnvironment}
@@ -1078,4 +1132,79 @@ function PriceDisplay({
       <span>${price.toLocaleString("en-US")}</span>
     </b>
   );
+}
+
+function countdownLabel(endsOn: string, now: Date) {
+  const today = trinidadDateKey(now);
+  const difference = dayDifference(today, endsOn);
+
+  if (difference <= 0) {
+    return `Ends ${formatDeadline(endsOn)}`;
+  }
+
+  if (difference === 1) {
+    return "Ends tomorrow";
+  }
+
+  if (difference <= 14) {
+    return `Ends in ${difference} days`;
+  }
+
+  return `Ends ${formatDeadline(endsOn)}`;
+}
+
+function summarizeDeadline(rateDetail: string, rateLabel: string, now: Date) {
+  const match = rateDetail.match(/(\d{4}-\d{2}-\d{2}|[A-Z][a-z]+ \d{1,2}, \d{4})$/);
+  const fallbackDate = rateDetail.replace(/^Ends\s+/, "");
+  const endsOn = match?.[1] ?? fallbackDate;
+  const deadline = normalizeDateKey(endsOn);
+
+  if (!deadline) {
+    return null;
+  }
+
+  const difference = dayDifference(trinidadDateKey(now), deadline);
+
+  if (difference === 0) {
+    return `${rateLabel} closes today, ${formatDeadline(deadline)}.`;
+  }
+
+  if (difference === 1) {
+    return `${rateLabel} closes tomorrow, ${formatDeadline(deadline)}.`;
+  }
+
+  if (difference > 1 && difference <= 30) {
+    return `${rateLabel} closes in ${difference} days on ${formatDeadline(deadline)}.`;
+  }
+
+  return `${rateLabel} closes on ${formatDeadline(deadline)}.`;
+}
+
+function normalizeDateKey(value: string) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return value;
+  }
+
+  const parsed = Date.parse(`${value} UTC`);
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+
+  return new Date(parsed).toISOString().slice(0, 10);
+}
+
+function formatDeadline(dateKey: string) {
+  const date = new Date(`${dateKey}T00:00:00Z`);
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    timeZone: "UTC",
+    year: "numeric",
+  }).format(date);
+}
+
+function dayDifference(fromDateKey: string, toDateKey: string) {
+  const start = Date.parse(`${fromDateKey}T00:00:00Z`);
+  const end = Date.parse(`${toDateKey}T00:00:00Z`);
+  return Math.round((end - start) / 86_400_000);
 }

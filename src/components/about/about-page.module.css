@@ -232,8 +232,17 @@
   color: rgba(244, 249, 253, 0.9);
   font-size: clamp(0.78rem, 0.95vw, 0.9rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.impactLabel i {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #36d3f2;
+  box-shadow: 0 0 0 0.28rem rgba(54, 211, 242, 0.08);
 }
 
 .capacity1 { left: 47%; top: 14%; animation-delay: 420ms; }
@@ -242,10 +251,11 @@
 .capacity4 { left: 12%; bottom: 20%; animation-delay: 660ms; }
 .capacity5 { left: 7%; top: 36%; animation-delay: 740ms; }
 
-.impact1 { left: 48%; top: 5%; transform: translateX(-50%); animation-delay: 880ms; }
-.impact2 { right: 5%; top: 52%; animation-delay: 960ms; }
-.impact3 { left: 48%; bottom: 5%; transform: translateX(-50%); animation-delay: 1040ms; }
-.impact4 { left: 5%; top: 52%; animation-delay: 1120ms; }
+.impact1 { left: 50%; top: 4%; transform: translateX(-50%); animation-delay: 880ms; }
+.impact2 { right: 2%; top: 27%; animation-delay: 960ms; }
+.impact3 { right: 12%; bottom: 9%; animation-delay: 1040ms; }
+.impact4 { left: 12%; bottom: 9%; animation-delay: 1120ms; }
+.impact5 { left: 2%; top: 27%; animation-delay: 1200ms; }
 
 .rippleMobileList {
   display: none;

@@ -5,8 +5,8 @@ import { isSummitPaymentCaptured } from "@/lib/summit-registration-records";
 import { validateSummitRegistrationPayload } from "@/lib/summit-registration-validation";
 
 const earlyBirdDate = new Date("2026-07-23T12:00:00.000Z");
-const advanceDate = new Date("2026-08-16T12:00:00.000Z");
-const standardDate = new Date("2026-09-16T12:00:00.000Z");
+const advanceDate = new Date("2026-09-10T12:00:00.000Z");
+const standardDate = new Date("2026-09-29T12:00:00.000Z");
 
 test("1 Early Bird attendee = US$45", () => {
   const result = calculateSummitPrice({ attendeeCount: 1, registrationType: "individual" }, earlyBirdDate);
@@ -88,6 +88,18 @@ test("Early Bird Corporate packages are rejected after Early Bird ends", () => {
   assert.equal(result.ok, false);
 });
 
+test("Corporate standard packages do not open before September 1, 2026", () => {
+  const result = calculateSummitPrice(
+    {
+      attendeeCount: 10,
+      corporatePackage: "corporate-10",
+      registrationType: "corporate",
+    },
+    new Date("2026-08-31T12:00:00.000Z"),
+  );
+  assert.equal(result.ok, false);
+});
+
 test("Corporate Group of 10 with 7 attendees = US$600", () => {
   const result = calculateSummitPrice({
     attendeeCount: 7,
@@ -155,7 +167,6 @@ test("Invalid registration type is rejected by server-side validation", () => {
   const result = validateSummitRegistrationPayload(
     {
       attendeeCount: "1",
-      consent: true,
       country: "TT",
       email: "tester@example.com",
       firstName: "Test",
@@ -175,7 +186,6 @@ test("Browser-submitted manipulated amount is ignored", () => {
   const result = validateSummitRegistrationPayload(
     {
       attendeeCount: "10",
-      consent: true,
       country: "US",
       email: "test@example.com",
       firstName: "Test",
@@ -183,6 +193,7 @@ test("Browser-submitted manipulated amount is ignored", () => {
       manipulatedAmount: "1",
       organization: "Example Co",
       paymentMethod: "PayPal",
+      policyAcceptance: true,
       registrationType: "individual",
       role: "Leader",
     },
@@ -191,6 +202,25 @@ test("Browser-submitted manipulated amount is ignored", () => {
 
   assert.equal(result.ok, true);
   assert.equal(result.ok && result.registration.pricing.total, 450);
+});
+
+test("Server-side validation rejects missing policy acceptance", () => {
+  const result = validateSummitRegistrationPayload(
+    {
+      attendeeCount: "1",
+      country: "US",
+      email: "test@example.com",
+      firstName: "Test",
+      lastName: "User",
+      organization: "Example Co",
+      paymentMethod: "PayPal",
+      registrationType: "individual",
+      role: "Leader",
+    },
+    earlyBirdDate,
+  );
+
+  assert.equal(result.ok, false);
 });
 
 test("Previously captured PayPal order cannot be processed twice", () => {

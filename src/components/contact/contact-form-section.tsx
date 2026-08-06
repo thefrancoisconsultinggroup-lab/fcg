@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { Container } from "@/components/ui/container";
@@ -145,6 +146,13 @@ export function ContactFormSection() {
                   {status}
                 </p>
               </div>
+              <p className={styles.privacyNotice}>
+                Your information will be handled in accordance with our{" "}
+                <Link href="/privacy-policy" target="_blank" rel="noreferrer">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
             </form>
           </ScrollReveal>
         </div>

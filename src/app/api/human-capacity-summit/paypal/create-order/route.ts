@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { legalPolicyVersions } from "@/lib/legal";
 import { createPayPalOrder, hasPayPalConfig, PayPalApiError, paypalRuntimeDiagnostics } from "@/lib/paypal";
 import { createSummitPaymentRecord } from "@/lib/summit-registration-records";
 import {
@@ -66,6 +67,16 @@ export async function POST(request: Request) {
       id: registrationId,
       paypalOrderId: order.orderId,
       pricing: validated.registration.pricing,
+      policyAcceptance: {
+        accepted: true,
+        acceptedAt: new Date().toISOString(),
+        privacyPolicyEffectiveDate: legalPolicyVersions.privacy.effectiveDate,
+        privacyPolicyVersion: legalPolicyVersions.privacy.version,
+        refundPolicyEffectiveDate: legalPolicyVersions.refund.effectiveDate || undefined,
+        refundPolicyVersion: legalPolicyVersions.refund.version || undefined,
+        termsEffectiveDate: legalPolicyVersions.terms.effectiveDate,
+        termsVersion: legalPolicyVersions.terms.version,
+      },
       registration: validated.registration.details,
       status: "pending_approval",
     });

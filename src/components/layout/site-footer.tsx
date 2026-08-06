@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { footerNavigation } from "@/data/navigation";
 import { Container } from "@/components/ui/container";
+import { footerNavigation } from "@/data/navigation";
 
 type SocialIcon = (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
 
@@ -45,7 +45,7 @@ export function SiteFooter() {
                 className="site-footer__brand-mark object-contain"
               />
               <span className="site-footer__brand font-display text-white transition-colors group-hover:text-accent-yellow">
-                <span>François</span>
+                <span>Francois</span>
                 <span>Consulting</span>
                 <span>Group</span>
               </span>
@@ -56,7 +56,9 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="Footer navigation">
-            <p className="site-footer__eyebrow mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-accent-cyan">Explore</p>
+            <p className="site-footer__eyebrow mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-accent-cyan">
+              Explore
+            </p>
             <div className="flex flex-col items-start gap-1">
               {footerNavigation.map((item) => (
                 <Link
@@ -81,7 +83,8 @@ export function SiteFooter() {
               Share your ideas, questions, or the kind of transformation you want to create.
             </p>
             <Link href="/contact" className="connect-button mt-7">
-              Contact François Consulting Group <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              Contact Francois Consulting Group{" "}
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </Link>
             <div className="mt-8 flex items-center gap-2">
               {socialLinks.map((item) => (
@@ -101,7 +104,7 @@ export function SiteFooter() {
         </div>
 
         <div className="site-footer__meta mt-20 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs leading-6 text-[#dcefff] sm:mt-24 sm:flex-row sm:items-end sm:justify-between">
-          <p>&copy; {year} François Consulting Group.</p>
+          <p>&copy; {year} Francois Consulting Group.</p>
           <p className="text-right">
             Developed by{" "}
             <a
