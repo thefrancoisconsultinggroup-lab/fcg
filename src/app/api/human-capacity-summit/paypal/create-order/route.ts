@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { legalPolicyVersions } from "@/lib/legal";
+import { summitPolicyAcceptanceSnapshot } from "@/lib/legal";
 import { createPayPalOrder, hasPayPalConfig, PayPalApiError, paypalRuntimeDiagnostics } from "@/lib/paypal";
 import { createSummitPaymentRecord } from "@/lib/summit-registration-records";
 import {
@@ -64,19 +64,15 @@ export async function POST(request: Request) {
 
   try {
     await createSummitPaymentRecord({
+      amountDue: validated.registration.paymentSummary.amountDue,
+      currency: validated.registration.paymentSummary.currency,
+      configuredExchangeRate: validated.registration.paymentSummary.configuredExchangeRate,
       id: registrationId,
+      originalUsdAmount: validated.registration.paymentSummary.originalUsdAmount,
+      paymentMethod: validated.registration.paymentMethod,
       paypalOrderId: order.orderId,
       pricing: validated.registration.pricing,
-      policyAcceptance: {
-        accepted: true,
-        acceptedAt: new Date().toISOString(),
-        privacyPolicyEffectiveDate: legalPolicyVersions.privacy.effectiveDate,
-        privacyPolicyVersion: legalPolicyVersions.privacy.version,
-        refundPolicyEffectiveDate: legalPolicyVersions.refund.effectiveDate || undefined,
-        refundPolicyVersion: legalPolicyVersions.refund.version || undefined,
-        termsEffectiveDate: legalPolicyVersions.terms.effectiveDate,
-        termsVersion: legalPolicyVersions.terms.version,
-      },
+      policyAcceptance: summitPolicyAcceptanceSnapshot(),
       registration: validated.registration.details,
       status: "pending_approval",
     });

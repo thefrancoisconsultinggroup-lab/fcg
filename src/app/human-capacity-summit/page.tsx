@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HumanCapacitySummitPage } from "@/components/summit/human-capacity-summit-page";
+import { getSummitDirectBankTransferPublicConfig } from "@/lib/summit-bank-transfer";
 import { getPayPalClientId, getPayPalEnvironment } from "@/lib/paypal";
 
 const title = "The Human Capacity Summit";
@@ -46,6 +47,7 @@ const eventStructuredData = {
 };
 
 export default function Page() {
+  const bankTransfer = getSummitDirectBankTransferPublicConfig();
   const paypalClientId = getPayPalClientId();
   const paypalEnvironment = getPayPalEnvironment();
 
@@ -56,6 +58,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventStructuredData) }}
       />
       <HumanCapacitySummitPage
+        bankTransferEnabled={bankTransfer.enabled}
         paypalClientId={paypalClientId}
         paypalEnvironment={paypalEnvironment}
       />

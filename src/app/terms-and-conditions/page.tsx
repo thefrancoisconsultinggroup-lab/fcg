@@ -92,6 +92,9 @@ export default function TermsAndConditionsPage() {
           <li>Organiser: Francois Consulting Group.</li>
           <li>Registrants must provide accurate attendee and billing information and keep it updated.</li>
           <li>All prices displayed on the site are in USD.</li>
+          <li>PayPal / Debit or Credit Card registrations remain priced and charged in USD worldwide.</li>
+          <li>Direct Bank Transfer is available only for payments sent in TTD from a Trinidad and Tobago bank account.</li>
+          <li>Direct Bank Transfer registrations are priced in TTD using the fixed Summit rate of USD 1 = TTD 7.</li>
           <li>Individual rates are charged per attendee.</li>
           <li>Corporate packages are offered for up to 10 or up to 20 attendees.</li>
           <li>Corporate package prices are flat package prices and are not multiplied by attendee count.</li>
@@ -101,14 +104,31 @@ export default function TermsAndConditionsPage() {
       <section>
         <h2>9. Payment terms</h2>
         <ul>
-          <li>Payments are processed through PayPal.</li>
+          <li>Payments may be made by PayPal / Debit or Credit Card or, where offered, Direct Bank Transfer.</li>
           <li>
             Submission of a registration form or creation of a PayPal order does not by itself
             create a completed or paid registration.
           </li>
           <li>
+            Submission of a Direct Bank Transfer registration does not confirm payment or secure a confirmed place.
+          </li>
+          <li>
             Registration is confirmed only after the payment is successfully captured and a
             confirmation is issued.
+          </li>
+          <li>
+            Direct Bank Transfer registrations remain pending until the funds are received and verified by Francois Consulting Group.
+          </li>
+          <li>
+            Customers must use the payment reference supplied after a Direct Bank Transfer registration is submitted.
+          </li>
+          <li>
+            A bank-transfer payment deadline applies. Deadline handling after expiry remains{" "}
+            <strong>[CLIENT TO CONFIRM]</strong>.
+          </li>
+          <li>
+            Underpayments, overpayments, incorrect references, and bank-charge responsibility remain{" "}
+            <strong>[CLIENT TO CONFIRM]</strong> and may require manual review.
           </li>
           <li>
             Failed, declined, reversed, disputed, incomplete, or otherwise unverified payments do

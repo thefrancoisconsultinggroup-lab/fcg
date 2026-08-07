@@ -1,5 +1,11 @@
 import type { SummitPriceSummary } from "@/lib/summit-pricing";
 import type { SummitPaymentRecord, SummitRegistrationDetails } from "@/lib/summit-registration-records";
+import { legalPolicyVersions } from "@/lib/legal";
+import {
+  formatSummitCurrency,
+  getSummitDirectBankTransferConfig,
+} from "@/lib/summit-bank-transfer";
+import { formatSummitEventDateTime, getSummitEventConfig } from "@/lib/summit-event";
 import { escapeHtml, sendSiteEmail } from "@/lib/site-email";
 
 export type SummitEmailResult = {
@@ -50,9 +56,34 @@ export async function sendSummitAdminNotificationEmail(record: SummitPaymentReco
   return sendSiteEmail(message);
 }
 
+export async function sendSummitBankTransferInstructionsEmail(record: SummitPaymentRecord) {
+  const message = buildSummitBankTransferInstructionsEmail(record);
+  return sendSiteEmail(message);
+}
+
+export async function sendSummitBankTransferAdminNotificationEmail(record: SummitPaymentRecord) {
+  const message = buildSummitBankTransferAdminNotificationEmail(record);
+  return sendSiteEmail(message);
+}
+
+export async function sendSummitAccessEmail(record: SummitPaymentRecord) {
+  const message = buildSummitAccessEmail(record);
+  return sendSiteEmail(message);
+}
+
 export function buildSummitAttendeeConfirmationEmail(record: SummitPaymentRecord): SummitEmailMessage {
-  const fullName = registrantName(record.registration);
   const fields = attendeeFields(record);
+  const intro = [
+    "Welcome to The Human Capacity Summit!",
+    "Thank you for registering and for choosing to join this important global conversation.",
+    "Together, we will explore the interconnected challenges and opportunities shaping our world today-and discover how each of us can strengthen human capacity to build a more hopeful, resilient, and thriving future.",
+    "We are honoured to welcome you to a community of thought leaders, professionals, educators, healthcare practitioners, business leaders, and engaged citizens who share a commitment to thoughtful dialogue, practical insights, and meaningful action.",
+    "Over the coming weeks, we'll share important event updates, speaker highlights, and information to help you prepare for an engaging Summit experience.",
+    "We look forward to welcoming you on Friday, October 2, 2026.",
+    "One Home.",
+    "One Humanity.",
+    "A Future Worth Building Together.",
+  ];
 
   return {
     from: summitAttendeeFromEmail(),
@@ -60,22 +91,15 @@ export function buildSummitAttendeeConfirmationEmail(record: SummitPaymentRecord
     subject: "Your Human Capacity Summit Registration Is Confirmed",
     html: brandedEmailHtml({
       heading: "Registration Confirmed",
-      intro: [
-        `Thank you for registering, ${escapeHtml(fullName)}.`,
-        "Your PayPal payment was successfully verified and your Human Capacity Summit registration is confirmed.",
-        "Please retain this email for your records. For registration questions, contact hello@francoisconsultinggroup.com.",
-      ],
-      table: detailsTableHtml(fields),
+      intro,
+      sections: [detailsSectionHtml("Registration Summary", fields)],
+      supportFooter: summitSupportFooter(),
     }),
     text: plainTextEmail({
       heading: "Your Human Capacity Summit Registration Is Confirmed",
-      intro: [
-        `Thank you for registering, ${fullName}.`,
-        "Your PayPal payment was successfully verified and your Human Capacity Summit registration is confirmed.",
-        "Please retain this email for your records.",
-        "For registration questions, contact hello@francoisconsultinggroup.com.",
-      ],
+      intro,
       fields,
+      supportFooter: summitSupportFooter(),
     }),
   };
 }
@@ -83,27 +107,192 @@ export function buildSummitAttendeeConfirmationEmail(record: SummitPaymentRecord
 export function buildSummitAdminNotificationEmail(record: SummitPaymentRecord): SummitEmailMessage {
   const fullName = registrantName(record.registration);
   const fields = adminFields(record);
+  const subjectPrefix = record.paymentMethod === "bank_transfer"
+    ? "New Verified Bank Transfer Summit Registration"
+    : "New Paid Summit Registration";
+  const intro = record.paymentMethod === "bank_transfer"
+    ? [
+        "A Human Capacity Summit bank transfer has been received, verified, and marked paid.",
+        "The registration is now confirmed and the attendee confirmation email has been sent.",
+      ]
+    : [
+        "A new verified, paid Human Capacity Summit registration has been received.",
+        "The payment has been captured, verified against the expected USD amount, and marked paid in the registration store.",
+      ];
 
   return {
     from: summitAdminFromEmail(),
     to: [summitAdminRecipientEmail()],
     replyTo: record.registration.email,
-    subject: `New Paid Summit Registration - ${fullName}`,
+    subject: `${subjectPrefix} - ${fullName}`,
     html: brandedEmailHtml({
-      heading: "New Paid Summit Registration",
-      intro: [
-        "A new verified, paid Human Capacity Summit registration has been received.",
-        "The payment has been captured, verified against the expected USD amount, and marked paid in the registration store.",
-      ],
-      table: detailsTableHtml(fields),
+      heading: subjectPrefix,
+      intro,
+      sections: [detailsSectionHtml("Registration Summary", fields)],
+      supportFooter: false,
     }),
     text: plainTextEmail({
-      heading: "New Paid Summit Registration",
+      heading: subjectPrefix,
+      intro,
+      fields,
+      supportFooter: false,
+    }),
+  };
+}
+
+export function buildSummitBankTransferInstructionsEmail(record: SummitPaymentRecord): SummitEmailMessage {
+  const config = getSummitDirectBankTransferConfig();
+  const fields: Array<[string, string]> = [
+    ["Registrant", registrantName(record.registration)],
+    ["Organisation", optionalValue(record.registration.organization)],
+    ["Registration category", record.pricing.categoryLabel],
+    ["Selected ticket / package", `${record.pricing.rateLabel} - ${record.pricing.rateDetail}`],
+    ["Attendee count", String(record.pricing.attendeeCount)],
+    ["Exact TTD amount due", formatSummitCurrency("TTD", record.amountDue)],
+    ["Payment reference", record.paymentReference || "Not available"],
+    ["Payment deadline", formatBankTransferDeadline(record.paymentDueAt, config.deadlineLabel)],
+  ];
+  const supportRows = [
+    ["Terms and Conditions", policyUrl(legalPolicyVersions.terms.route)],
+    ["Privacy Policy", policyUrl(legalPolicyVersions.privacy.route)],
+    legalPolicyVersions.refund.published ? ["Refund and Cancellation Policy", policyUrl(legalPolicyVersions.refund.route)] : null,
+  ].filter((row): row is [string, string] => Boolean(row));
+
+  return {
+    from: summitAttendeeFromEmail(),
+    to: [record.registration.email],
+    subject: "Welcome to the Human Capacity Summit - Complete Your Bank Transfer",
+    html: brandedEmailHtml({
+      heading: "Complete Your Bank Transfer",
       intro: [
-        "A new verified, paid Human Capacity Summit registration has been received.",
-        "The payment has been captured, verified against the expected USD amount, and marked paid in the registration store.",
+        `Welcome to the Human Capacity Summit, ${escapeHtml(record.registration.firstName || registrantName(record.registration))}!`,
+        "We are delighted to have received your registration. Your registration is currently awaiting payment and will be completed only after your bank transfer has been received and verified.",
+        "Please use the payment reference shown below when making your transfer. This reference allows us to identify your payment and match it to your registration.",
+      ],
+      sections: [
+        highlightBlockHtml(
+          "Your payment reference",
+          record.paymentReference || "Not available",
+          "Important: Please enter this exact reference in the reference, description or memo field of your bank transfer. Without it, confirming your registration may be delayed.",
+        ),
+        detailsSectionHtml("Banking Information", bankDetailsRows(config)),
+        detailsSectionHtml("Registration Summary", fields),
+        detailsSectionHtml("Policies", supportRows),
+        noteBlockHtml(
+          "Your registration remains pending until the transfer has been received and manually verified.",
+        ),
+      ],
+      supportFooter: summitSupportFooter(),
+    }),
+    text: plainTextEmail({
+      heading: "Welcome to the Human Capacity Summit - Complete Your Bank Transfer",
+      intro: [
+        `Welcome to the Human Capacity Summit, ${record.registration.firstName || registrantName(record.registration)}!`,
+        "We are delighted to have received your registration. Your registration is currently awaiting payment and will be completed only after your bank transfer has been received and verified.",
+        "Please use the payment reference shown below when making your transfer. This reference allows us to identify your payment and match it to your registration.",
+        "",
+        `Your payment reference: ${record.paymentReference || "Not available"}`,
+        `Important: Please enter ${record.paymentReference || "this payment reference"} in the reference, description or memo field of your bank transfer. Without this reference, confirming your registration may be delayed.`,
+        "",
+        "Banking information:",
+      ],
+      fields: [
+        ...fields,
+        ...bankDetailsRows(config),
+        ...supportRows,
+      ],
+      supportFooter: summitSupportFooter(),
+    }),
+  };
+}
+
+export function buildSummitBankTransferAdminNotificationEmail(record: SummitPaymentRecord): SummitEmailMessage {
+  const config = getSummitDirectBankTransferConfig();
+  const fields: Array<[string, string]> = [
+    ["Registrant / contact name", registrantName(record.registration)],
+    ["Email address", record.registration.email],
+    ["Telephone number", optionalValue(record.registration.phone)],
+    ["Company / organization", record.registration.organization],
+    ["Registration / package", `${record.pricing.rateLabel} - ${record.pricing.rateDetail}`],
+    ["Attendee count", String(record.pricing.attendeeCount)],
+    ["Original USD price", formatSummitCurrency("USD", record.originalUsdAmount)],
+    ["Fixed conversion rate", "USD 1 = TTD 7"],
+    ["TTD amount due", formatSummitCurrency("TTD", record.amountDue)],
+    ["Payment reference", record.paymentReference || "Not available"],
+    ["Payment deadline", formatBankTransferDeadline(record.paymentDueAt, config.deadlineLabel)],
+    ["Status", "Awaiting bank transfer"],
+    ["Internal registration reference", record.id],
+  ];
+
+  return {
+    from: summitAdminFromEmail(),
+    to: [config.organizerNotificationEmail],
+    replyTo: record.registration.email,
+    subject: `Awaiting Bank Transfer - ${registrantName(record.registration)}`,
+    html: brandedEmailHtml({
+      heading: "Awaiting Bank Transfer",
+      intro: [
+        "A new Human Capacity Summit registration has been submitted using Direct Bank Transfer.",
+        "This registration is awaiting bank transfer and is not yet confirmed.",
+      ],
+      sections: [detailsSectionHtml("Registration Summary", fields)],
+      supportFooter: false,
+    }),
+    text: plainTextEmail({
+      heading: "Awaiting Bank Transfer",
+      intro: [
+        "A new Human Capacity Summit registration has been submitted using Direct Bank Transfer.",
+        "This registration is awaiting bank transfer and is not yet confirmed.",
       ],
       fields,
+      supportFooter: false,
+    }),
+  };
+}
+
+export function buildSummitAccessEmail(record: SummitPaymentRecord): SummitEmailMessage {
+  const eventConfig = getSummitEventConfig();
+  const accessUrl = record.summitAccessUrl || "";
+  const intro = [
+    `Hello ${escapeHtml(record.registration.firstName || registrantName(record.registration))},`,
+    "The Human Capacity Summit begins tomorrow, and we look forward to welcoming you.",
+    "Use the private access link below to join the Summit. This link is assigned to your registration and must not be shared or forwarded.",
+  ];
+  const fields: Array<[string, string]> = [
+    ["Event date and time", formatSummitEventDateTime(eventConfig.startAt, eventConfig.timezone)],
+    ["Timezone", eventConfig.timezone],
+    ["Registration", `${record.pricing.rateLabel} - ${record.pricing.rateDetail}`],
+    ["Payment reference", record.paymentReference || "Not available"],
+    ["Access link", accessUrl],
+  ];
+
+  return {
+    from: summitAttendeeFromEmail(),
+    to: [record.registration.email],
+    subject: "Your Human Capacity Summit Access Link",
+    html: brandedEmailHtml({
+      heading: "Your Summit Access Link",
+      intro,
+      sections: [
+        buttonBlockHtml("Join the Human Capacity Summit", accessUrl),
+        detailsSectionHtml("Access Details", fields),
+        noteBlockHtml(
+          "Please join 10-15 minutes early. If you have not received everything you need to attend, contact Francois Consulting Group using the support details above.",
+        ),
+      ],
+      supportFooter: summitSupportFooter(),
+    }),
+    text: plainTextEmail({
+      heading: "Your Human Capacity Summit Access Link",
+      intro: [
+        `Hello ${record.registration.firstName || registrantName(record.registration)},`,
+        "The Human Capacity Summit begins tomorrow, and we look forward to welcoming you.",
+        "Use the private access link below to join the Summit. This link is assigned to your registration and must not be shared or forwarded.",
+        `Join the Human Capacity Summit: ${accessUrl}`,
+        "Please join 10-15 minutes early.",
+      ],
+      fields,
+      supportFooter: summitSupportFooter(),
     }),
   };
 }
@@ -121,11 +310,12 @@ function attendeeFields(record: SummitPaymentRecord) {
     ["Rate / package", `${record.pricing.rateLabel} - ${record.pricing.rateDetail}`],
     ["Number attending", String(record.pricing.attendeeCount)],
     ...priceRows(record.pricing),
-    ["Amount paid", money(record.pricing.total)],
-    ["Currency", "USD"],
-    ["PayPal order ID", record.paypalOrderId],
-    ["PayPal transaction / capture reference", record.captureId ?? "Not available"],
-    ["Payment date", formatDate(record.capturedAt)],
+    ["Original USD price", formatSummitCurrency("USD", record.originalUsdAmount)],
+    ["Amount paid", formatSummitCurrency(record.currency, record.amountDue)],
+    ["Currency", record.currency],
+    ["Payment method", paymentMethodLabel(record)],
+    [paymentReferenceLabel(record), paymentReferenceValue(record)],
+    ["Payment date", formatDate(record.paymentVerifiedAt || record.capturedAt)],
   ];
 
   return rows;
@@ -146,11 +336,12 @@ function adminFields(record: SummitPaymentRecord) {
     ["Special dietary notes", optionalValue(record.registration.dietaryNotes)],
     ["Accessibility needs", optionalValue(record.registration.accessibilityNeeds)],
     ["Submitted notes / hopes", optionalValue(record.registration.hopes)],
-    ["Amount paid", money(record.pricing.total)],
-    ["Currency", "USD"],
-    ["PayPal order ID", record.paypalOrderId],
-    ["PayPal capture / transaction ID", record.captureId ?? "Not available"],
-    ["Payment date and time", formatDate(record.capturedAt)],
+    ["Original USD price", formatSummitCurrency("USD", record.originalUsdAmount)],
+    ["Amount paid", formatSummitCurrency(record.currency, record.amountDue)],
+    ["Currency", record.currency],
+    ["Payment method", paymentMethodLabel(record)],
+    [paymentReferenceLabel(record), paymentReferenceValue(record)],
+    ["Payment date and time", formatDate(record.paymentVerifiedAt || record.capturedAt)],
     ["Internal registration reference", record.id],
   ];
 
@@ -159,19 +350,21 @@ function adminFields(record: SummitPaymentRecord) {
 
 function priceRows(pricing: SummitPriceSummary) {
   return [
-    pricing.unitPrice ? ["Price per attendee", money(pricing.unitPrice)] : null,
-    pricing.fixedPackagePrice ? ["Fixed package price", money(pricing.fixedPackagePrice)] : null,
+    pricing.unitPrice ? ["Price per attendee", formatSummitCurrency("USD", pricing.unitPrice)] : null,
+    pricing.fixedPackagePrice ? ["Fixed package price", formatSummitCurrency("USD", pricing.fixedPackagePrice)] : null,
   ].filter((row): row is [string, string] => Boolean(row));
 }
 
 function brandedEmailHtml({
   heading,
   intro,
-  table,
+  sections,
+  supportFooter,
 }: {
   heading: string;
   intro: string[];
-  table: string;
+  sections: string[];
+  supportFooter?: false | ReturnType<typeof summitSupportFooter>;
 }) {
   return `<!doctype html>
 <html>
@@ -194,13 +387,14 @@ function brandedEmailHtml({
             </tr>
             <tr>
               <td style="padding:12px 26px 30px;">
-                ${table}
+                ${sections.join("")}
+                ${supportFooter ? supportFooterHtml(supportFooter) : ""}
               </td>
             </tr>
             <tr>
               <td style="background:#edf5f6;color:#4d6267;font-size:12px;line-height:1.6;padding:18px 26px;">
                 Francois Consulting Group<br>
-                This transactional email was sent because a Human Capacity Summit PayPal payment was verified by the server.
+                This transactional email was sent in connection with a Human Capacity Summit registration or verified payment.
               </td>
             </tr>
           </table>
@@ -225,6 +419,48 @@ function logoHeaderHtml() {
   </table>`;
 }
 
+function supportFooterHtml(support: ReturnType<typeof summitSupportFooter>) {
+  return `<div style="border-top:1px solid #d9e4e6;margin-top:26px;padding-top:18px;">
+    <p style="color:#0f2f35;font-size:12px;font-weight:700;letter-spacing:0.14em;line-height:1.5;margin:0 0 10px;text-transform:uppercase;">Need Assistance?</p>
+    <p style="color:#304246;font-size:14px;line-height:1.75;margin:0;">
+      If you have any questions about your Summit registration, please contact us at
+      <a href="mailto:${escapeHtml(support.email)}" style="color:#9b6b17;text-decoration:underline;">${escapeHtml(support.email)}</a>
+      or WhatsApp
+      <a href="${escapeHtml(support.whatsAppHref)}" style="color:#9b6b17;text-decoration:underline;">${escapeHtml(support.whatsAppDisplay)}</a>.
+    </p>
+  </div>`;
+}
+
+function detailsSectionHtml(title: string, rows: Array<[string, string]>) {
+  return `<div style="margin:0 0 18px;">
+    <p style="color:#0f2f35;font-size:12px;font-weight:700;letter-spacing:0.14em;line-height:1.5;margin:0 0 10px;text-transform:uppercase;">${escapeHtml(title)}</p>
+    ${detailsTableHtml(rows)}
+  </div>`;
+}
+
+function highlightBlockHtml(title: string, value: string, note: string) {
+  return `<div style="background:#fff7e8;border:1px solid #e7c987;margin:0 0 18px;padding:18px 18px 16px;">
+    <p style="color:#9b6b17;font-size:12px;font-weight:700;letter-spacing:0.14em;line-height:1.5;margin:0 0 8px;text-transform:uppercase;">${escapeHtml(title)}</p>
+    <p style="color:#0f2f35;font-size:24px;font-weight:700;letter-spacing:0.04em;line-height:1.2;margin:0 0 10px;">${escapeHtml(value)}</p>
+    <p style="color:#304246;font-size:14px;line-height:1.65;margin:0;">${escapeHtml(note)}</p>
+  </div>`;
+}
+
+function noteBlockHtml(message: string) {
+  return `<div style="background:#edf5f6;border:1px solid #d9e4e6;margin:0 0 18px;padding:16px 18px;">
+    <p style="color:#304246;font-size:14px;line-height:1.65;margin:0;">${escapeHtml(message)}</p>
+  </div>`;
+}
+
+function buttonBlockHtml(label: string, href: string) {
+  const safeHref = escapeHtml(href);
+
+  return `<div style="margin:0 0 18px;">
+    <a href="${safeHref}" style="background:#0f2f35;border-radius:999px;color:#ffffff;display:inline-block;font-size:14px;font-weight:700;line-height:1.2;padding:14px 22px;text-decoration:none;">${escapeHtml(label)}</a>
+    <p style="color:#304246;font-size:14px;line-height:1.65;margin:14px 0 0;">${safeHref}</p>
+  </div>`;
+}
+
 function detailsTableHtml(rows: Array<[string, string]>) {
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #d9e4e6;border-collapse:collapse;width:100%;">
     ${rows.map(([label, value]) => `<tr>
@@ -238,10 +474,12 @@ function plainTextEmail({
   fields,
   heading,
   intro,
+  supportFooter,
 }: {
   fields: Array<[string, string]>;
   heading: string;
   intro: string[];
+  supportFooter?: false | ReturnType<typeof summitSupportFooter>;
 }) {
   return [
     heading,
@@ -249,6 +487,14 @@ function plainTextEmail({
     ...intro,
     "",
     ...fields.map(([label, value]) => `${label}: ${value}`),
+    ...(supportFooter
+      ? [
+          "",
+          "Need Assistance?",
+          `Email: ${supportFooter.email}`,
+          `WhatsApp: ${supportFooter.whatsAppDisplay}`,
+        ]
+      : []),
   ].join("\n");
 }
 
@@ -267,10 +513,6 @@ function optionalValue(value: string) {
   return value || "Not provided";
 }
 
-function money(value: number) {
-  return `$${value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-}
-
 function formatDate(value?: string) {
   if (!value) {
     return "Not available";
@@ -281,4 +523,61 @@ function formatDate(value?: string) {
     timeStyle: "short",
     timeZone: "UTC",
   }).format(new Date(value));
+}
+
+function paymentMethodLabel(record: SummitPaymentRecord) {
+  return record.paymentMethod === "bank_transfer"
+    ? "Direct Bank Transfer"
+    : "PayPal / Debit or Credit Card";
+}
+
+function paymentReferenceLabel(record: SummitPaymentRecord) {
+  return record.paymentMethod === "bank_transfer"
+    ? "Payment reference"
+    : "PayPal transaction / capture reference";
+}
+
+function paymentReferenceValue(record: SummitPaymentRecord) {
+  if (record.paymentMethod === "bank_transfer") {
+    return record.paymentReference || "Not available";
+  }
+
+  return record.captureId || record.paypalOrderId || "Not available";
+}
+
+function bankDetailsRows(config: ReturnType<typeof getSummitDirectBankTransferConfig>) {
+  return [
+    ["Account-holder name", config.bankDetails.accountHolderName],
+    ["Bank name", config.bankDetails.bankName],
+    ["Account number", config.bankDetails.accountNumber],
+    ["Account type", config.bankDetails.accountType],
+    config.bankDetails.branchInformation ? ["Branch information", config.bankDetails.branchInformation] : null,
+    config.bankDetails.supportsLocalTtdTransfers ? ["TTD account information", config.bankDetails.supportsLocalTtdTransfers] : null,
+    config.bankDetails.instructions ? ["Bank transfer instructions", config.bankDetails.instructions] : null,
+  ].filter((row): row is [string, string] => Boolean(row));
+}
+
+function formatBankTransferDeadline(value: string | undefined, fallbackLabel: string) {
+  if (!value) {
+    return fallbackLabel;
+  }
+
+  return formatDate(value);
+}
+
+function summitSupportFooter() {
+  const config = getSummitDirectBankTransferConfig();
+  const whatsAppDisplay = config.supportWhatsApp || "868-313-3744";
+  const whatsAppHref = `https://wa.me/${whatsAppDisplay.replace(/\D/g, "")}`;
+
+  return {
+    email: config.supportEmail,
+    whatsAppDisplay,
+    whatsAppHref,
+  };
+}
+
+function policyUrl(route: string) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://francoisconsultinggroup.com";
+  return `${siteUrl}${route}`;
 }

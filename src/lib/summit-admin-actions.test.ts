@@ -4,10 +4,14 @@ import {dollarsToCents, refundableCents, summitRefundSummary} from "@/lib/summit
 import type {SummitPaymentRecord} from "@/lib/summit-registration-records";
 
 const paidRecord: SummitPaymentRecord = {
+  amountDue: 45,
   captureId: "CAPTURE-1",
   capturedAt: "2026-07-24T00:01:00.000Z",
   createdAt: "2026-07-24T00:00:00.000Z",
+  currency: "USD",
   id: "registration-1",
+  originalUsdAmount: 45,
+  paymentMethod: "paypal",
   paypalOrderId: "ORDER-1",
   pricing: {
     attendeeCount: 1,

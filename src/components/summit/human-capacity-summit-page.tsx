@@ -13,9 +13,11 @@ import { SummitRegistrationForm } from "./summit-registration-form";
 import styles from "./human-capacity-summit.module.css";
 
 export function HumanCapacitySummitPage({
+  bankTransferEnabled,
   paypalClientId,
   paypalEnvironment,
 }: {
+  bankTransferEnabled: boolean;
   paypalClientId: string;
   paypalEnvironment: "production" | "sandbox";
 }) {
@@ -128,6 +130,7 @@ export function HumanCapacitySummitPage({
               </ScrollReveal>
               <ScrollReveal className={styles.formShell}>
                 <SummitRegistrationForm
+                  bankTransferEnabled={bankTransferEnabled}
                   paypalClientId={paypalClientId}
                   paypalEnvironment={paypalEnvironment}
                 />

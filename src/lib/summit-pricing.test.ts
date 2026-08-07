@@ -172,7 +172,7 @@ test("Invalid registration type is rejected by server-side validation", () => {
       firstName: "Test",
       lastName: "User",
       organization: "Example Co",
-      paymentMethod: "PayPal",
+      paymentMethod: "paypal",
       registrationType: "live-test",
       role: "Leader",
     },
@@ -192,7 +192,7 @@ test("Browser-submitted manipulated amount is ignored", () => {
       lastName: "User",
       manipulatedAmount: "1",
       organization: "Example Co",
-      paymentMethod: "PayPal",
+      paymentMethod: "paypal",
       policyAcceptance: true,
       registrationType: "individual",
       role: "Leader",
@@ -213,7 +213,7 @@ test("Server-side validation rejects missing policy acceptance", () => {
       firstName: "Test",
       lastName: "User",
       organization: "Example Co",
-      paymentMethod: "PayPal",
+      paymentMethod: "paypal",
       registrationType: "individual",
       role: "Leader",
     },
@@ -224,6 +224,6 @@ test("Server-side validation rejects missing policy acceptance", () => {
 });
 
 test("Previously captured PayPal order cannot be processed twice", () => {
-  assert.equal(isSummitPaymentCaptured({ captureId: "CAPTURE-1", status: "paid" }), true);
-  assert.equal(isSummitPaymentCaptured({ captureId: undefined, status: "approved" }), false);
+  assert.equal(isSummitPaymentCaptured({ captureId: "CAPTURE-1", paymentMethod: "paypal", status: "paid" }), true);
+  assert.equal(isSummitPaymentCaptured({ captureId: undefined, paymentMethod: "paypal", status: "approved" }), false);
 });

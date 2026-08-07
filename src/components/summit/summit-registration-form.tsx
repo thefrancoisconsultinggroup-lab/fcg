@@ -22,15 +22,18 @@ import {
   type SummitCorporatePackageValue,
   type SummitRegistrationType,
 } from "@/lib/summit-pricing";
-import { isRefundPolicyPublished, legalPolicyVersions } from "@/lib/legal";
+import {
+  formatSummitCurrency,
+  summitBankTransferExchangeRate,
+  type SummitPaymentMethod,
+} from "@/lib/summit-bank-transfer";
+import { legalPolicyVersions } from "@/lib/legal";
 import { SummitPayPalCheckout } from "./summit-paypal-checkout";
 import styles from "./human-capacity-summit.module.css";
 
-type PaymentMethod = "PayPal";
-
 type FormStatus =
   | { action?: never; registrationId?: never; state: "idle"; message: "" }
-  | { action?: PaymentStatusAction; registrationId?: string; state: "cancelled" | "error" | "manual_review" | "pending" | "processing" | "submitting" | "success"; message: string };
+  | { action?: PaymentStatusAction; registrationId?: string; state: "awaiting_bank_transfer" | "cancelled" | "error" | "manual_review" | "pending" | "processing" | "submitting" | "success"; message: string };
 
 type PaymentStatusAction = "retry" | "check" | "contact" | "confirmed" | "none";
 
@@ -45,7 +48,8 @@ type FormState = {
   registrationType: SummitRegistrationType;
   corporatePackage: SummitCorporatePackageValue;
   attendeeCount: string;
-  paymentMethod: PaymentMethod;
+  paymentMethod: SummitPaymentMethod;
+  bankTransferEligibilityAcceptance: boolean;
   hopes: string;
   policyAcceptance: boolean;
   website: string;
@@ -62,7 +66,8 @@ const initialForm: FormState = {
   registrationType: "individual",
   corporatePackage: summitCorporatePackages[0].value,
   attendeeCount: "1",
-  paymentMethod: "PayPal",
+  paymentMethod: "paypal",
+  bankTransferEligibilityAcceptance: false,
   hopes: "",
   policyAcceptance: false,
   website: "",
@@ -102,9 +107,11 @@ function getServerLocationSnapshot() {
 }
 
 export function SummitRegistrationForm({
+  bankTransferEnabled,
   paypalClientId,
   paypalEnvironment,
 }: {
+  bankTransferEnabled: boolean;
   paypalClientId: string;
   paypalEnvironment: "production" | "sandbox";
 }) {
@@ -139,7 +146,9 @@ export function SummitRegistrationForm({
     registrationType: form.registrationType,
   }, now);
   const pricingSummary = pricing.ok ? pricing.summary : null;
-  const total = pricingSummary?.total ?? 0;
+  const usdTotal = pricingSummary?.total ?? 0;
+  const bankTransferTotal = usdTotal * summitBankTransferExchangeRate;
+  const total = form.paymentMethod === "bank_transfer" ? bankTransferTotal : usdTotal;
   const standardIndividualRate = summitIndividualRates.find((rate) => rate.value === "standard");
   const countdown = summitCountdown(
     countdownMinute === null ? null : new Date(countdownMinute * 60_000),
@@ -208,6 +217,7 @@ export function SummitRegistrationForm({
     resetOrderCreationGuard();
     setForm((current) => ({
       ...current,
+      bankTransferEligibilityAcceptance: false,
       attendeeCount: "1",
       corporatePackage: activeCorporatePackages[0]?.value ?? summitCorporatePackages[0].value,
       registrationType,
@@ -218,6 +228,11 @@ export function SummitRegistrationForm({
     event.preventDefault();
 
     if (validateFormBeforePayment()) {
+      if (form.paymentMethod === "bank_transfer") {
+        void submitBankTransferRegistration();
+        return;
+      }
+
       setStatus({
         state: "processing",
         message: "Choose PayPal or Debit or Credit Card below to continue with secure checkout.",
@@ -233,7 +248,9 @@ export function SummitRegistrationForm({
     if (!formRef.current?.reportValidity()) {
       setStatus({
         state: "error",
-        message: "Please complete the required registration fields before starting PayPal checkout.",
+        message: form.paymentMethod === "bank_transfer"
+          ? "Please complete the required registration fields before submitting your bank-transfer registration."
+          : "Please complete the required registration fields before starting PayPal checkout.",
       });
       return false;
     }
@@ -244,7 +261,7 @@ export function SummitRegistrationForm({
     }
 
     return true;
-  }, [pricing]);
+  }, [form.paymentMethod, pricing]);
 
   const createOrder = useCallback(async () => {
     if (orderCreationLockRef.current) {
@@ -299,6 +316,46 @@ export function SummitRegistrationForm({
       throw new Error("We couldn't start PayPal checkout. Please try again.");
     }
   }, [form, retryRegistrationId, validateFormBeforePayment]);
+
+  async function submitBankTransferRegistration() {
+    setStatus({
+      state: "submitting",
+      message: "Submitting your registration and preparing bank-transfer instructions...",
+    });
+
+    try {
+      const response = await fetch("/api/human-capacity-summit/bank-transfer/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const result = (await response.json().catch(() => ({}))) as {
+        message?: string;
+        registrationId?: string;
+        thankYouUrl?: string;
+      };
+
+      if (!response.ok || !result.registrationId || !result.thankYouUrl) {
+        setStatus({
+          registrationId: result.registrationId,
+          state: "error",
+          message:
+            result.message ||
+            "We couldn't submit your bank-transfer registration right now. Please try again or contact Francois Consulting Group.",
+        });
+        return;
+      }
+
+      window.location.assign(result.thankYouUrl);
+    } catch {
+      setStatus({
+        state: "error",
+        message:
+          "We couldn't submit your bank-transfer registration right now. Please try again or contact Francois Consulting Group.",
+      });
+    }
+  }
 
   async function handleRetryPayment() {
     if (!displayedStatus.registrationId) {
@@ -489,6 +546,28 @@ export function SummitRegistrationForm({
     <form ref={formRef} className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.formLayout}>
         <div className={styles.formMain}>
+          <section className={styles.countdownCard} aria-label={`Countdown to ${summitDateLabel}`}>
+            <p className={styles.summaryKicker}>Summit countdown</p>
+            <div className={styles.countdownGrid}>
+              <span>
+                <strong>{countdown.days}</strong>
+                <small>Days</small>
+              </span>
+              <span>
+                <strong>{countdown.hours}</strong>
+                <small>Hours</small>
+              </span>
+              <span>
+                <strong>{countdown.minutes}</strong>
+                <small>Minutes</small>
+              </span>
+            </div>
+            <p>{summitDateLabel} online</p>
+            {activeDeadlineMessage ? (
+              <p className={styles.deadlineHint}>{activeDeadlineMessage}</p>
+            ) : null}
+          </section>
+
           <div className={styles.formSection}>
             <fieldset className={styles.typeToggle}>
               <legend>Registration category</legend>
@@ -734,28 +813,6 @@ export function SummitRegistrationForm({
         </div>
 
         <aside className={styles.formSummaryColumn}>
-          <section className={styles.countdownCard} aria-label={`Countdown to ${summitDateLabel}`}>
-            <p className={styles.summaryKicker}>Summit countdown</p>
-            <div className={styles.countdownGrid}>
-              <span>
-                <strong>{countdown.days}</strong>
-                <small>Days</small>
-              </span>
-              <span>
-                <strong>{countdown.hours}</strong>
-                <small>Hours</small>
-              </span>
-              <span>
-                <strong>{countdown.minutes}</strong>
-                <small>Minutes</small>
-              </span>
-            </div>
-            <p>{summitDateLabel} online</p>
-            {activeDeadlineMessage ? (
-              <p className={styles.deadlineHint}>{activeDeadlineMessage}</p>
-            ) : null}
-          </section>
-
           <section className={styles.orderSummary} aria-live="polite">
             <p className={styles.summaryKicker}>Order summary</p>
             {pricingSummary ? (
@@ -778,36 +835,53 @@ export function SummitRegistrationForm({
                 </div>
                 {pricingSummary.unitPrice ? (
                   <div>
-                    <dt>Price per attendee</dt>
-                    <dd>${pricingSummary.unitPrice}</dd>
+                    <dt>{form.paymentMethod === "bank_transfer" ? "USD price per attendee" : "Price per attendee"}</dt>
+                    <dd>{formatSummitCurrency("USD", pricingSummary.unitPrice)}</dd>
                   </div>
                 ) : null}
                 {pricingSummary.originalPrice ? (
                   <div>
                     <dt>Regular package price</dt>
                     <dd>
-                      <s>${pricingSummary.originalPrice.toLocaleString("en-US")}</s>
+                      <s>{formatSummitCurrency("USD", pricingSummary.originalPrice)}</s>
                     </dd>
                   </div>
                 ) : null}
                 {pricingSummary.fixedPackagePrice ? (
                   <div>
-                    <dt>Selected package price</dt>
-                    <dd>${pricingSummary.fixedPackagePrice.toLocaleString("en-US")}</dd>
+                    <dt>{form.paymentMethod === "bank_transfer" ? "Original USD package price" : "Selected package price"}</dt>
+                    <dd>{formatSummitCurrency("USD", pricingSummary.fixedPackagePrice)}</dd>
                   </div>
                 ) : null}
                 <div>
                   <dt>Payment method</dt>
-                  <dd>{form.paymentMethod}</dd>
+                  <dd>{form.paymentMethod === "bank_transfer" ? "Direct Bank Transfer" : "PayPal / Card"}</dd>
                 </div>
+                {form.paymentMethod === "bank_transfer" ? (
+                  <>
+                    <div>
+                      <dt>Fixed conversion rate</dt>
+                      <dd>USD 1 = TTD 7</dd>
+                    </div>
+                    <div>
+                      <dt>TTD amount due</dt>
+                      <dd>{formatSummitCurrency("TTD", bankTransferTotal)}</dd>
+                    </div>
+                  </>
+                ) : null}
               </dl>
             ) : (
               <p className={styles.fieldHint}>{pricing.ok ? "" : pricing.message}</p>
             )}
+            {form.paymentMethod === "bank_transfer" ? (
+              <p className={styles.fieldHint}>
+                TTD prices are calculated using the Summit&apos;s fixed rate of USD 1 = TTD 7.
+              </p>
+            ) : null}
           </section>
 
           <fieldset className={styles.fieldset}>
-            <legend>Secure payment</legend>
+            <legend>Terms</legend>
             <label className={styles.policyConsent}>
               <input
                 type="checkbox"
@@ -824,23 +898,82 @@ export function SummitRegistrationForm({
                 .
               </span>
             </label>
-            <SummitPayPalCheckout
-              clientId={paypalClientId}
-              environment={paypalEnvironment}
-              onApprove={handlePayPalApprove}
-              onCancel={handlePayPalCancel}
-              onCreateOrder={createOrder}
-              onError={handlePayPalError}
-            />
+          </fieldset>
+
+          <fieldset className={styles.fieldset}>
+            <legend>Secure payment</legend>
+            <p className={styles.fieldHint}>
+              Residents of Trinidad and Tobago may choose to make payment via bank-to-bank
+              transfer.
+            </p>
+            <div className={styles.paymentRow}>
+              <label className={styles.paymentOption}>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="paypal"
+                  checked={form.paymentMethod === "paypal"}
+                  onChange={() => updateField("paymentMethod", "paypal")}
+                />
+                <span>
+                  <strong>PayPal / Debit or Credit Card</strong>
+                </span>
+              </label>
+              {bankTransferEnabled ? (
+                <label className={styles.paymentOption}>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="bank_transfer"
+                    checked={form.paymentMethod === "bank_transfer"}
+                    onChange={() => updateField("paymentMethod", "bank_transfer")}
+                  />
+                  <span>
+                    <strong>Direct Bank Transfer - Pay in TTD</strong>
+                  </span>
+                </label>
+              ) : null}
+            </div>
+            {form.paymentMethod === "bank_transfer" ? (
+              <div className={styles.paymentDetails}>
+                <p className={styles.fieldHint}>
+                  Pay in TTD from a Trinidad and Tobago bank account. Your registration will
+                  remain pending until the transfer has been received and verified.
+                </p>
+              </div>
+            ) : null}
+            {form.paymentMethod === "paypal" ? (
+              <SummitPayPalCheckout
+                clientId={paypalClientId}
+                environment={paypalEnvironment}
+                onApprove={handlePayPalApprove}
+                onCancel={handlePayPalCancel}
+                onCreateOrder={createOrder}
+                onError={handlePayPalError}
+              />
+            ) : (
+              <div className={styles.paypalPanel}>
+                <p className={styles.fieldHint}>
+                  Submitting this registration does not confirm your place. Your registration
+                  will be confirmed only after the bank transfer has been received and verified.
+                </p>
+              </div>
+            )}
           </fieldset>
 
           <div className={styles.totalRow}>
             <span>Total</span>
-            <strong>${total.toLocaleString("en-US")}</strong>
+            <strong>
+              {form.paymentMethod === "bank_transfer"
+                ? formatSummitCurrency("TTD", total)
+                : formatSummitCurrency("USD", total)}
+            </strong>
           </div>
 
           <button type="submit" disabled={isStatusBusy}>
-            Review registration before payment
+            {form.paymentMethod === "bank_transfer"
+              ? "Submit registration and receive bank details"
+              : "Review registration before payment"}
           </button>
           <p
             aria-live="polite"
@@ -951,7 +1084,7 @@ function paymentReturnStatus(location = ""): FormStatus {
 type PaymentStatusResponse = {
   action?: PaymentStatusAction;
   message?: string;
-  state?: "idle" | "cancelled" | "declined" | "failed" | "pending" | "verification_required" | "manual_review" | "refunded" | "reversed" | "paid";
+  state?: "idle" | "awaiting_bank_transfer" | "cancelled" | "declined" | "expired" | "failed" | "manual_review" | "paid" | "payment_under_review" | "pending" | "refunded" | "reversed" | "verification_required";
 };
 
 function formStatusFromPaymentResponse(
@@ -964,10 +1097,14 @@ function formStatusFromPaymentResponse(
 
   const state = response.state === "paid"
     ? "success"
+    : response.state === "awaiting_bank_transfer"
+      ? "awaiting_bank_transfer"
     : response.state === "pending"
       ? "pending"
       : response.state === "verification_required"
         ? "processing"
+        : response.state === "payment_under_review"
+          ? "manual_review"
         : response.state === "cancelled"
           ? "cancelled"
           : response.state === "manual_review" || response.state === "refunded" || response.state === "reversed"

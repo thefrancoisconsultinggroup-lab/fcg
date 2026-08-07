@@ -4,7 +4,12 @@ import {
   type SummitPriceSummary,
   type SummitRegistrationType,
 } from "@/lib/summit-pricing";
+import { isRefundPolicyPublished } from "@/lib/legal";
 import type { SummitRegistrationDetails } from "@/lib/summit-registration-records";
+import {
+  summitPaymentAmounts,
+  type SummitPaymentMethod,
+} from "@/lib/summit-bank-transfer";
 
 export type SummitRegistrationPayload = {
   accessibilityNeeds?: unknown;
@@ -29,7 +34,8 @@ export type SummitRegistrationPayload = {
 
 export type ValidSummitRegistration = {
   details: SummitRegistrationDetails;
-  paymentMethod: "PayPal";
+  paymentMethod: SummitPaymentMethod;
+  paymentSummary: ReturnType<typeof summitPaymentAmounts>;
   pricing: SummitPriceSummary;
 };
 
@@ -47,7 +53,7 @@ export function validateSummitRegistrationPayload(
   const country = stringValue(payload.country);
   const organization = stringValue(payload.organization);
   const role = stringValue(payload.role);
-  const paymentMethod = stringValue(payload.paymentMethod);
+  const paymentMethod = normalizePaymentMethod(payload.paymentMethod);
   const registrationType = stringValue(payload.registrationType) as SummitRegistrationType;
   const corporatePackage = stringValue(payload.corporatePackage) as SummitCorporatePackageValue;
   const attendeeCount = Number.parseInt(stringValue(payload.attendeeCount), 10);
@@ -60,15 +66,16 @@ export function validateSummitRegistrationPayload(
     return { ok: false, message: "Please enter a valid email address." };
   }
 
-  if (paymentMethod !== "PayPal") {
-    return { ok: false, message: "Please select PayPal as the payment method." };
+  if (!paymentMethod) {
+    return { ok: false, message: "Please select a valid payment method." };
   }
 
   if (payload.policyAcceptance !== true) {
     return {
       ok: false,
-      message:
-        "Please confirm that you agree to the required Summit policies before starting payment.",
+      message: isRefundPolicyPublished()
+        ? "Please confirm that you agree to the Terms and Conditions, Refund and Cancellation Policy, and Privacy Policy before continuing."
+        : "Please confirm that you agree to the Terms and Conditions and Privacy Policy before continuing.",
     };
   }
 
@@ -85,6 +92,8 @@ export function validateSummitRegistrationPayload(
     return pricing;
   }
 
+  const paymentSummary = summitPaymentAmounts(pricing.summary, paymentMethod);
+
   return {
     ok: true,
     registration: {
@@ -100,7 +109,8 @@ export function validateSummitRegistrationPayload(
         phone: stringValue(payload.phone),
         role,
       },
-      paymentMethod: "PayPal",
+      paymentMethod,
+      paymentSummary,
       pricing: pricing.summary,
     },
   };
@@ -108,4 +118,18 @@ export function validateSummitRegistrationPayload(
 
 export function stringValue(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizePaymentMethod(value: unknown): SummitPaymentMethod | null {
+  const normalized = stringValue(value).toLowerCase();
+
+  if (normalized === "paypal") {
+    return "paypal";
+  }
+
+  if (normalized === "bank_transfer") {
+    return "bank_transfer";
+  }
+
+  return null;
 }

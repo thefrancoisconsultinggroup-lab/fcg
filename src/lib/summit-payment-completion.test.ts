@@ -4,8 +4,10 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import {
+  buildSummitAccessEmail,
   buildSummitAdminNotificationEmail,
   buildSummitAttendeeConfirmationEmail,
+  buildSummitBankTransferInstructionsEmail,
   publicLogoUrl,
   summitAdminFromEmail,
   summitAdminRecipientEmail,
@@ -19,14 +21,19 @@ import {
 import {
   completeSummitPayment,
   reconcileSummitPayment,
+  sendScheduledSummitAccessEmails,
   validateCompletedCaptureForRecord,
 } from "@/lib/summit-payment-completion";
 import { canRetryPayment, customerPaymentStatus } from "@/lib/summit-payment-customer-status";
 import type { SummitPaymentRecord } from "@/lib/summit-registration-records";
 
 const baseRecord: SummitPaymentRecord = {
+  amountDue: 45,
   createdAt: "2026-07-24T00:00:00.000Z",
+  currency: "USD",
   id: "registration-1",
+  originalUsdAmount: 45,
+  paymentMethod: "paypal",
   paypalOrderId: "ORDER-1",
   pricing: {
     attendeeCount: 1,
@@ -217,13 +224,13 @@ test("emails contain the verified payment amount, registration details and PayPa
   const admin = buildSummitAdminNotificationEmail(paidRecord);
 
   assert.match(attendee.html, /Human Capacity Summit/);
-  assert.match(attendee.html, /\$45\.00/);
+  assert.match(attendee.html, /USD 45\.00/);
   assert.match(attendee.html, /Test User/);
   assert.match(attendee.html, /CAPTURE-1/);
   assert.doesNotMatch(attendee.html, /registration-1/);
   assert.match(admin.html, /registration-1/);
   assert.match(admin.html, /Example Co/);
-  assert.match(admin.html, /ORDER-1/);
+  assert.match(admin.html, /CAPTURE-1/);
   assert.match(admin.text, /Currency: USD/);
 });
 
@@ -275,7 +282,7 @@ test("create-order route stores the server-calculated Summit price and PayPal or
           firstName: "Team",
           lastName: "Lead",
           organization: "Example Co",
-          paymentMethod: "PayPal",
+          paymentMethod: "paypal",
           policyAcceptance: true,
           registrationType: "corporate",
           role: "Leader",
@@ -503,8 +510,84 @@ test("HTML uses responsive email-safe layout and plain-text alternatives are gen
   assert.match(attendee.html, /max-width:640px/);
   assert.match(attendee.html, /width:100%/);
   assert.match(attendee.html, /alt="Francois Consulting Group logo icon"/);
-  assert.match(attendee.text, /Your PayPal payment was successfully verified/);
+  assert.match(attendee.text, /Welcome to The Human Capacity Summit!/);
   assert.match(attendee.text, /PayPal transaction \/ capture reference: CAPTURE-1/);
+});
+
+test("bank transfer instructions email includes the exact payment reference and banking table details", () => {
+  process.env.SUMMIT_BANK_TRANSFER_SUPPORT_WHATSAPP = "+1 868 555 0100";
+  const attendee = buildSummitBankTransferInstructionsEmail({
+    ...baseRecord,
+    amountDue: 315,
+    currency: "TTD",
+    originalUsdAmount: 45,
+    paymentDueAt: "2026-08-09T12:00:00.000Z",
+    paymentMethod: "bank_transfer",
+    paymentReference: "HCS-7K4P92",
+    status: "awaiting_bank_transfer",
+  });
+
+  assert.equal(attendee.subject, "Welcome to the Human Capacity Summit - Complete Your Bank Transfer");
+  assert.match(attendee.html, /Your payment reference/);
+  assert.match(attendee.html, /HCS-7K4P92/);
+  assert.match(attendee.html, /Account-holder name/);
+  assert.match(attendee.html, /Christine Francois/);
+  assert.match(attendee.html, /JMMB Bank Trinidad &amp; Tobago/);
+  assert.match(attendee.text, /Important: Please enter HCS-7K4P92/);
+  assert.match(attendee.text, /WhatsApp: \+1 868 555 0100/);
+});
+
+test("access email includes the configured summit date and private link", () => {
+  process.env.SUMMIT_EVENT_START_AT = "2026-10-02T09:00:00-04:00";
+  process.env.SUMMIT_EVENT_TIME_ZONE = "America/Port_of_Spain";
+  const email = buildSummitAccessEmail({
+    ...paid(baseRecord),
+    paymentReference: "HCS-7K4P92",
+    summitAccessUrl: "https://zoom.example/join/abc123",
+  });
+
+  assert.equal(email.subject, "Your Human Capacity Summit Access Link");
+  assert.match(email.html, /Join the Human Capacity Summit/);
+  assert.match(email.html, /https:\/\/zoom\.example\/join\/abc123/);
+  assert.match(email.text, /The Human Capacity Summit begins tomorrow/);
+  assert.match(email.text, /America\/Port_of_Spain/);
+});
+
+test("scheduled access emails send once for eligible confirmed attendees only", async () => {
+  const sentEmails = await withMockedResend(async () => {
+    await createSummitPaymentRecord({
+      ...paid(baseRecord),
+      id: "access-email-eligible",
+      paymentReference: "HCS-ELIGIBLE",
+      registrationConfirmationSentAt: "2026-08-07T10:00:00.000Z",
+      summitAccessUrl: "https://zoom.example/join/eligible",
+    });
+    await createSummitPaymentRecord({
+      ...paid(baseRecord),
+      id: "access-email-corporate",
+      paymentReference: "HCS-CORP",
+      pricing: {
+        ...baseRecord.pricing,
+        attendeeCount: 10,
+        categoryLabel: "Corporate",
+      },
+      summitAccessUrl: "https://zoom.example/join/corporate",
+    });
+
+    const first = await sendScheduledSummitAccessEmails(new Date("2026-10-01T12:00:00.000Z"));
+    const second = await sendScheduledSummitAccessEmails(new Date("2026-10-01T13:00:00.000Z"));
+    const eligible = await getSummitPaymentRecordById("access-email-eligible");
+    const corporate = await getSummitPaymentRecordById("access-email-corporate");
+
+    assert.deepEqual(first, { attempted: 1, sent: 1, skipped: 1 });
+    assert.deepEqual(second, { attempted: 0, sent: 0, skipped: 1 });
+    assert.ok(eligible?.accessEmailSentAt);
+    assert.equal(corporate?.accessEmailSentAt, undefined);
+
+    return getSentEmails();
+  });
+
+  assert.equal(sentEmails.filter((email) => email.subject === "Your Human Capacity Summit Access Link").length, 1);
 });
 
 test("Summit sender environment variables have branded defaults", () => {
@@ -638,12 +721,12 @@ test("verified refund and reversal webhooks update records idempotently without 
     const { POST } = await import("@/app/api/human-capacity-summit/paypal/webhook/route");
 
     setPayPalWebhookVerification(true);
-    await POST(webhookRequest("PAYMENT.CAPTURE.REFUNDED", record.paypalOrderId));
-    await POST(webhookRequest("PAYMENT.CAPTURE.REFUNDED", record.paypalOrderId));
+    await POST(webhookRequest("PAYMENT.CAPTURE.REFUNDED", record.paypalOrderId!));
+    await POST(webhookRequest("PAYMENT.CAPTURE.REFUNDED", record.paypalOrderId!));
     assert.equal((await getSummitPaymentRecordById(record.id))?.status, "refunded");
 
-    await POST(webhookRequest("PAYMENT.CAPTURE.REVERSED", record.paypalOrderId));
-    await POST(webhookRequest("PAYMENT.CAPTURE.REVERSED", record.paypalOrderId));
+    await POST(webhookRequest("PAYMENT.CAPTURE.REVERSED", record.paypalOrderId!));
+    await POST(webhookRequest("PAYMENT.CAPTURE.REVERSED", record.paypalOrderId!));
     assert.equal((await getSummitPaymentRecordById(record.id))?.status, "reversed");
     assert.equal(getSentEmails().length, 0);
   });
@@ -980,6 +1063,9 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
   const previousPayPalClientId = process.env.PAYPAL_CLIENT_ID;
   const previousPayPalClientSecret = process.env.PAYPAL_CLIENT_SECRET;
   const previousPayPalWebhookId = process.env.PAYPAL_WEBHOOK_ID;
+  const previousSummitEventStartAt = process.env.SUMMIT_EVENT_START_AT;
+  const previousSummitEventTimeZone = process.env.SUMMIT_EVENT_TIME_ZONE;
+  const previousSummitBankTransferSupportWhatsApp = process.env.SUMMIT_BANK_TRANSFER_SUPPORT_WHATSAPP;
   const previousFetch = globalThis.fetch;
   const tempDir = await mkdtemp(path.join(tmpdir(), "summit-payment-test-"));
 
@@ -992,6 +1078,9 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
   process.env.SUMMIT_ATTENDEE_FROM_EMAIL = "Francois Consulting Group <no-reply@francoisconsultinggroup.com>";
   process.env.SUMMIT_ADMIN_FROM_EMAIL = "Human Capacity Summit <summit@francoisconsultinggroup.com>";
   process.env.SUMMIT_ADMIN_RECIPIENT_EMAIL = "hello@francoisconsultinggroup.com";
+  process.env.SUMMIT_EVENT_START_AT = "2026-10-02T09:00:00-04:00";
+  process.env.SUMMIT_EVENT_TIME_ZONE = "America/Port_of_Spain";
+  process.env.SUMMIT_BANK_TRANSFER_SUPPORT_WHATSAPP = "+1 868 555 0100";
   sentEmails = [];
   failNextEmailTo = "";
   payPalOrderResponse = undefined;
@@ -1098,6 +1187,9 @@ async function withMockedResend<T>(callback: () => Promise<T>) {
     restoreEnv("PAYPAL_CLIENT_ID", previousPayPalClientId);
     restoreEnv("PAYPAL_CLIENT_SECRET", previousPayPalClientSecret);
     restoreEnv("PAYPAL_WEBHOOK_ID", previousPayPalWebhookId);
+    restoreEnv("SUMMIT_EVENT_START_AT", previousSummitEventStartAt);
+    restoreEnv("SUMMIT_EVENT_TIME_ZONE", previousSummitEventTimeZone);
+    restoreEnv("SUMMIT_BANK_TRANSFER_SUPPORT_WHATSAPP", previousSummitBankTransferSupportWhatsApp);
     setSummitPaymentStorePathForTests(undefined);
     await rm(tempDir, { recursive: true, force: true });
     globalThis.fetch = previousFetch;

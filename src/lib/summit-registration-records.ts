@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createClient, type SanityClient } from "@sanity/client";
 import type { SummitPriceSummary } from "@/lib/summit-pricing";
+import type { SummitCurrency, SummitPaymentMethod } from "@/lib/summit-bank-transfer";
 
 export type SummitRegistrationDetails = {
   accessibilityNeeds: string;
@@ -29,9 +30,12 @@ export type SummitPaymentStatus =
   | "declined"
   | "failed"
   | "payment_failed"
+  | "awaiting_bank_transfer"
+  | "payment_under_review"
   | "refunded"
   | "reversed"
   | "manual_review"
+  | "expired"
   | "retry_ready";
 
 export type SummitPayPalOrderAttempt = {
@@ -92,7 +96,11 @@ export type SummitAuditEntry = {
     | "refund_reconciled"
     | "confirmation_email_resent"
     | "organiser_email_resent"
-    | "manual_review_applied";
+    | "manual_review_applied"
+    | "bank_transfer_submitted"
+    | "bank_transfer_marked_paid"
+    | "bank_transfer_marked_under_review"
+    | "bank_transfer_expired";
   adminEmail?: string;
   adminId?: string;
   adminName?: string;
@@ -104,9 +112,20 @@ export type SummitAuditEntry = {
 export type SummitPaymentRecord = {
   adminNotificationSendingAt?: string;
   adminNotificationSentAt?: string;
+  amountDue: number;
+  amountReceived?: number;
+  accessEmailSendingAt?: string;
+  accessEmailSentAt?: string;
   attendeeConfirmationSendingAt?: string;
   attendeeConfirmationSentAt?: string;
   auditHistory?: SummitAuditEntry[];
+  bankTransferAdminNotificationSendingAt?: string;
+  bankTransferAdminNotificationSentAt?: string;
+  bankTransactionReference?: string;
+  bankTransferInstructionSendingAt?: string;
+  bankTransferInstructionsSentAt?: string;
+  bankTransferReceivedAt?: string;
+  bankTransferRequestedAt?: string;
   cancelledAt?: string;
   cancellationReason?: string;
   cancelledByAdminEmail?: string;
@@ -114,18 +133,35 @@ export type SummitPaymentRecord = {
   cancelledByAdminName?: string;
   captureId?: string;
   capturedAt?: string;
+  configuredExchangeRate?: number;
+  confirmationSentAt?: string;
   createdAt: string;
+  currency: SummitCurrency;
+  currencyReceived?: SummitCurrency;
   emailSentAt?: string;
+  expiredAt?: string;
   lastEmailErrorAt?: string;
   lastEmailErrorMessage?: string;
   lastPaymentErrorAt?: string;
   lastPaymentErrorCode?: string;
   lastPaymentErrorMessage?: string;
   lastPaymentDiagnostics?: SummitPaymentDiagnostics;
+  localBankTransferEligibilityConfirmed?: boolean;
+  localBankTransferEligibilityConfirmedAt?: string;
   manualReviewReason?: string;
   id: string;
+  originalUsdAmount: number;
   payerEmail?: string;
-  paypalOrderId: string;
+  paymentDueAt?: string;
+  paymentMethod: SummitPaymentMethod;
+  paymentReference?: string;
+  paymentVerifiedAt?: string;
+  paymentVerifiedBy?: {
+    email?: string;
+    id: string;
+    name?: string;
+  };
+  paypalOrderId?: string;
   paypalOrderHistory?: SummitPayPalOrderAttempt[];
   pricing: SummitPriceSummary;
   policyAcceptance?: {
@@ -138,9 +174,12 @@ export type SummitPaymentRecord = {
     termsEffectiveDate: string;
     termsVersion: string;
   };
+  reconciliationNote?: string;
+  registrationConfirmationSentAt?: string;
   registration: SummitRegistrationDetails;
   refundHistory?: SummitRefundRecord[];
   status: SummitPaymentStatus;
+  summitAccessUrl?: string;
   updatedAt: string;
 };
 
@@ -154,7 +193,12 @@ type SummitPaymentDocument = SummitPaymentRecord & {
   _type: "summitPaymentRecord";
 };
 
-export type SummitEmailKind = "attendeeConfirmation" | "adminNotification";
+export type SummitEmailKind =
+  | "attendeeConfirmation"
+  | "adminNotification"
+  | "bankTransferInstructions"
+  | "bankTransferAdminNotification"
+  | "summitAccess";
 
 const emailFields = {
   adminNotification: {
@@ -164,6 +208,18 @@ const emailFields = {
   attendeeConfirmation: {
     sentAt: "attendeeConfirmationSentAt",
     sendingAt: "attendeeConfirmationSendingAt",
+  },
+  summitAccess: {
+    sentAt: "accessEmailSentAt",
+    sendingAt: "accessEmailSendingAt",
+  },
+  bankTransferAdminNotification: {
+    sentAt: "bankTransferAdminNotificationSentAt",
+    sendingAt: "bankTransferAdminNotificationSendingAt",
+  },
+  bankTransferInstructions: {
+    sentAt: "bankTransferInstructionsSentAt",
+    sendingAt: "bankTransferInstructionSendingAt",
   },
 } satisfies Record<SummitEmailKind, {
   sendingAt: keyof SummitPaymentRecord;
@@ -216,6 +272,10 @@ export async function getSummitPaymentRecordById(id: string) {
 }
 
 export async function getSummitPaymentRecordByOrderId(paypalOrderId: string) {
+  if (!paypalOrderId) {
+    return null;
+  }
+
   const sanityClient = paymentSanityClient();
 
   if (sanityClient) {
@@ -262,6 +322,59 @@ export async function updateSummitPaymentRecord(
   Object.assign(record, updates, { updatedAt: new Date().toISOString() });
   await writeStore(store);
   return record;
+}
+
+export async function getSummitPaymentRecordByReference(paymentReference: string) {
+  if (!paymentReference) {
+    return null;
+  }
+
+  const sanityClient = paymentSanityClient();
+
+  if (sanityClient) {
+    const record = await sanityClient.fetch<SummitPaymentDocument | null>(
+      `*[_type == $documentType && paymentReference == $paymentReference][0]`,
+      { documentType, paymentReference },
+    );
+    return record ? fromSanityDocument(record) : null;
+  }
+
+  const store = await readStore();
+  return store.records.find((record) => record.paymentReference === paymentReference) ?? null;
+}
+
+export async function findLatestPendingBankTransferRegistration({
+  email,
+  rateValue,
+}: {
+  email: string;
+  rateValue: SummitPriceSummary["rateValue"];
+}) {
+  const relevantStatuses: SummitPaymentStatus[] = [
+    "awaiting_bank_transfer",
+    "payment_under_review",
+  ];
+  const sanityClient = paymentSanityClient();
+
+  if (sanityClient) {
+    const record = await sanityClient.fetch<SummitPaymentDocument | null>(
+      `*[_type == $documentType && paymentMethod == "bank_transfer" && registration.email == $email && pricing.rateValue == $rateValue && status in $statuses] | order(createdAt desc)[0]`,
+      { documentType, email, rateValue, statuses: relevantStatuses },
+    );
+    return record ? fromSanityDocument(record) : null;
+  }
+
+  const store = await readStore();
+  return (
+    store.records
+      .filter((record) =>
+        record.paymentMethod === "bank_transfer" &&
+        record.registration.email === email &&
+        record.pricing.rateValue === rateValue &&
+        relevantStatuses.includes(record.status),
+      )
+      .sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt))[0] ?? null
+  );
 }
 
 export async function claimSummitPaymentEmailSend(id: string, kind: SummitEmailKind) {
@@ -318,12 +431,19 @@ export async function claimSummitPaymentEmailSend(id: string, kind: SummitEmailK
 
 export async function markSummitPaymentEmailSent(id: string, kind: SummitEmailKind) {
   const fields = emailFields[kind];
-  return updateSummitPaymentRecord(id, {
+  const updates: Partial<Omit<SummitPaymentRecord, "createdAt" | "id">> = {
     [fields.sendingAt]: undefined,
     [fields.sentAt]: new Date().toISOString(),
     lastEmailErrorAt: undefined,
     lastEmailErrorMessage: undefined,
-  });
+  };
+
+  if (kind === "attendeeConfirmation") {
+    updates.confirmationSentAt = new Date().toISOString();
+    updates.registrationConfirmationSentAt = new Date().toISOString();
+  }
+
+  return updateSummitPaymentRecord(id, updates);
 }
 
 export async function recordSummitPaymentEmailFailure(id: string, kind: SummitEmailKind, error: string) {
@@ -335,8 +455,47 @@ export async function recordSummitPaymentEmailFailure(id: string, kind: SummitEm
   });
 }
 
-export function isSummitPaymentCaptured(record: Pick<SummitPaymentRecord, "captureId" | "status">) {
-  return record.status === "paid" && Boolean(record.captureId);
+export function isSummitPaymentCaptured(
+  record: Pick<SummitPaymentRecord, "captureId" | "paymentMethod" | "paymentVerifiedAt" | "status">,
+) {
+  if (record.status !== "paid") {
+    return false;
+  }
+
+  if (record.paymentMethod === "bank_transfer") {
+    return Boolean(record.paymentVerifiedAt);
+  }
+
+  return Boolean(record.captureId);
+}
+
+export async function listSummitAccessEmailEligibleRecords() {
+  const sanityClient = paymentSanityClient();
+
+  if (sanityClient) {
+    const records = await sanityClient.fetch<SummitPaymentDocument[]>(
+      `*[
+        _type == $documentType &&
+        status == "paid" &&
+        defined(summitAccessUrl) &&
+        summitAccessUrl != "" &&
+        !defined(accessEmailSentAt) &&
+        defined(registration.email)
+      ] | order(createdAt asc)`,
+      { documentType },
+    );
+    return records.map(fromSanityDocument);
+  }
+
+  const store = await readStore();
+  return store.records
+    .filter((record) =>
+      record.status === "paid" &&
+      Boolean(record.registration.email) &&
+      Boolean(record.summitAccessUrl) &&
+      !record.accessEmailSentAt,
+    )
+    .sort((left, right) => Date.parse(left.createdAt) - Date.parse(right.createdAt));
 }
 
 export function setSummitPaymentStorePathForTests(storePath: string | undefined) {

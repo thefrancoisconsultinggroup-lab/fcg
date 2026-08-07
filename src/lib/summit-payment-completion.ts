@@ -2,10 +2,12 @@ import type { SummitPaymentRecord } from "@/lib/summit-registration-records";
 import {
   claimSummitPaymentEmailSend,
   isSummitPaymentCaptured,
+  listSummitAccessEmailEligibleRecords,
   markSummitPaymentEmailSent,
   recordSummitPaymentEmailFailure,
   updateSummitPaymentRecord,
 } from "@/lib/summit-registration-records";
+import { getSummitEventConfig, summitAccessEmailWindowIsOpen } from "@/lib/summit-event";
 import {
   capturePaymentSummary,
   getPayPalOrder,
@@ -13,7 +15,10 @@ import {
   verifiedCaptureTotal,
 } from "@/lib/paypal";
 import {
+  sendSummitBankTransferAdminNotificationEmail,
+  sendSummitBankTransferInstructionsEmail,
   sendSummitAdminNotificationEmail,
+  sendSummitAccessEmail,
   sendSummitAttendeeConfirmationEmail,
   type SummitEmailResult,
 } from "@/lib/summit-registration-email";
@@ -35,6 +40,17 @@ export type ReconciliationResult =
   | { ok: true; status: "paid"; completed: CompletionResult }
   | { ok: true; status: "pending" | "verification_required" | "declined" | "payment_failed" }
   | { ok: false; status: "manual_review"; reason: string };
+
+export type SummitPendingBankTransferEmailResult = {
+  adminNotification: boolean;
+  attendeeInstructions: boolean;
+};
+
+export type SummitAccessEmailResult = {
+  attempted: number;
+  sent: number;
+  skipped: number;
+};
 
 export function validateCompletedCaptureForRecord(
   record: SummitPaymentRecord,
@@ -82,6 +98,7 @@ export async function completeSummitPayment({
     captureId,
     capturedAt: new Date().toISOString(),
     payerEmail: capture.payerEmail,
+    paymentVerifiedAt: new Date().toISOString(),
     status: "paid",
   });
 
@@ -94,6 +111,17 @@ export async function completeSummitPayment({
 }
 
 export async function reconcileSummitPayment(record: SummitPaymentRecord): Promise<ReconciliationResult> {
+  if (!record.paypalOrderId) {
+    await updateSummitPaymentRecord(record.id, {
+      lastPaymentErrorAt: new Date().toISOString(),
+      lastPaymentErrorCode: "PAYPAL_ORDER_MISSING",
+      lastPaymentErrorMessage: "PayPal order status could not be verified.",
+      manualReviewReason: "PayPal order ID was missing from the stored Summit registration.",
+      status: "manual_review",
+    });
+    return { ok: false, status: "manual_review", reason: "paypal_order_missing" };
+  }
+
   if (isSummitPaymentCaptured(record)) {
     const completed = await completeSummitPayment({
       record,
@@ -276,4 +304,124 @@ export async function sendPendingSummitPaymentEmails(record: SummitPaymentRecord
   }
 
   return result;
+}
+
+export async function sendPendingBankTransferEmails(
+  record: SummitPaymentRecord,
+): Promise<SummitPendingBankTransferEmailResult> {
+  const result: SummitPendingBankTransferEmailResult = {
+    adminNotification: Boolean(record.bankTransferAdminNotificationSentAt),
+    attendeeInstructions: Boolean(record.bankTransferInstructionsSentAt),
+  };
+
+  if (!result.attendeeInstructions) {
+    const claimed = await claimSummitPaymentEmailSend(record.id, "bankTransferInstructions");
+
+    if (claimed) {
+      try {
+        const email = await sendSummitBankTransferInstructionsEmail(record);
+
+        if (email.ok) {
+          await markSummitPaymentEmailSent(record.id, "bankTransferInstructions");
+          result.attendeeInstructions = true;
+        } else {
+          await recordSummitPaymentEmailFailure(record.id, "bankTransferInstructions", email.message);
+        }
+      } catch (error) {
+        await recordSummitPaymentEmailFailure(
+          record.id,
+          "bankTransferInstructions",
+          error instanceof Error ? error.message : "Bank transfer instructions email failed.",
+        );
+      }
+    }
+  }
+
+  if (!result.adminNotification) {
+    const claimed = await claimSummitPaymentEmailSend(record.id, "bankTransferAdminNotification");
+
+    if (claimed) {
+      try {
+        const email = await sendSummitBankTransferAdminNotificationEmail(record);
+
+        if (email.ok) {
+          await markSummitPaymentEmailSent(record.id, "bankTransferAdminNotification");
+          result.adminNotification = true;
+        } else {
+          await recordSummitPaymentEmailFailure(record.id, "bankTransferAdminNotification", email.message);
+        }
+      } catch (error) {
+        await recordSummitPaymentEmailFailure(
+          record.id,
+          "bankTransferAdminNotification",
+          error instanceof Error ? error.message : "Bank transfer admin notification email failed.",
+        );
+      }
+    }
+  }
+
+  return result;
+}
+
+export async function sendScheduledSummitAccessEmails(now = new Date()): Promise<SummitAccessEmailResult> {
+  const eventConfig = getSummitEventConfig();
+
+  if (!eventConfig.accessEmailEnabled || !summitAccessEmailWindowIsOpen(now, eventConfig.startAt, eventConfig.timezone)) {
+    return {
+      attempted: 0,
+      sent: 0,
+      skipped: 0,
+    };
+  }
+
+  const records = await listSummitAccessEmailEligibleRecords();
+  let attempted = 0;
+  let sent = 0;
+  let skipped = 0;
+
+  for (const record of records) {
+    if (!canReceiveSummitAccessEmail(record)) {
+      skipped += 1;
+      continue;
+    }
+
+    attempted += 1;
+    const claimed = await claimSummitPaymentEmailSend(record.id, "summitAccess");
+
+    if (!claimed) {
+      skipped += 1;
+      continue;
+    }
+
+    try {
+      const email = await sendSummitAccessEmail(record);
+
+      if (email.ok) {
+        await markSummitPaymentEmailSent(record.id, "summitAccess");
+        sent += 1;
+      } else {
+        skipped += 1;
+        await recordSummitPaymentEmailFailure(record.id, "summitAccess", email.message);
+      }
+    } catch (error) {
+      skipped += 1;
+      await recordSummitPaymentEmailFailure(
+        record.id,
+        "summitAccess",
+        error instanceof Error ? error.message : "Summit access email failed.",
+      );
+    }
+  }
+
+  return { attempted, sent, skipped };
+}
+
+function canReceiveSummitAccessEmail(record: SummitPaymentRecord) {
+  return (
+    record.status === "paid" &&
+    Boolean(record.registration.email) &&
+    Boolean(record.summitAccessUrl) &&
+    !record.accessEmailSentAt &&
+    record.pricing.attendeeCount === 1
+  );
 }

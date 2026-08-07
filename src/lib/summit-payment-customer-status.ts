@@ -3,10 +3,13 @@ import { isSummitPaymentCaptured } from "@/lib/summit-registration-records";
 
 export type SummitCustomerPaymentState =
   | "idle"
+  | "awaiting_bank_transfer"
   | "cancelled"
   | "declined"
   | "failed"
+  | "expired"
   | "pending"
+  | "payment_under_review"
   | "verification_required"
   | "manual_review"
   | "refunded"
@@ -39,9 +42,25 @@ export function customerPaymentStatus(record: SummitPaymentRecord | null): Summi
   switch (record.status) {
     case "cancelled":
       return {
-        action: "retry",
-        message: "Your payment was cancelled. You have not been charged, and your Summit registration has not been confirmed.",
+        action: record.paymentMethod === "bank_transfer" ? "contact" : "retry",
+        message: record.paymentMethod === "bank_transfer"
+          ? "This bank-transfer registration has been cancelled. Please contact Francois Consulting Group if you still wish to attend."
+          : "Your payment was cancelled. You have not been charged, and your Summit registration has not been confirmed.",
         state: "cancelled",
+      };
+    case "awaiting_bank_transfer":
+      return {
+        action: "contact",
+        message:
+          "Your registration has been received and is awaiting bank transfer. Your place will be confirmed only after payment is received and verified.",
+        state: "awaiting_bank_transfer",
+      };
+    case "payment_under_review":
+      return {
+        action: "contact",
+        message:
+          "Your bank transfer has been received and is under review. Francois Consulting Group will confirm your registration once the payment details have been verified.",
+        state: "payment_under_review",
       };
     case "declined":
     case "failed":
@@ -76,6 +95,13 @@ export function customerPaymentStatus(record: SummitPaymentRecord | null): Summi
         action: "contact",
         message: "This payment has been refunded. Please contact Francois Consulting Group if you have registration questions.",
         state: "refunded",
+      };
+    case "expired":
+      return {
+        action: "contact",
+        message:
+          "The bank-transfer payment deadline for this registration has passed. Please contact Francois Consulting Group before sending any payment.",
+        state: "expired",
       };
     case "reversed":
       return {

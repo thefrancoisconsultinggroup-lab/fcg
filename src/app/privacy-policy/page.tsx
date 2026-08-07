@@ -53,8 +53,9 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             Transaction records connected with Summit registration, including payment status,
-            PayPal order ID, capture ID, payer email, refund records, and related operational
-            audit history.
+            payment method, currency, amount due, payment reference, PayPal order ID, capture ID,
+            payer email, reconciliation records, verification timestamps, refund records, and
+            related operational audit history.
           </li>
           <li>
             Technical and hosting information that may arise from server logs or platform
@@ -69,6 +70,10 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>Directly from forms you complete on this website.</li>
           <li>From PayPal when a Summit payment is approved, captured, reversed, or refunded.</li>
+          <li>
+            From authorised administrative review when a Direct Bank Transfer is checked,
+            reconciled, verified, marked under review, or marked expired.
+          </li>
           <li>From website, hosting, and security logs generated during normal operation.</li>
         </ul>
       </section>
@@ -78,6 +83,7 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>To process event registrations and maintain attendee records.</li>
           <li>To create, verify, capture, reconcile, or review Summit payments.</li>
+          <li>To issue bank-transfer instructions and reconcile bank-transfer references.</li>
           <li>To send confirmations and essential event or service-related updates.</li>
           <li>To respond to enquiries and follow up on service requests.</li>
           <li>To prevent fraud, spam, abuse, and security incidents.</li>
@@ -103,7 +109,22 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>7. Service providers used in this project</h2>
+        <h2>7. Direct Bank Transfer records</h2>
+        <p>
+          Where Direct Bank Transfer is offered, the site may retain payment-related operational
+          records such as the selected payment method, original USD amount, TTD amount due,
+          configured fixed exchange rate, payment reference, payment status, payment deadline,
+          amount and currency received, bank transaction reference, reconciliation notes, and
+          verification timestamps.
+        </p>
+        <p>
+          The website does not collect or store online-banking passwords, security questions, PINs,
+          or other customer online-banking login credentials.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Service providers used in this project</h2>
         <ul>
           <li>PayPal for payment processing.</li>
           <li>Sanity for Summit order storage when configured by the client.</li>
@@ -113,7 +134,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>8. International transfers</h2>
+        <h2>9. International transfers</h2>
         <p>
           Because the project uses cloud infrastructure and third-party processors, personal
           information may be processed or stored outside Trinidad and Tobago, including in the
@@ -122,7 +143,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>9. Retention</h2>
+        <h2>10. Retention</h2>
         <p>
           Registration, payment, enquiry, and operational records are retained for as long as
           reasonably necessary for event administration, customer support, legal compliance,
@@ -131,7 +152,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>10. Sharing</h2>
+        <h2>11. Sharing</h2>
         <p>
           Personal information may be shared with service providers and professional advisers who
           need it for payment processing, hosting, email delivery, operational support, legal
@@ -140,7 +161,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>11. Security</h2>
+        <h2>12. Security</h2>
         <p>
           Reasonable technical and organisational measures are used to protect personal
           information, but no website or online transmission can be guaranteed to be completely
@@ -149,7 +170,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>12. Privacy requests</h2>
+        <h2>13. Privacy requests</h2>
         <p>
           You may request access to, correction of, or deletion of your personal information by
           contacting the privacy contact listed above. Some records may need to be retained where
@@ -158,14 +179,14 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>13. Children&apos;s privacy</h2>
+        <h2>14. Children&apos;s privacy</h2>
         <p>
           This website and Summit are intended for adults and professional participants.
         </p>
       </section>
 
       <section>
-        <h2>14. Cookies and analytics</h2>
+        <h2>15. Cookies and analytics</h2>
         <p>
           Based on the current code audit dated August 6, 2026, no separate analytics package,
           tracking pixel, newsletter tooling, or non-essential cookie banner implementation was
@@ -175,7 +196,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>15. Third-party links</h2>
+        <h2>16. Third-party links</h2>
         <p>
           This website includes links to third-party services and websites. Their privacy
           practices are governed by their own terms and notices.
@@ -183,7 +204,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>16. Changes to this policy</h2>
+        <h2>17. Changes to this policy</h2>
         <p>
           This Privacy Policy may be updated from time to time. Material changes will be posted on
           this page with an updated effective or last-updated date.
@@ -191,7 +212,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2>17. Governing jurisdiction</h2>
+        <h2>18. Governing jurisdiction</h2>
         <p>
           This policy is governed by the laws applicable to Francois Consulting Group and its
           operations.

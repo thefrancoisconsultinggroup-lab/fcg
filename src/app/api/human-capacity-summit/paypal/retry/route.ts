@@ -17,6 +17,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Registration could not be found." }, { status: 404 });
   }
 
+  if (record.paymentMethod !== "paypal" || !record.paypalOrderId) {
+    return NextResponse.json(
+      {
+        message: "Only PayPal registrations can be retried through this checkout flow.",
+      },
+      { status: 409 },
+    );
+  }
+
   if (isSummitPaymentCaptured(record)) {
     return NextResponse.json(
       {
@@ -43,6 +52,15 @@ export async function POST(request: Request) {
   }
 
   const retryableRecord = (await getSummitPaymentRecordById(registrationId)) ?? record;
+
+  if (retryableRecord.paymentMethod !== "paypal" || !retryableRecord.paypalOrderId) {
+    return NextResponse.json(
+      {
+        message: "Only PayPal registrations can be retried through this checkout flow.",
+      },
+      { status: 409 },
+    );
+  }
 
   if (!hasPayPalConfig()) {
     return NextResponse.json(

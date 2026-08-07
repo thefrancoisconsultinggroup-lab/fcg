@@ -67,3 +67,20 @@ export function legalPageMetadata({
     },
   };
 }
+
+export function summitPolicyAcceptanceSnapshot() {
+  return {
+    accepted: true as const,
+    acceptedAt: new Date().toISOString(),
+    privacyPolicyEffectiveDate: legalPolicyVersions.privacy.effectiveDate,
+    privacyPolicyVersion: legalPolicyVersions.privacy.version,
+    refundPolicyEffectiveDate: legalPolicyVersions.refund.published
+      ? legalPolicyVersions.refund.effectiveDate
+      : undefined,
+    refundPolicyVersion: legalPolicyVersions.refund.published
+      ? legalPolicyVersions.refund.version
+      : undefined,
+    termsEffectiveDate: legalPolicyVersions.terms.effectiveDate,
+    termsVersion: legalPolicyVersions.terms.version,
+  };
+}
