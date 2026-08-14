@@ -19,7 +19,7 @@ export function FaithHero({ targetId = "faith-quotes" }: FaithHeroProps) {
     >
       <div className="absolute inset-0" data-faith-hero-media>
         <Image
-          src="/assets/images/FCG-Faith.jpg"
+          src="/assets/images/FCG-Faith-Banner-New.webp"
           alt="A cross silhouetted on a hill at sunset over calm water."
           fill
           priority

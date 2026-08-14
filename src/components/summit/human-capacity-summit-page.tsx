@@ -102,6 +102,7 @@ export function HumanCapacitySummitPage({
                             <p className={styles.speakerCapacity}>{speaker.capacity}</p>
                             <h3>{speaker.name}</h3>
                             <p className={styles.speakerRole}>{speaker.role}</p>
+                            <p className={styles.speakerCountry}>{speaker.country}</p>
                           </div>
                         </ScrollReveal>
                       ))}

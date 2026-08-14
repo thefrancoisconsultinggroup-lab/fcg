@@ -217,7 +217,16 @@ export function WaterBackground() {
     const canvas = canvasRef.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(pointer: fine) and (hover: hover)");
-    if (!canvas || reducedMotion.matches || !finePointer.matches) return;
+    if (!canvas) return;
+
+    const setWaterRenderer = (mode: "active" | "fallback") => {
+      document.body.dataset.waterRenderer = mode;
+    };
+
+    if (reducedMotion.matches) {
+      setWaterRenderer("fallback");
+      return;
+    }
 
     const gl = canvas.getContext("webgl", {
       alpha: false,
@@ -227,18 +236,30 @@ export function WaterBackground() {
       powerPreference: "low-power",
       preserveDrawingBuffer: false,
     });
-    if (!gl) return;
+    if (!gl) {
+      setWaterRenderer("fallback");
+      return;
+    }
 
     const vertexShader = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
     const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
-    if (!vertexShader || !fragmentShader) return;
+    if (!vertexShader || !fragmentShader) {
+      setWaterRenderer("fallback");
+      return;
+    }
 
     const program = gl.createProgram();
-    if (!program) return;
+    if (!program) {
+      setWaterRenderer("fallback");
+      return;
+    }
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      setWaterRenderer("fallback");
+      return;
+    }
 
     const buffer = gl.createBuffer();
     const position = gl.getAttribLocation(program, "a_position");
@@ -256,7 +277,10 @@ export function WaterBackground() {
     const rippleA = gl.getUniformLocation(program, "u_ripple_a");
     const rippleB = gl.getUniformLocation(program, "u_ripple_b");
     const rippleC = gl.getUniformLocation(program, "u_ripple_c");
-    if (!buffer || position < 0 || !resolution || !pointer || !velocity || !time || !activity || !scroll || !ambient || !theme || !ensoStrength || !ensoTrail || !ensoRipples || !rippleA || !rippleB || !rippleC) return;
+    if (!buffer || position < 0 || !resolution || !pointer || !velocity || !time || !activity || !scroll || !ambient || !theme || !ensoStrength || !ensoTrail || !ensoRipples || !rippleA || !rippleB || !rippleC) {
+      setWaterRenderer("fallback");
+      return;
+    }
 
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
@@ -264,6 +288,7 @@ export function WaterBackground() {
     gl.enableVertexAttribArray(position);
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
     canvas.dataset.active = "true";
+    setWaterRenderer("active");
 
     const target = { x: 0.5, y: 0.5 };
     const current = { x: 0.5, y: 0.5 };
@@ -279,18 +304,21 @@ export function WaterBackground() {
     const lowPowerDevice =
       (typeof deviceMemory === "number" && deviceMemory <= 4) ||
       navigator.hardwareConcurrency <= 4;
+    const prefersTouchProfile = () => !finePointer.matches;
+    const compactViewport = () => window.innerWidth < 768;
+    const tabletViewport = () => window.innerWidth < 1100;
+    const performanceProfile = () => lowPowerDevice || prefersTouchProfile() || compactViewport();
     const summitGoldTheme = () => document.body.dataset.waterTheme === "summit-gold";
-    const ambientStrength = lowPowerDevice ? 0.72 : 1.14;
-    const rippleCount = lowPowerDevice ? 2 : 3;
-    const rippleLife = lowPowerDevice ? 14.5 : 17.5;
+    const ambientStrength = performanceProfile() ? 0.56 : 1.14;
+    const rippleCount = performanceProfile() ? 2 : 3;
+    const rippleLife = performanceProfile() ? 11.5 : 17.5;
     const rippleEvents = [
       { x: 0, y: 0, start: -1000, strength: 0, onScreen: 0 },
       { x: 0, y: 0, start: -1000, strength: 0, onScreen: 0 },
       { x: 0, y: 0, start: -1000, strength: 0, onScreen: 0 },
     ];
-    const compactViewport = window.innerWidth < 768;
-    const ensoTrailCount = lowPowerDevice || compactViewport ? 12 : 16;
-    const ensoRippleCount = lowPowerDevice || compactViewport ? 3 : 4;
+    const ensoTrailCount = performanceProfile() ? 10 : 16;
+    const ensoRippleCount = performanceProfile() ? 2 : 4;
     const ensoTrailData = new Float32Array(16 * 4);
     const ensoRippleData = new Float32Array(4 * 4);
     let teamHero: HTMLElement | null = null;
@@ -303,6 +331,7 @@ export function WaterBackground() {
     let ensoSamplesEmitted = 0;
     let ensoRipplesEmitted = 0;
     let nextAmbientRippleAt = 1.2 + Math.random() * 2.4;
+    let lastFrameTime = 0;
 
     const clearEnsoBuffers = () => {
       ensoTrailData.fill(0);
@@ -346,8 +375,8 @@ export function WaterBackground() {
       const viewportWidth = Math.max(window.innerWidth, 1);
       const viewportHeight = Math.max(window.innerHeight, 1);
       const aspectRatio = viewportWidth / viewportHeight;
-      const isMobile = viewportWidth < 768;
-      const isTablet = !isMobile && viewportWidth < 1100;
+      const isMobile = compactViewport();
+      const isTablet = !isMobile && tabletViewport();
       const centerX = aspectRatio * (isMobile ? 0.78 : isTablet ? 0.76 : 0.74);
       const heroCenterViewport = (teamHeroTop + teamHeroHeight * (isMobile ? 0.43 : 0.50) - currentScroll) / viewportHeight;
       const centerY = 1 - heroCenterViewport - worldScroll();
@@ -419,8 +448,7 @@ export function WaterBackground() {
         }
       }
 
-      const isMobile = window.innerWidth < 768;
-      const strength = (lowPowerDevice ? 0.72 : 1.0) * (isMobile ? 0.76 : 1.0);
+      const strength = (performanceProfile() ? 0.68 : 1.0) * (compactViewport() ? 0.72 : 1.0);
       gl.uniform1f(ensoStrength, strength);
       gl.uniform4fv(ensoTrail, ensoTrailData);
       gl.uniform4fv(ensoRipples, ensoRippleData);
@@ -490,8 +518,15 @@ export function WaterBackground() {
     };
 
     const resize = () => {
-      const renderScale = window.innerWidth > 1600 ? 0.55 : 0.65;
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
+      const renderScale = compactViewport()
+        ? 0.32
+        : tabletViewport()
+          ? 0.42
+          : window.innerWidth > 1600
+            ? 0.55
+            : 0.65;
+      const pixelRatioCap = compactViewport() ? 1 : tabletViewport() ? 1.1 : 1.25;
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, pixelRatioCap);
       const width = Math.max(1, Math.round(window.innerWidth * renderScale * pixelRatio));
       const height = Math.max(1, Math.round(window.innerHeight * renderScale * pixelRatio));
       if (canvas.width !== width || canvas.height !== height) {
@@ -512,6 +547,7 @@ export function WaterBackground() {
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      if (!finePointer.matches) return;
       target.x = event.clientX / window.innerWidth;
       target.y = 1 - event.clientY / window.innerHeight;
       const dx = target.x - last.x;
@@ -530,6 +566,21 @@ export function WaterBackground() {
     const render = (now: number) => {
       if (!visible) return;
       const nowSeconds = now * 0.001;
+      const frameInterval = compactViewport() ? 1000 / 24 : tabletViewport() ? 1000 / 28 : 1000 / 36;
+      if (lastFrameTime && now - lastFrameTime < frameInterval) {
+        frame = window.requestAnimationFrame(render);
+        return;
+      }
+      lastFrameTime = now;
+
+      if (!finePointer.matches) {
+        const driftX = 0.5 + Math.sin(nowSeconds * 0.11) * 0.08;
+        const driftY = 0.54 + Math.cos(nowSeconds * 0.08) * 0.06;
+        target.x += (driftX - target.x) * 0.05;
+        target.y += (driftY - target.y) * 0.05;
+        energy = Math.max(energy, 0.1);
+      }
+
       current.x += (target.x - current.x) * 0.065;
       current.y += (target.y - current.y) * 0.065;
       currentScroll += (targetScroll - currentScroll) * 0.075;
@@ -580,7 +631,9 @@ export function WaterBackground() {
     syncTeamHero();
     teamHeroObserver.observe(document.body, { childList: true, subtree: true });
     window.addEventListener("resize", onResize, { passive: true });
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    if (finePointer.matches) {
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
     frame = window.requestAnimationFrame(render);
@@ -594,6 +647,7 @@ export function WaterBackground() {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       teamHeroObserver.disconnect();
       delete canvas.dataset.active;
+      delete document.body.dataset.waterRenderer;
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);

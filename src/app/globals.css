@@ -168,6 +168,10 @@ body[data-water-theme="summit-gold"] .water-background[data-active="true"] {
   mix-blend-mode: normal;
 }
 
+body[data-water-renderer="fallback"] .water-background {
+  display: none;
+}
+
 body[data-water-theme="summit-gold"] .site-header {
   color: #3f2a07;
 }
@@ -371,7 +375,7 @@ body[data-water-theme="summit-gold"] .site-footer a:not(.connect-button):not(.si
   color: #8c5f17;
 }
 
-@media (prefers-reduced-motion: reduce), (pointer: coarse), (hover: none) {
+@media (prefers-reduced-motion: reduce) {
   .water-background {
     display: none;
   }

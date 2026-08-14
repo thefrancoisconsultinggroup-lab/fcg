@@ -829,10 +829,12 @@ export function SummitRegistrationForm({
                   <dt>Current window</dt>
                   <dd>{pricingSummary.rateDetail}</dd>
                 </div>
-                <div>
-                  <dt>Number attending</dt>
-                  <dd>{pricingSummary.attendeeCount}</dd>
-                </div>
+                {pricingSummary.attendeeCount >= 15 ? (
+                  <div>
+                    <dt>Number attending</dt>
+                    <dd>{pricingSummary.attendeeCount}</dd>
+                  </div>
+                ) : null}
                 {pricingSummary.unitPrice ? (
                   <div>
                     <dt>{form.paymentMethod === "bank_transfer" ? "USD price per attendee" : "Price per attendee"}</dt>

@@ -101,9 +101,8 @@ export function HomeImmersiveScene() {
           />
         </Reveal>
         <Reveal className={styles.storyCopy}>
-          <p className={styles.eyebrow}>{story.eyebrow}</p>
           <h2>{story.heading}</h2>
-          {story.body?.slice(0, 2).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          {story.body?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </Reveal>
       </section>
 

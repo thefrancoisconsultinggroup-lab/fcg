@@ -141,7 +141,7 @@ export function SummitOpeningTransition() {
         <div className={styles.summitScene} data-summit-second-scene>
           <div className={styles.openingBackground} aria-hidden="true">
             <Image
-              src="/assets/summit/human-capacity-summit-why.jpg"
+              src="/assets/summit/human-capacity-summit-why.webp"
               alt=""
               fill
               sizes="100vw"
@@ -157,9 +157,9 @@ export function SummitOpeningTransition() {
         </div>
 
         <div className={styles.summitScene} data-summit-first-scene>
-          <div className={styles.openingBackground} aria-hidden="true">
+          <div className={`${styles.openingBackground} ${styles.openingBackgroundHero}`} aria-hidden="true">
             <Image
-              src="/assets/summit/human-capacity-summit-hero.jpg"
+              src="/assets/summit/human-capacity-summit-hero.webp"
               alt=""
               fill
               priority

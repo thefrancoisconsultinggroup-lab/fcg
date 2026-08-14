@@ -6,21 +6,24 @@ export const homePageContent: MigratedPageContent = {
       eyebrow: "Welcome",
       heading: "My Why",
       image: {
-        src: "/assets/images/my-why.png",
+        src: "/assets/images/my-why.webp",
         alt: "Christine Francois",
       },
       body: [
-        "My journey into wellness and transformation is anchored in faith. I’ve walked through grief, watched illness unravel someone I loved, and made choices no woman ever expects to make. But through it all, I never walked alone. God was there, whispering, guiding, comforting, and sometimes carrying me when I had no strength left.",
-        "I believe nothing in my life has been an accident, not even the night a tiny stray kitten chose our doorstep and helped restart our hearts.",
-        "That moment was the beginning of a new chapter; one where healing, love, and purpose found their way back in. I believe that health is sacred, that our bodies and souls are deeply connected, and that every person deserves to feel whole.",
-        "My work today is a direct extension of that belief. I’m not just here to help people improve their health. I’m here to remind them that they’re not alone, that they’re seen, and that restoration is possible, no matter how far gone things may seem.",
+        "I believe every human being carries extraordinary capacity—the capacity to think, create, lead, care, adapt, hope and contribute meaningfully to the world.",
+        "Yet I have also seen how illness, grief, chronic stress and systems that fail to recognise the whole person can gradually diminish that capacity. I know what it means to watch someone you love unravel—and to make choices no woman ever expects to face.",
+        "Those experiences changed the way I understand wellness, leadership and the responsibility we carry for one another.",
+        "They are why François Consulting Group exists.",
+        "FCG was founded to help leaders, organisations and communities recognise, protect and strengthen the human capacity upon which every meaningful future depends. Because healthier organisations, stronger societies and more resilient communities are built by people whose minds, bodies, dignity and potential are supported—not depleted.",
+        "My journey has always been anchored in faith. Through every season, God has guided, comforted and sometimes carried me when I had no strength left. I believe nothing in my life has been accidental—not even the night a tiny stray kitten arrived at our doorstep and helped restart our hearts.",
+        "That same faith continues to shape the work I am called to do: bringing people, knowledge, relationships and resources together to help create a world in which human beings—and the generations who follow us—have the opportunity not merely to survive, but to flourish.",
       ],
     },
     {
       eyebrow: "Wellness",
       heading: "Neumi Wellness",
       body: [
-        "The home experience introduces Neumi wellness products alongside the founder’s wellness story, with practical pathways for everyday vitality and whole-person restoration.",
+        "The home experience introduces Neumi wellness products alongside the founder's wellness story, with practical pathways for everyday vitality and whole-person restoration.",
       ],
       cards: [
         {
@@ -82,7 +85,7 @@ export const homePageContent: MigratedPageContent = {
             src: "/assets/migrated/home/home-neumi-hair-1.webp",
             alt: "Neumi Hair product image",
           },
-          body: ["Anti-Aging For Your Hair™"],
+          body: ["Anti-Aging For Your Hair"],
           links: [
             {
               label: "Shop Neumi Hair",

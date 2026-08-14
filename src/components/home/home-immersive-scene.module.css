@@ -32,10 +32,11 @@
 .path span { color:#7ea2ba; font-size:.72rem; letter-spacing:.15em; }
 .path h3 { margin:0; font-family:var(--font-display),Georgia,serif; font-size:clamp(1.8rem,3.4vw,3.6rem); font-weight:400; }
 .path p { margin:0; color:#a9bfce; line-height:1.55; }
-.story { display:grid; grid-template-columns:1fr 1fr; gap:8vw; align-items:center; }
-.portrait { position:relative; min-height:clamp(31rem,62vw,48rem); overflow:hidden; }
+.story { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(2.5rem,5vw,6.5rem); align-items:start; }
+.portrait { position:relative; min-height:clamp(28rem,54vw,42rem); max-width:34rem; width:100%; justify-self:start; overflow:hidden; }
 .portrait img { object-fit:cover; object-position:top; transition:transform 1.2s cubic-bezier(.22,1,.36,1); }
 .portrait:hover img { transform:scale(1.025); }
+.storyCopy { max-width:46rem; }
 .storyCopy h2 { margin-bottom:2rem; }
 .wellness { width:100%; max-width:none; background:transparent; }
 .wellness>div:first-child { width:min(82rem,calc(100% - 2.5rem)); margin:0 auto; }

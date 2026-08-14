@@ -57,7 +57,6 @@ const pathways = [
     body: "A dedicated summit experience focused on strengthening human capacity in a changing world.",
     href: "/human-capacity-summit",
     cta: "Discover the summit",
-    featured: true,
   },
   {
     label: "05",
@@ -310,7 +309,7 @@ function PathwaysSection() {
         <div className={styles.pathwayList}>
           {pathways.map((pathway) => (
             <ScrollReveal key={pathway.title} className={styles.pathwayReveal}>
-              <article className={pathway.featured ? `${styles.pathway} ${styles.pathwayFeatured}` : styles.pathway}>
+              <article className={styles.pathway}>
                 <span className={styles.pathwayIndex}>{pathway.label}</span>
                 <div>
                   <h3>{pathway.title}</h3>

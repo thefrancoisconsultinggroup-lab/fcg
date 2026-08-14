@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/summit/human-capacity-summit-hero.jpg",
+        url: "/assets/summit/human-capacity-summit-hero.webp",
         width: 1920,
         height: 1080,
         alt: "The Human Capacity Summit",
@@ -37,7 +37,7 @@ const eventStructuredData = {
   name: "The Human Capacity Summit",
   description,
   startDate: "2026-10-02",
-  image: "https://francoisconsultinggroup.com/assets/summit/human-capacity-summit-hero.jpg",
+  image: "https://francoisconsultinggroup.com/assets/summit/human-capacity-summit-hero.webp",
   url: "https://francoisconsultinggroup.com/human-capacity-summit",
   organizer: {
     "@type": "Organization",

@@ -20,12 +20,48 @@
   color: var(--summit-ink);
 }
 
+.page::before,
+.page::after {
+  content: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.page::before {
+  z-index: -2;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 244, 199, 0.52), transparent 18%),
+    radial-gradient(circle at 76% 24%, rgba(242, 199, 92, 0.34), transparent 16%),
+    radial-gradient(circle at 32% 56%, rgba(255, 228, 154, 0.28), transparent 20%),
+    linear-gradient(
+      132deg,
+      rgba(71, 37, 6, 0.7) 0%,
+      rgba(150, 88, 18, 0.52) 18%,
+      rgba(255, 221, 133, 0.48) 30%,
+      rgba(126, 71, 14, 0.58) 45%,
+      rgba(255, 240, 189, 0.34) 58%,
+      rgba(161, 96, 19, 0.5) 74%,
+      rgba(51, 26, 5, 0.7) 100%
+    );
+  filter: saturate(1.08) blur(22px);
+}
+
+.page::after {
+  z-index: -1;
+  opacity: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 248, 231, 0.1) 0%, rgba(255, 228, 154, 0.18) 34%, rgba(112, 64, 11, 0.18) 100%),
+    radial-gradient(circle at 50% 16%, rgba(255, 252, 237, 0.16), transparent 28%);
+}
+
 .openingTransition {
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
-  background: #061936 url("/assets/summit/human-capacity-summit-why.jpg") center / cover no-repeat;
+  background: #061936 url("/assets/summit/human-capacity-summit-why.webp") center / cover no-repeat;
 }
 
 .openingViewport {
@@ -36,7 +72,7 @@
   min-height: 100svh;
   overflow: hidden;
   color: var(--summit-navy);
-  background: #061936 url("/assets/summit/human-capacity-summit-why.jpg") center / cover no-repeat;
+  background: #061936 url("/assets/summit/human-capacity-summit-why.webp") center / cover no-repeat;
   perspective: 1500px;
   transform-style: preserve-3d;
   contain: paint;
@@ -73,6 +109,16 @@
   z-index: 0;
 }
 
+.openingBackgroundHero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 237, 0.26) 0%, rgba(255, 248, 231, 0.12) 20%, rgba(6, 25, 54, 0.18) 62%, rgba(6, 25, 54, 0.32) 100%),
+    radial-gradient(circle at 50% 24%, rgba(255, 252, 237, 0.26), transparent 36%);
+}
+
 .openingImage {
   object-fit: cover;
   object-position: center;
@@ -103,11 +149,23 @@
 }
 
 .heroContent {
+  position: relative;
+  isolation: isolate;
   display: grid;
   justify-items: center;
-  width: min(92rem, 96vw);
-  max-width: none;
+  width: min(96vw, 74rem);
+  max-width: 74rem;
   margin-top: clamp(1.4rem, 4svh, 3rem);
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid rgba(112, 64, 11, 0.2);
+  border-radius: 2rem;
+  background: rgba(255, 248, 231, 0.42);
+  box-shadow: 0 28px 85px rgba(106, 66, 13, 0.12);
+  backdrop-filter: blur(6px) saturate(1.08);
+}
+
+.heroContent::before {
+  content: none;
 }
 
 .heroEyebrow,
@@ -146,21 +204,25 @@
   display: grid;
   gap: 0.18em;
   justify-items: center;
-  width: max-content;
-  max-width: 96vw;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(3.1rem, 6vw, 6.45rem);
+  font-size: clamp(2.85rem, 5.4vw, 5.85rem);
   font-weight: 400;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.03em;
   line-height: 0.84;
   text-align: center;
   text-transform: uppercase;
-  white-space: nowrap;
+  color: #0a2147;
+  text-shadow:
+    0 1px 0 rgba(255, 252, 237, 0.72),
+    0 10px 26px rgba(255, 252, 237, 0.2),
+    0 18px 44px rgba(6, 25, 54, 0.12);
 }
 
 .heroTitle span:nth-child(2) {
-  font-size: 0.84em;
+  font-size: 0.8em;
 }
 
 .heroTitle span:first-child {
@@ -193,6 +255,9 @@
   letter-spacing: 0.01em;
   line-height: 1.22;
   color: var(--summit-navy);
+  text-shadow:
+    0 1px 0 rgba(255, 252, 237, 0.62),
+    0 8px 20px rgba(255, 252, 237, 0.18);
 }
 
 .heroStatements p {
@@ -209,7 +274,10 @@
 }
 
 .heroStatements p:last-child {
-  color: #9b6411;
+  color: #8a5208;
+  text-shadow:
+    0 1px 0 rgba(255, 252, 237, 0.7),
+    0 8px 18px rgba(255, 248, 231, 0.24);
 }
 
 .heroCta,
@@ -239,6 +307,7 @@
   background: rgba(255, 248, 231, 0.54);
   color: var(--summit-navy);
   backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(6, 25, 54, 0.12);
 }
 
 .heroCta:hover,
@@ -299,6 +368,7 @@
   position: relative;
   overflow: hidden;
   background: transparent;
+  z-index: 1;
 }
 
 .section {
@@ -458,6 +528,15 @@
   font-size: clamp(0.86rem, 0.95vw, 1rem);
   font-weight: 800;
   letter-spacing: 0.18em;
+}
+
+.speakerCountry {
+  margin: 0.45rem 0 0;
+  color: rgba(112, 64, 11, 0.88);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .registrationSection {
@@ -1139,6 +1218,10 @@
 @media (max-width: 760px) {
   .heroContent {
     width: min(100%, 34rem);
+    padding: 1.3rem 1.1rem 1.5rem;
+    border-radius: 1.7rem;
+    background: rgba(255, 248, 231, 0.34);
+    backdrop-filter: blur(4px) saturate(1.04);
   }
 
   .heroTitle {
@@ -1179,12 +1262,71 @@
     grid-template-columns: 1fr;
   }
 
+  .sectionIntro,
+  .registrationIntro {
+    position: relative;
+    padding-right: 0.25rem;
+  }
+
+  .sectionIntro h2,
+  .speakerSectionTitle,
+  .registrationIntro h2 {
+    color: #2a1704;
+    text-shadow:
+      0 1px 0 rgba(255, 252, 237, 0.36),
+      0 10px 24px rgba(255, 240, 189, 0.14);
+  }
+
+  .sectionIntro p:last-child,
+  .registrationIntro p {
+    color: rgba(42, 23, 4, 0.78);
+    text-shadow: 0 1px 0 rgba(255, 252, 237, 0.2);
+  }
+
+  .speakerSectionTitle {
+    display: inline;
+    box-decoration-break: clone;
+    padding: 0 0.18em 0.04em 0;
+  }
+
   .speakerCardChristine {
     order: -1;
   }
 
   .capacityCard {
     min-height: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  :global(body[data-water-theme="summit-gold"][data-water-renderer="fallback"]) .page::before {
+    content: "";
+    opacity: 1;
+  }
+
+  :global(body[data-water-theme="summit-gold"][data-water-renderer="fallback"]) .page::after {
+    content: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  :global(body[data-water-theme="summit-gold"][data-water-renderer="fallback"]) .page::before {
+    background:
+      radial-gradient(circle at 20% 12%, rgba(255, 252, 237, 0.82), transparent 18%),
+      radial-gradient(circle at 80% 18%, rgba(242, 199, 92, 0.56), transparent 18%),
+      radial-gradient(circle at 38% 62%, rgba(255, 228, 154, 0.42), transparent 22%),
+      linear-gradient(
+        141deg,
+        rgba(69, 37, 6, 0.92) 0%,
+        rgba(162, 96, 19, 0.78) 18%,
+        rgba(255, 244, 199, 0.64) 31%,
+        rgba(140, 81, 14, 0.82) 45%,
+        rgba(255, 248, 231, 0.5) 56%,
+        rgba(171, 104, 18, 0.72) 72%,
+        rgba(54, 28, 5, 0.9) 100%
+      );
+    filter: saturate(1.22) blur(18px);
   }
 }
 
