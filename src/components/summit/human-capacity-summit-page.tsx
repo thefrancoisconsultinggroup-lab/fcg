@@ -99,10 +99,16 @@ export function HumanCapacitySummitPage({
                             />
                           </div>
                           <div>
-                            <p className={styles.speakerCapacity}>{speaker.capacity}</p>
+                            {speaker.capacity ? (
+                              <p className={styles.speakerCapacity}>{speaker.capacity}</p>
+                            ) : null}
                             <h3>{speaker.name}</h3>
-                            <p className={styles.speakerRole}>{speaker.role}</p>
-                            <p className={styles.speakerCountry}>{speaker.country}</p>
+                            {speaker.role ? (
+                              <p className={styles.speakerRole}>{speaker.role}</p>
+                            ) : null}
+                            {speaker.country ? (
+                              <p className={styles.speakerCountry}>{speaker.country}</p>
+                            ) : null}
                           </div>
                         </ScrollReveal>
                       ))}
