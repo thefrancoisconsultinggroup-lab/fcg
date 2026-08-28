@@ -35,9 +35,9 @@ export const summitIndividualRates = [
   {
     value: "early-bird",
     label: "Early Bird",
-    detail: "Ends August 31, 2026",
+    detail: "Ends September 7, 2026",
     price: 45,
-    endsOn: "2026-08-31",
+    endsOn: "2026-09-07",
   },
   {
     value: "advance",
@@ -65,9 +65,9 @@ export const summitCorporatePackages = [
   {
     value: "corporate-early-bird-10",
     label: "Early Bird Corporate Group of up to 10",
-    detail: "Ends August 31, 2026",
+    detail: "Ends September 7, 2026",
     capacity: 10,
-    endsOn: "2026-08-31",
+    endsOn: "2026-09-07",
     price: 450,
     rateWindow: "early-bird",
     startsOn: undefined,
@@ -76,9 +76,9 @@ export const summitCorporatePackages = [
   {
     value: "corporate-early-bird-20",
     label: "Early Bird Corporate Group of up to 20",
-    detail: "Ends August 31, 2026",
+    detail: "Ends September 7, 2026",
     capacity: 20,
-    endsOn: "2026-08-31",
+    endsOn: "2026-09-07",
     price: 900,
     rateWindow: "early-bird",
     startsOn: undefined,
@@ -93,7 +93,7 @@ export const summitCorporatePackages = [
     originalPrice: undefined,
     price: 600,
     rateWindow: "standard",
-    startsOn: "2026-09-01",
+    startsOn: "2026-09-08",
   },
   {
     value: "corporate-20",
@@ -104,7 +104,7 @@ export const summitCorporatePackages = [
     originalPrice: undefined,
     price: 1200,
     rateWindow: "standard",
-    startsOn: "2026-09-01",
+    startsOn: "2026-09-08",
   },
 ] as const satisfies ReadonlyArray<{
   capacity: number;

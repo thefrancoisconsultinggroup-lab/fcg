@@ -36,15 +36,15 @@ export default function RefundCancellationPolicyPage() {
       <section>
         <h2>Refund Schedule</h2>
         <article>
-          <h3>Early Bird Registration (through August 31, 2026)</h3>
+          <h3>Early Bird Registration (through September 7, 2026)</h3>
           <p>
             Registrations may be cancelled for a <strong>full refund</strong> if the request is
             received within <strong>14 days of the original purchase date</strong> and no later
-            than <strong>August 31, 2026</strong>.
+            than <strong>September 7, 2026</strong>.
           </p>
         </article>
         <article>
-          <h3>Advanced Registration (September 1 to September 25, 2026)</h3>
+          <h3>Advanced Registration (September 8 to September 25, 2026)</h3>
           <p>
             Registrations may be cancelled for a <strong>50% refund</strong> if the request is
             received on or before <strong>September 25, 2026</strong>.

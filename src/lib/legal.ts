@@ -8,11 +8,11 @@ export const legalPolicyVersions = {
   },
   refund: {
     effectiveDate: "2026-08-06",
-    lastUpdated: "2026-08-06",
+    lastUpdated: "2026-08-28",
     published: true,
     route: "/refund-cancellation-policy",
     title: "Refund and Cancellation Policy",
-    version: "2026-08-06",
+    version: "2026-08-28",
   },
   terms: {
     effectiveDate: "2026-08-06",
