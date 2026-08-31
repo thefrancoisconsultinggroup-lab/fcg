@@ -69,6 +69,10 @@ export const summitSpeakers = [
     frame: "circle",
     imagePosition: "50% 16%",
     imageScale: 1.12,
+    bio: [
+      "Judy Oxley Fullerton's expertise extends across regulatory compliance and strategic marketing. Her proficiency in organizational leadership, coaching, sales, and team building underscores her capacity to navigate diverse challenges and foster organizational success. Judy's adeptness at training both staff and customers ensures alignment with company objectives, bolstering operational efficiency and customer satisfaction alike.",
+      "Professional Certification: MSc Organizational Leadership; Professional Certified Coach.",
+    ],
   },
   {
     id: "christine",
@@ -117,6 +121,11 @@ export const summitSpeakers = [
     frame: "circle",
     imagePosition: "50% 18%",
     imageScale: 1.08,
+    bio: [
+      "Derval Barzey is an Environmental Sustainability Consultant, speaker and host of The Climate Conscious Podcast, founded to amplify Caribbean perspectives on climate action and sustainable development.",
+      "With over a decade of experience across environmental and social impact assessment, risk management, sustainable energy policy and ESG frameworks, Derval connects global environmental decisions with their consequences for individuals, communities and climate-vulnerable Small Island Developing States.",
+      "She holds an MBA in Sustainable Energy Management, BSc in Environmental and Natural Resource Management and a Sustainability and Climate Risk Certificate from GARP. Derval also advances regional climate justice through Caribbean Women for Climate Justice and the Caribbean Climate Justice Alliance.",
+    ],
   },
   {
     id: "karl",
@@ -129,6 +138,11 @@ export const summitSpeakers = [
     frame: "circle",
     imagePosition: "50% 31%",
     imageScale: 0.98,
+    bio: [
+      "Karl Thompson is a former Wall Street banker, business and financial consultant, entrepreneur and author with decades of experience advising households, organisations and governments nationally, regionally and globally.",
+      "At the heart of Karl’s work is the belief that financial capacity can be strengthened at every stage of life. Through practical education, strategic planning and economic insight, he helps people and organisations understand their present position, recognise the choices available to them and take purposeful steps towards greater resilience, sustainability and growth.",
+      "Known for combining financial expertise with warmth and humour, Karl makes complex financial principles relatable, relevant and actionable.",
+    ],
   },
   {
     id: "nicole",
@@ -147,12 +161,17 @@ export const summitSpeakers = [
     name: "Gregory Arneaud",
     group: "contributing",
     capacity: "Health Capacity",
-    country: "",
-    role: "Certified Respiratory Therapist | Founder & Clinical Director | ISD Health Solutions",
-    image: "/assets/images/droplet.jpeg",
+    country: "Barbados",
+    role: "Sleep and Respiratory Care Specialist | Entrepreneur | Author | Speaker | Founder and Clinical Director of ISD Health Solutions",
+    image: "/assets/summit/gregory-arneaud.jpeg",
     frame: "circle",
     imagePosition: "50% 50%",
     imageScale: 1,
+    bio: [
+      "Gregory Arneaud is a sleep and respiratory care specialist, entrepreneur, author and speaker with over 25 years of healthcare experience.",
+      "As Founder and Clinical Director of iSD Health Solutions, he advances sleep-health education, diagnostic access, treatment and patient support across the Caribbean. His work demonstrates that sleep is not a luxury, but a foundation of physical health, emotional wellbeing, cognitive performance, workplace safety and quality of life.",
+      "A respiratory therapist, Certified Sleep Coach and US Air Force veteran, Gregory is the author of The Wake Up Call! How You Sleep Is How You Live and a dedicated advocate for accessible sleep care.",
+    ],
   },
 ] as const;
 

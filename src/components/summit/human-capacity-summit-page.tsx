@@ -1,15 +1,13 @@
-import Image from "next/image";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { Container } from "@/components/ui/container";
 import {
   summitCapacities,
-  summitSpeakerSections,
-  summitSpeakers,
   summitUnderstanding,
   summitVoicesIntro,
 } from "@/data/human-capacity-summit";
 import { SummitOpeningTransition } from "./summit-opening-transition";
 import { SummitRegistrationForm } from "./summit-registration-form";
+import { SummitSpeakerShowcase } from "./summit-speaker-showcase";
 import styles from "./human-capacity-summit.module.css";
 
 export function HumanCapacitySummitPage({
@@ -57,66 +55,7 @@ export function HumanCapacitySummitPage({
               <h2 id="summit-voices-title">{summitVoicesIntro.heading}</h2>
               <p>{summitVoicesIntro.body}</p>
             </ScrollReveal>
-            <div className={styles.speakerSections}>
-              {summitSpeakerSections.map((section) => {
-                const sectionSpeakers = summitSpeakers.filter(
-                  (speaker) => speaker.group === section.group,
-                );
-
-                if (!sectionSpeakers.length) {
-                  return null;
-                }
-
-                return (
-                  <div key={section.group} className={styles.speakerSectionGroup}>
-                    <ScrollReveal>
-                      <h3 className={styles.speakerSectionTitle}>{section.title}</h3>
-                    </ScrollReveal>
-                    <div className={styles.speakerGrid}>
-                      {sectionSpeakers.map((speaker, index) => (
-                        <ScrollReveal
-                          key={`${section.group}-${speaker.name}-${index}`}
-                          className={`${styles.speakerCard} ${
-                            speaker.name === "Christine D. Francois"
-                              ? styles.speakerCardChristine
-                              : ""
-                          }`}
-                        >
-                          <div className={styles.speakerPortrait}>
-                            <Image
-                              src={speaker.image}
-                              alt={speaker.name}
-                              width={430}
-                              height={430}
-                              sizes="(min-width: 1024px) 16rem, (min-width: 640px) 32vw, 66vw"
-                              style={{
-                                objectFit: "cover",
-                                objectPosition: speaker.imagePosition ?? "50% 50%",
-                                transform: speaker.imageScale
-                                  ? `scale(${speaker.imageScale})`
-                                  : undefined,
-                              }}
-                            />
-                          </div>
-                          <div>
-                            {speaker.capacity ? (
-                              <p className={styles.speakerCapacity}>{speaker.capacity}</p>
-                            ) : null}
-                            <h3>{speaker.name}</h3>
-                            {speaker.role ? (
-                              <p className={styles.speakerRole}>{speaker.role}</p>
-                            ) : null}
-                            {speaker.country ? (
-                              <p className={styles.speakerCountry}>{speaker.country}</p>
-                            ) : null}
-                          </div>
-                        </ScrollReveal>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <SummitSpeakerShowcase />
           </Container>
         </section>
 

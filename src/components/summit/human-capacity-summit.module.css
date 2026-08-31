@@ -492,12 +492,61 @@
   gap: clamp(1rem, 1.8vw, 1.8rem);
 }
 
+.speakerGrid > div {
+  min-width: 0;
+}
+
 .speakerCard {
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100%;
   padding: clamp(1.1rem, 1.7vw, 1.45rem);
   border-radius: 2rem;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.speakerCardInteractive {
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.speakerCardInteractive:hover {
+  border-color: rgba(169, 104, 18, 0.48);
+  box-shadow: 0 30px 80px rgba(59, 39, 13, 0.18);
+  transform: translateY(-3px);
+}
+
+.speakerCardInteractive:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 4px;
+}
+
+.speakerCardPrompt {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1.3rem;
+  color: var(--gold-amber);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.speakerCardPrompt span {
+  font-size: 1rem;
+  transition: transform 180ms ease;
+}
+
+.speakerCardInteractive:hover .speakerCardPrompt span {
+  transform: translate(2px, -2px);
 }
 
 .speakerPortrait {
@@ -537,6 +586,130 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.speakerDialog {
+  position: relative;
+  z-index: 100;
+}
+
+.speakerDialogBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 24, 41, 0.72);
+  backdrop-filter: blur(12px);
+  transition: opacity 220ms ease;
+}
+
+.speakerDialogViewport {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.speakerDialogPanel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(20rem, 1.28fr);
+  width: min(100%, 68rem);
+  max-height: min(90svh, 48rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 228, 154, 0.5);
+  border-radius: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--summit-cream);
+  box-shadow: 0 40px 120px rgba(3, 13, 25, 0.42);
+}
+
+.speakerDialogPortrait {
+  position: relative;
+  min-height: 32rem;
+  overflow: hidden;
+  background: var(--summit-sun);
+}
+
+.speakerDialogPortrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(6, 25, 54, 0.16));
+  pointer-events: none;
+}
+
+.speakerDialogContent {
+  overflow-y: auto;
+  padding: clamp(2rem, 5vw, 4.25rem);
+}
+
+.speakerDialogContent h2 {
+  margin: 0.65rem 0 0;
+  color: var(--summit-navy);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.speakerDialogMeta {
+  margin: 1rem 0 0;
+  color: var(--gold-amber);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.speakerBio {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(112, 64, 11, 0.18);
+}
+
+.speakerBio p {
+  margin: 0;
+  color: rgba(23, 25, 20, 0.78);
+  font-size: clamp(0.96rem, 1.1vw, 1.06rem);
+  line-height: 1.72;
+}
+
+.speakerDialogClose {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(112, 64, 11, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 248, 231, 0.88);
+  color: var(--summit-navy);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(6, 25, 54, 0.12);
+  backdrop-filter: blur(8px);
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.speakerDialogClose:hover {
+  background: #fff;
+  transform: rotate(5deg);
+}
+
+.speakerDialogClose:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.speakerDialogClose svg {
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .registrationSection {
@@ -1291,6 +1464,32 @@
 
   .speakerCardChristine {
     order: -1;
+  }
+
+  .speakerDialogViewport {
+    align-items: end;
+    padding: 0.65rem;
+  }
+
+  .speakerDialogPanel {
+    grid-template-columns: 1fr;
+    max-height: calc(100svh - 1.3rem);
+    overflow-y: auto;
+    border-radius: 1.5rem;
+  }
+
+  .speakerDialogPortrait {
+    min-height: 15rem;
+    max-height: 34svh;
+  }
+
+  .speakerDialogContent {
+    overflow: visible;
+    padding: 1.7rem 1.35rem 2rem;
+  }
+
+  .speakerDialogContent h2 {
+    font-size: clamp(2.3rem, 12vw, 3.4rem);
   }
 
   .capacityCard {
