@@ -110,19 +110,22 @@ export function SummitSpeakerShowcase() {
                 >
                   <X aria-hidden="true" />
                 </button>
-                <div className={styles.speakerDialogPortrait}>
-                  <Image
-                    src={selectedSpeaker.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 700px) 100vw, 24rem"
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: selectedSpeaker.imagePosition ?? "50% 50%",
-                    }}
-                  />
-                </div>
-                <div className={styles.speakerDialogContent}>
+                <div className={styles.speakerDialogIdentity}>
+                  <div className={styles.speakerDialogPortrait}>
+                    <Image
+                      src={selectedSpeaker.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 700px) 13rem, 18rem"
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: selectedSpeaker.imagePosition ?? "50% 50%",
+                        transform: selectedSpeaker.imageScale
+                          ? `scale(${selectedSpeaker.imageScale})`
+                          : undefined,
+                      }}
+                    />
+                  </div>
                   {selectedSpeaker.capacity ? (
                     <p className={styles.speakerCapacity}>{selectedSpeaker.capacity}</p>
                   ) : null}
@@ -130,6 +133,9 @@ export function SummitSpeakerShowcase() {
                   <p className={styles.speakerDialogMeta}>
                     {[selectedSpeaker.role, selectedSpeaker.country].filter(Boolean).join(" · ")}
                   </p>
+                </div>
+                <div className={styles.speakerDialogContent}>
+                  <p className={styles.speakerDialogBioLabel}>Biography</p>
                   <div className={styles.speakerBio}>
                     {selectedSpeaker.bio.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>

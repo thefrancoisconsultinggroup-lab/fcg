@@ -148,7 +148,7 @@ export const summitSpeakers = [
     id: "nicole",
     name: "Nicole Quan Kep",
     group: "contributing",
-    capacity: "",
+    capacity: "Organizational Capacity",
     country: "Hong Kong",
     role: "Founder | Power10HK & KEP-STAR",
     image: "/assets/migrated/about-us/nicole-quan-kep.jpg",
