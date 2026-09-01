@@ -85,6 +85,10 @@ export const summitSpeakers = [
     frame: "circle",
     imagePosition: "50% -8%",
     imageScale: 1.32,
+    bio: [
+      "Christine D. François is a Corporate Wellness Strategist, Executive Trainer and Founder of François Consulting Group. Her experience spans banking, corporate communications, employee engagement and workplace wellness, helping leaders and organisations strengthen the human foundations of sustainable performance.",
+      "A passionate brain health and holistic wellness advocate certified by the American Brain Council, Christine brings focus to cognitive wellbeing, resilience and leadership capacity. As creator and convener of the Human Capacity Summit, she studies how forces reshaping our world influence our ability to recognise, activate and leverage our innate human capacities—individually and collectively—for the wellbeing and advancement of our families, communities, organisations and generations to come.",
+    ],
   },
   {
     id: "wendy",
@@ -97,6 +101,11 @@ export const summitSpeakers = [
     frame: "circle",
     imagePosition: "52% 19%",
     imageScale: 1.56,
+    bio: [
+      "Captain Wendy Yawching is a pioneering aviator, author and inspirational speaker whose journey demonstrates how lived experience can build courage, resilience and the capacity to reinvent.",
+      "During her 28-year aviation career, she made history as the first female Captain of Trinidad and Tobago’s national airline. She later became the first Trinidadian woman to hike the trail to Mount Everest Base Camp and the country’s first certified Master Feng Shui Consultant.",
+      "Author of The Courage to Fly and honored as a 2023 “Living Caribbean Legend,” Wendy now inspires women, young people and corporate audiences to transform challenge, change and unfamiliar terrain into wisdom, possibility and purposeful action.",
+    ],
   },
   {
     id: "david",
@@ -109,6 +118,11 @@ export const summitSpeakers = [
     frame: "circle",
     imagePosition: "50% 50%",
     imageScale: 1,
+    bio: [
+      "David R. Larsen, MFHD, is Director of Education for the American Brain Council and a Brain Optimization Specialist, with training in family and human development and preventing and reversing age-related cognitive decline.",
+      "As a former Master Trainer for the Alzheimer’s Association’s Maintain Your Brain program and continuing education instructor, David has taught over 3,000 healthcare professionals nationally strategies to reduce the risk of cognitive decline. He is a published Alzheimer’s researcher and co-author of Alzheimer’s Can Be Stopped Now! Here’s How and A User’s Guide for How to Maintain a Healthy Brain.",
+      "His work promotes cognitive performance and healthier aging.",
+    ],
   },
   {
     id: "derval",
