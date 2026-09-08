@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { summitHero, summitWhy } from "@/data/human-capacity-summit";
+import { SummitAgendaModal } from "./summit-agenda-modal";
 import styles from "./human-capacity-summit.module.css";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -185,10 +186,13 @@ export function SummitOpeningTransition() {
                 </p>
                 <p>{summitHero.statements[2]}</p>
               </div>
-              <a className={styles.heroCta} href="#summit-registration">
-                {summitHero.cta}
-                <ArrowRight aria-hidden="true" className={styles.ctaIcon} />
-              </a>
+              <div className={styles.heroActions}>
+                <a className={styles.heroCta} href="#summit-registration">
+                  {summitHero.cta}
+                  <ArrowRight aria-hidden="true" className={styles.ctaIcon} />
+                </a>
+                <SummitAgendaModal />
+              </div>
             </div>
           </Container>
         </div>

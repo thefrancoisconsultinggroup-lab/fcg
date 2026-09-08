@@ -58,7 +58,7 @@ export function validateSummitRegistrationPayload(
   const corporatePackage = stringValue(payload.corporatePackage) as SummitCorporatePackageValue;
   const attendeeCount = Number.parseInt(stringValue(payload.attendeeCount), 10);
 
-  if (!firstName || !lastName || !email || !country || !organization || !role) {
+  if (!firstName || !lastName || !email || !country) {
     return { ok: false, message: "Please complete all required registration fields." };
   }
 

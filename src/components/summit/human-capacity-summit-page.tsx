@@ -10,6 +10,10 @@ import { SummitRegistrationForm } from "./summit-registration-form";
 import { SummitSpeakerShowcase } from "./summit-speaker-showcase";
 import styles from "./human-capacity-summit.module.css";
 
+const summitWhatsAppMessage =
+  "Hello, I’m interested in The Human Capacity Summit and would like some additional information before registering.";
+const summitWhatsAppUrl = `https://wa.me/18683133744?text=${encodeURIComponent(summitWhatsAppMessage)}`;
+
 export function HumanCapacitySummitPage({
   bankTransferEnabled,
   paypalClientId,
@@ -73,6 +77,12 @@ export function HumanCapacitySummitPage({
                   Thank you for your interest in The Human Capacity Summit. Please complete
                   the form below to reserve your place in this important conversation.
                 </p>
+                <div className={styles.registrationContact}>
+                  <strong>Need more info?</strong>
+                  <a href={summitWhatsAppUrl} target="_blank" rel="noreferrer">
+                    WhatsApp Us
+                  </a>
+                </div>
               </ScrollReveal>
               <ScrollReveal className={styles.formShell}>
                 <SummitRegistrationForm

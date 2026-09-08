@@ -34,7 +34,7 @@ function SpeakerDetails({ speaker }: { speaker: Speaker }) {
       </div>
       <div>
         {speaker.capacity ? <p className={styles.speakerCapacity}>{speaker.capacity}</p> : null}
-        <h3>{speaker.name}</h3>
+        {speaker.name ? <h3>{speaker.name}</h3> : null}
         {speaker.role ? <p className={styles.speakerRole}>{speaker.role}</p> : null}
         {speaker.country ? <p className={styles.speakerCountry}>{speaker.country}</p> : null}
       </div>

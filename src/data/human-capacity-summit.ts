@@ -12,6 +12,68 @@ export const summitWhy = {
   body: "The questions shaping our future can no longer be answered in isolation. The Human Capacity Summit brings together thought leaders, changemakers and visionaries from every sector and every nation to explore the bold ideas, shared responsibilities and innovative solutions our world needs—together.",
 };
 
+export const summitAgenda = {
+  date: "Friday, October 2, 2026",
+  time: "10:00 a.m.–1:15 p.m. EST",
+  format: "Virtual",
+  founder: "Christine D. François",
+  moderator: "Captain Wendy Yawching",
+  sessions: [
+    { time: "10:00 a.m.–10:15 a.m.", title: "Summit Launch" },
+    {
+      time: "10:15 a.m.–10:35 a.m.",
+      title: "Leadership Capacity",
+      speaker: "Judy Oxley-Fullerton",
+      speakerIds: ["judy"],
+    },
+    {
+      time: "10:35 a.m.–10:55 a.m.",
+      title: "Environmental Capacity",
+      speaker: "Derval Barzey",
+      speakerIds: ["derval"],
+    },
+    {
+      time: "10:55 a.m.–11:15 a.m.",
+      title: "Experiential Capacity",
+      speaker: "Captain Wendy Yawching",
+      speakerIds: ["wendy"],
+      detail: "Living Your Biggest Life with Courage",
+    },
+    { time: "11:15 a.m.–11:20 a.m.", title: "Movement and Cognitive Break", kind: "pause" },
+    {
+      time: "11:20 a.m.–11:40 a.m.",
+      title: "Financial Capacity",
+      speaker: "Karl Thompson",
+      speakerIds: ["karl"],
+    },
+    {
+      time: "11:40 a.m.–12:00 p.m.",
+      title: "Cognitive Capacity",
+      speaker: "David R. Larsen, MFHD",
+      speakerIds: ["david"],
+    },
+    {
+      time: "12:00 p.m.–12:20 p.m.",
+      title: "Health Capacity",
+      speaker: "Gregory Arneaud",
+      speakerIds: ["gregory"],
+    },
+    { time: "12:20 p.m.–12:25 p.m.", title: "Capacity Reset", kind: "pause" },
+    {
+      time: "12:25 p.m.–12:45 p.m.",
+      title: "Interdisciplinary Panel",
+      detail: "Leadership • Financial • Environmental • Health Capacity",
+      speakerIds: ["judy", "karl", "derval", "gregory"],
+    },
+    {
+      time: "12:45 p.m.–1:15 p.m.",
+      title: "Closing Invitation, Collaborative Action Experience and Summit Close",
+      speaker: "Christine D. François",
+      speakerIds: ["christine"],
+    },
+  ],
+} as const;
+
 export const summitUnderstanding = {
   heading: "Understanding Human Capacity",
   body: "A thriving life depends on more than one dimension of wellbeing. The Human Capacity Summit explores the interconnected capacities that shape how we think, lead, work, relate, adapt and flourish. Each voice contributes a different perspective to one shared conversation.",
@@ -160,15 +222,15 @@ export const summitSpeakers = [
   },
   {
     id: "nicole",
-    name: "Nicole Quan Kep",
+    name: "",
     group: "contributing",
     capacity: "Organizational Capacity",
-    country: "Hong Kong",
-    role: "Founder | Power10HK & KEP-STAR",
-    image: "/assets/migrated/about-us/nicole-quan-kep.jpg",
+    country: "",
+    role: "",
+    image: "/assets/images/droplet.jpeg",
     frame: "circle",
-    imagePosition: "50% -8%",
-    imageScale: 1.34,
+    imagePosition: "50% 50%",
+    imageScale: 1,
   },
   {
     id: "gregory",

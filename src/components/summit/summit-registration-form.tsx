@@ -147,8 +147,6 @@ export function SummitRegistrationForm({
   }, now);
   const pricingSummary = pricing.ok ? pricing.summary : null;
   const usdTotal = pricingSummary?.total ?? 0;
-  const bankTransferTotal = usdTotal * summitBankTransferExchangeRate;
-  const total = form.paymentMethod === "bank_transfer" ? bankTransferTotal : usdTotal;
   const standardIndividualRate = summitIndividualRates.find((rate) => rate.value === "standard");
   const countdown = summitCountdown(
     countdownMinute === null ? null : new Date(countdownMinute * 60_000),
@@ -582,7 +580,11 @@ export function SummitRegistrationForm({
                   />
                   <span>
                     <strong>Individual</strong>
-                    <small>{activeIndividualRate ? `${activeIndividualRate.label}: $${activeIndividualRate.price} per attendee` : "Registration closed"}</small>
+                    <small>
+                      {activeIndividualRate
+                        ? `${activeIndividualRate.label}: ${formatDualSummitPrice(activeIndividualRate.price)} per attendee`
+                        : "Registration closed"}
+                    </small>
                   </span>
                 </label>
                 <label className={styles.typeCard}>
@@ -654,22 +656,20 @@ export function SummitRegistrationForm({
                   onChange={(event) => updateField("country", event.target.value)}
                 />
               </FormField>
-              <FormField label="Organization" htmlFor="summit-organization" required>
+              <FormField label="Organization" htmlFor="summit-organization">
                 <input
                   id="summit-organization"
                   name="organization"
                   autoComplete="organization"
-                  required
                   value={form.organization}
                   onChange={(event) => updateField("organization", event.target.value)}
                 />
               </FormField>
-              <FormField label="Role / Title" htmlFor="summit-role" required>
+              <FormField label="Role / Title" htmlFor="summit-role">
                 <input
                   id="summit-role"
                   name="role"
                   autoComplete="organization-title"
-                  required
                   value={form.role}
                   onChange={(event) => updateField("role", event.target.value)}
                 />
@@ -837,22 +837,22 @@ export function SummitRegistrationForm({
                 ) : null}
                 {pricingSummary.unitPrice ? (
                   <div>
-                    <dt>{form.paymentMethod === "bank_transfer" ? "USD price per attendee" : "Price per attendee"}</dt>
-                    <dd>{formatSummitCurrency("USD", pricingSummary.unitPrice)}</dd>
+                    <dt>Price per attendee</dt>
+                    <dd>{formatDualSummitPrice(pricingSummary.unitPrice)}</dd>
                   </div>
                 ) : null}
                 {pricingSummary.originalPrice ? (
                   <div>
                     <dt>Regular package price</dt>
                     <dd>
-                      <s>{formatSummitCurrency("USD", pricingSummary.originalPrice)}</s>
+                      <s>{formatDualSummitPrice(pricingSummary.originalPrice)}</s>
                     </dd>
                   </div>
                 ) : null}
                 {pricingSummary.fixedPackagePrice ? (
                   <div>
-                    <dt>{form.paymentMethod === "bank_transfer" ? "Original USD package price" : "Selected package price"}</dt>
-                    <dd>{formatSummitCurrency("USD", pricingSummary.fixedPackagePrice)}</dd>
+                    <dt>Selected package price</dt>
+                    <dd>{formatDualSummitPrice(pricingSummary.fixedPackagePrice)}</dd>
                   </div>
                 ) : null}
                 <div>
@@ -866,8 +866,8 @@ export function SummitRegistrationForm({
                       <dd>USD 1 = TTD 7</dd>
                     </div>
                     <div>
-                      <dt>TTD amount due</dt>
-                      <dd>{formatSummitCurrency("TTD", bankTransferTotal)}</dd>
+                      <dt>Bank transfer amount due</dt>
+                      <dd>{formatDualSummitPrice(usdTotal)}</dd>
                     </div>
                   </>
                 ) : null}
@@ -965,11 +965,7 @@ export function SummitRegistrationForm({
 
           <div className={styles.totalRow}>
             <span>Total</span>
-            <strong>
-              {form.paymentMethod === "bank_transfer"
-                ? formatSummitCurrency("TTD", total)
-                : formatSummitCurrency("USD", total)}
-            </strong>
+            <strong>{formatDualSummitPrice(usdTotal)}</strong>
           </div>
 
           <button type="submit" disabled={isStatusBusy}>
@@ -1239,10 +1235,17 @@ function PriceDisplay({
 }) {
   return (
     <b className={styles.priceStack}>
-      {originalPrice ? <s>${originalPrice.toLocaleString("en-US")}</s> : null}
-      <span>${price.toLocaleString("en-US")}</span>
+      {originalPrice ? <s>{formatDualSummitPrice(originalPrice)}</s> : null}
+      <span>{formatDualSummitPrice(price)}</span>
     </b>
   );
+}
+
+function formatDualSummitPrice(usdAmount: number) {
+  return `${formatSummitCurrency("USD", usdAmount)} / ${formatSummitCurrency(
+    "TTD",
+    usdAmount * summitBankTransferExchangeRate,
+  )}`;
 }
 
 function countdownLabel(endsOn: string, now: Date) {

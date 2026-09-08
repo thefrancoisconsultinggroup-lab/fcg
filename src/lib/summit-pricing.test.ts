@@ -225,6 +225,26 @@ test("Browser-submitted manipulated amount is ignored", () => {
   assert.equal(result.ok && result.registration.pricing.total, 450);
 });
 
+test("Organization and role are optional in server-side validation", () => {
+  const result = validateSummitRegistrationPayload(
+    {
+      attendeeCount: "1",
+      country: "TT",
+      email: "tester@example.com",
+      firstName: "Test",
+      lastName: "User",
+      paymentMethod: "paypal",
+      policyAcceptance: true,
+      registrationType: "individual",
+    },
+    earlyBirdDate,
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(result.ok && result.registration.details.organization, "");
+  assert.equal(result.ok && result.registration.details.role, "");
+});
+
 test("Server-side validation rejects missing policy acceptance", () => {
   const result = validateSummitRegistrationPayload(
     {
