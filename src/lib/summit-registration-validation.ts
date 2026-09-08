@@ -50,6 +50,7 @@ export function validateSummitRegistrationPayload(
   const firstName = stringValue(payload.firstName);
   const lastName = stringValue(payload.lastName);
   const email = stringValue(payload.email).toLowerCase();
+  const phone = stringValue(payload.phone);
   const country = stringValue(payload.country);
   const organization = stringValue(payload.organization);
   const role = stringValue(payload.role);
@@ -58,7 +59,7 @@ export function validateSummitRegistrationPayload(
   const corporatePackage = stringValue(payload.corporatePackage) as SummitCorporatePackageValue;
   const attendeeCount = Number.parseInt(stringValue(payload.attendeeCount), 10);
 
-  if (!firstName || !lastName || !email || !country) {
+  if (!firstName || !lastName || !email || !phone || !country) {
     return { ok: false, message: "Please complete all required registration fields." };
   }
 
@@ -106,7 +107,7 @@ export function validateSummitRegistrationPayload(
         hopes: stringValue(payload.hopes),
         lastName,
         organization,
-        phone: stringValue(payload.phone),
+        phone,
         role,
       },
       paymentMethod,

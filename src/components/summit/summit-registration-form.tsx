@@ -147,7 +147,6 @@ export function SummitRegistrationForm({
   }, now);
   const pricingSummary = pricing.ok ? pricing.summary : null;
   const usdTotal = pricingSummary?.total ?? 0;
-  const standardIndividualRate = summitIndividualRates.find((rate) => rate.value === "standard");
   const countdown = summitCountdown(
     countdownMinute === null ? null : new Date(countdownMinute * 60_000),
   );
@@ -635,13 +634,14 @@ export function SummitRegistrationForm({
                   onChange={(event) => updateField("email", event.target.value)}
                 />
               </FormField>
-              <FormField label="Mobile / WhatsApp" htmlFor="summit-phone">
+              <FormField label="Mobile / WhatsApp" htmlFor="summit-phone" required>
                 <input
                   id="summit-phone"
                   name="phone"
                   type="tel"
                   autoComplete="tel"
                   placeholder="Including country code"
+                  required
                   value={form.phone}
                   onChange={(event) => updateField("phone", event.target.value)}
                 />
@@ -729,12 +729,7 @@ export function SummitRegistrationForm({
                           : `${rate.detail} - not currently available`}
                       </small>
                     </span>
-                    <PriceDisplay
-                      originalPrice={
-                        rate.value === "early-bird" ? standardIndividualRate?.price : undefined
-                      }
-                      price={rate.price}
-                    />
+                    <PriceDisplay price={rate.price} />
                   </div>
                 );
               })}

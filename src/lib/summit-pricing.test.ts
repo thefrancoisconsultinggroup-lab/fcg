@@ -194,6 +194,7 @@ test("Invalid registration type is rejected by server-side validation", () => {
       lastName: "User",
       organization: "Example Co",
       paymentMethod: "paypal",
+      phone: "+1 868 555 0100",
       registrationType: "live-test",
       role: "Leader",
     },
@@ -214,6 +215,7 @@ test("Browser-submitted manipulated amount is ignored", () => {
       manipulatedAmount: "1",
       organization: "Example Co",
       paymentMethod: "paypal",
+      phone: "+1 868 555 0100",
       policyAcceptance: true,
       registrationType: "individual",
       role: "Leader",
@@ -234,6 +236,7 @@ test("Organization and role are optional in server-side validation", () => {
       firstName: "Test",
       lastName: "User",
       paymentMethod: "paypal",
+      phone: "+1 868 555 0100",
       policyAcceptance: true,
       registrationType: "individual",
     },
@@ -243,6 +246,25 @@ test("Organization and role are optional in server-side validation", () => {
   assert.equal(result.ok, true);
   assert.equal(result.ok && result.registration.details.organization, "");
   assert.equal(result.ok && result.registration.details.role, "");
+});
+
+test("Mobile contact is required by server-side validation", () => {
+  const result = validateSummitRegistrationPayload(
+    {
+      attendeeCount: "1",
+      country: "TT",
+      email: "tester@example.com",
+      firstName: "Test",
+      lastName: "User",
+      paymentMethod: "paypal",
+      policyAcceptance: true,
+      registrationType: "individual",
+    },
+    earlyBirdDate,
+  );
+
+  assert.equal(result.ok, false);
+  assert.equal(result.ok ? "" : result.message, "Please complete all required registration fields.");
 });
 
 test("Server-side validation rejects missing policy acceptance", () => {
@@ -255,6 +277,7 @@ test("Server-side validation rejects missing policy acceptance", () => {
       lastName: "User",
       organization: "Example Co",
       paymentMethod: "paypal",
+      phone: "+1 868 555 0100",
       registrationType: "individual",
       role: "Leader",
     },

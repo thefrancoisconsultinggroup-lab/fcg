@@ -1508,10 +1508,11 @@
 
 .dualPrice {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.18rem 0.42rem;
   align-items: baseline;
   justify-content: flex-end;
+  white-space: nowrap;
 }
 
 .dualPrice > span {
