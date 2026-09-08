@@ -582,7 +582,7 @@ export function SummitRegistrationForm({
                     <strong>Individual</strong>
                     <small>
                       {activeIndividualRate
-                        ? `${activeIndividualRate.label}: ${formatDualSummitPrice(activeIndividualRate.price)} per attendee`
+                        ? <>{activeIndividualRate.label}: <DualSummitPrice usdAmount={activeIndividualRate.price} /> per attendee</>
                         : "Registration closed"}
                     </small>
                   </span>
@@ -724,8 +724,9 @@ export function SummitRegistrationForm({
                     <span>
                       <strong>{rate.label}</strong>
                       <small>
-                        {isActive ? rate.detail : `${rate.detail} - not currently available`}
-                        {isActive ? ` | ${countdownLabel(rate.endsOn, now)}` : ""}
+                        {isActive
+                          ? rateAvailabilityLabel(rate.detail, rate.endsOn, now)
+                          : `${rate.detail} - not currently available`}
                       </small>
                     </span>
                     <PriceDisplay
@@ -838,21 +839,21 @@ export function SummitRegistrationForm({
                 {pricingSummary.unitPrice ? (
                   <div>
                     <dt>Price per attendee</dt>
-                    <dd>{formatDualSummitPrice(pricingSummary.unitPrice)}</dd>
+                    <dd><DualSummitPrice usdAmount={pricingSummary.unitPrice} /></dd>
                   </div>
                 ) : null}
                 {pricingSummary.originalPrice ? (
                   <div>
                     <dt>Regular package price</dt>
                     <dd>
-                      <s>{formatDualSummitPrice(pricingSummary.originalPrice)}</s>
+                      <s><DualSummitPrice usdAmount={pricingSummary.originalPrice} /></s>
                     </dd>
                   </div>
                 ) : null}
                 {pricingSummary.fixedPackagePrice ? (
                   <div>
                     <dt>Selected package price</dt>
-                    <dd>{formatDualSummitPrice(pricingSummary.fixedPackagePrice)}</dd>
+                    <dd><DualSummitPrice usdAmount={pricingSummary.fixedPackagePrice} /></dd>
                   </div>
                 ) : null}
                 <div>
@@ -867,7 +868,7 @@ export function SummitRegistrationForm({
                     </div>
                     <div>
                       <dt>Bank transfer amount due</dt>
-                      <dd>{formatDualSummitPrice(usdTotal)}</dd>
+                      <dd><DualSummitPrice usdAmount={usdTotal} /></dd>
                     </div>
                   </>
                 ) : null}
@@ -965,7 +966,11 @@ export function SummitRegistrationForm({
 
           <div className={styles.totalRow}>
             <span>Total</span>
-            <strong>{formatDualSummitPrice(usdTotal)}</strong>
+            <strong>
+              {form.paymentMethod === "bank_transfer"
+                ? formatSummitCurrency("TTD", usdTotal * summitBankTransferExchangeRate)
+                : formatSummitCurrency("USD", usdTotal)}
+            </strong>
           </div>
 
           <button type="submit" disabled={isStatusBusy}>
@@ -1235,17 +1240,27 @@ function PriceDisplay({
 }) {
   return (
     <b className={styles.priceStack}>
-      {originalPrice ? <s>{formatDualSummitPrice(originalPrice)}</s> : null}
-      <span>{formatDualSummitPrice(price)}</span>
+      {originalPrice ? <s><DualSummitPrice usdAmount={originalPrice} /></s> : null}
+      <span><DualSummitPrice usdAmount={price} /></span>
     </b>
   );
 }
 
-function formatDualSummitPrice(usdAmount: number) {
-  return `${formatSummitCurrency("USD", usdAmount)} / ${formatSummitCurrency(
-    "TTD",
-    usdAmount * summitBankTransferExchangeRate,
-  )}`;
+function DualSummitPrice({ usdAmount }: { usdAmount: number }) {
+  return (
+    <span className={styles.dualPrice}>
+      <span>{formatSummitCurrency("USD", usdAmount)}</span>
+      <i>or</i>
+      <span>
+        {formatSummitCurrency("TTD", usdAmount * summitBankTransferExchangeRate)}
+      </span>
+    </span>
+  );
+}
+
+function rateAvailabilityLabel(detail: string, endsOn: string, now: Date) {
+  const countdown = countdownLabel(endsOn, now);
+  return countdown === detail ? detail : `${detail} | ${countdown}`;
 }
 
 function countdownLabel(endsOn: string, now: Date) {

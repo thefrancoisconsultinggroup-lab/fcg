@@ -1492,7 +1492,7 @@
   display: grid;
   justify-items: end;
   gap: 0.1rem;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .priceStack s {
@@ -1504,6 +1504,27 @@
 .priceStack span {
   color: #87520b;
   font-size: 1.12rem;
+}
+
+.dualPrice {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.18rem 0.42rem;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.dualPrice > span {
+  white-space: nowrap;
+}
+
+.dualPrice i {
+  color: rgba(23, 25, 20, 0.52);
+  font-size: 0.64em;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .optionCard input,
@@ -1638,6 +1659,7 @@
   color: #a16013;
   font-size: 1.6rem;
   letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .policyConsent {
