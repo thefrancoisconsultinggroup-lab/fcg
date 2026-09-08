@@ -1931,6 +1931,38 @@
     grid-template-columns: 1fr;
   }
 
+  .rateCard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rateCard .priceStack {
+    justify-items: start;
+  }
+
+  .optionCard {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .optionCard .priceStack {
+    grid-column: 2;
+    justify-items: start;
+  }
+
+  .rateCard .dualPrice,
+  .optionCard .dualPrice {
+    justify-content: flex-start;
+  }
+
+  .orderSummary div {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .orderSummary dd {
+    text-align: left;
+  }
+
   .sectionIntro,
   .registrationIntro {
     position: relative;
