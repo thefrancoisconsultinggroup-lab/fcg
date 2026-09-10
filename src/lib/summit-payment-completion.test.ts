@@ -38,9 +38,9 @@ const baseRecord: SummitPaymentRecord = {
   pricing: {
     attendeeCount: 1,
     categoryLabel: "Individual",
-    rateDetail: "Early Bird",
-    rateLabel: "Early Bird",
-    rateValue: "early-bird",
+    rateDetail: "Ends October 1, 2026",
+    rateLabel: "Standard Registration",
+    rateValue: "standard",
     total: 45,
     unitPrice: 45,
   },
@@ -276,7 +276,7 @@ test("create-order route stores the server-calculated Summit price and PayPal or
         method: "POST",
         body: JSON.stringify({
           attendeeCount: "7",
-          corporatePackage: "corporate-early-bird-10",
+          corporatePackage: "corporate-10",
           country: "TT",
           email: "team@example.com",
           firstName: "Team",

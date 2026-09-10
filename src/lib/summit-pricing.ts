@@ -33,8 +33,8 @@ export type SummitPriceSummary = {
 
 export const summitIndividualRates = [
   {
-    value: "early-bird",
-    label: "Early Bird",
+    value: "standard",
+    label: "Standard Registration",
     detail: "Ends October 1, 2026",
     price: 45,
     endsOn: "2026-10-01",
@@ -49,23 +49,23 @@ export const summitIndividualRates = [
 
 export const summitCorporatePackages = [
   {
-    value: "corporate-early-bird-10",
-    label: "Early Bird Corporate Group of up to 10",
+    value: "corporate-10",
+    label: "Standard Corporate Registration Package - Up to 10",
     detail: "Ends October 1, 2026",
     capacity: 10,
     endsOn: "2026-10-01",
     price: 450,
-    rateWindow: "early-bird",
+    rateWindow: "standard",
     startsOn: undefined,
   },
   {
-    value: "corporate-early-bird-20",
-    label: "Early Bird Corporate Group of up to 20",
+    value: "corporate-20",
+    label: "Standard Corporate Registration Package - Up to 20",
     detail: "Ends October 1, 2026",
     capacity: 20,
     endsOn: "2026-10-01",
     price: 900,
-    rateWindow: "early-bird",
+    rateWindow: "standard",
     startsOn: undefined,
   },
 ] as const satisfies ReadonlyArray<{

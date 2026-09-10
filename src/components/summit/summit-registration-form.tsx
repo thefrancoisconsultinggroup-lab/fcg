@@ -597,8 +597,8 @@ export function SummitRegistrationForm({
                     onChange={() => updateRegistrationType("corporate")}
                   />
                   <span>
-                    <strong>Corporate Group</strong>
-                    <small>Early Bird packages for up to 10 or 20 attendees</small>
+                    <strong>Corporate Registration Packages</strong>
+                    <small>Standard packages for up to 10 or 20 attendees</small>
                   </span>
                 </label>
               </div>
@@ -737,12 +737,12 @@ export function SummitRegistrationForm({
               })}
             </div>
             <p className={styles.fieldHint}>
-              The Early Bird rate is available through October 1, 2026.
+              Standard registration is available through October 1, 2026.
             </p>
           </section>
         ) : (
           <fieldset className={styles.fieldset}>
-            <legend>Corporate package</legend>
+            <legend>Corporate registration packages</legend>
             <p className={styles.fieldHint}>
               Corporate packages are fixed prices and are not multiplied by attendee count.
             </p>
