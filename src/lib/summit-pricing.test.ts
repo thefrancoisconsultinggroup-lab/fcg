@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { summitPaymentAmounts } from "@/lib/summit-bank-transfer";
 import { calculateSummitPrice } from "@/lib/summit-pricing";
 import { isSummitPaymentCaptured } from "@/lib/summit-registration-records";
 import { validateSummitRegistrationPayload } from "@/lib/summit-registration-validation";
 
 const earlyBirdDate = new Date("2026-07-23T12:00:00.000Z");
-const advanceDate = new Date("2026-09-10T12:00:00.000Z");
-const standardDate = new Date("2026-09-29T12:00:00.000Z");
+const extendedEarlyBirdDate = new Date("2026-09-29T12:00:00.000Z");
 
 test("1 Early Bird attendee = US$45", () => {
   const result = calculateSummitPrice({ attendeeCount: 1, registrationType: "individual" }, earlyBirdDate);
@@ -20,26 +20,22 @@ test("10 Early Bird attendees = US$450", () => {
   assert.equal(result.ok && result.summary.total, 450);
 });
 
-test("10 Advance attendees = US$750", () => {
-  const result = calculateSummitPrice({ attendeeCount: 10, registrationType: "individual" }, advanceDate);
+test("10 individual attendees remain US$450 during the extended Early Bird window", () => {
+  const result = calculateSummitPrice(
+    { attendeeCount: 10, registrationType: "individual" },
+    extendedEarlyBirdDate,
+  );
   assert.equal(result.ok, true);
-  assert.equal(result.ok && result.summary.total, 750);
+  assert.equal(result.ok && result.summary.total, 450);
 });
 
-test("20 Standard attendees = US$2,100", () => {
-  const result = calculateSummitPrice({ attendeeCount: 20, registrationType: "individual" }, standardDate);
+test("20 individual attendees remain US$900 during the extended Early Bird window", () => {
+  const result = calculateSummitPrice(
+    { attendeeCount: 20, registrationType: "individual" },
+    extendedEarlyBirdDate,
+  );
   assert.equal(result.ok, true);
-  assert.equal(result.ok && result.summary.total, 2100);
-});
-
-test("Corporate Group of 10 with 10 attendees = US$600", () => {
-  const result = calculateSummitPrice({
-    attendeeCount: 10,
-    corporatePackage: "corporate-10",
-    registrationType: "corporate",
-  }, advanceDate);
-  assert.equal(result.ok, true);
-  assert.equal(result.ok && result.summary.total, 600);
+  assert.equal(result.ok && result.summary.total, 900);
 });
 
 test("Early Bird Corporate Group of 10 with 10 attendees = US$450", () => {
@@ -50,7 +46,7 @@ test("Early Bird Corporate Group of 10 with 10 attendees = US$450", () => {
   }, earlyBirdDate);
   assert.equal(result.ok, true);
   assert.equal(result.ok && result.summary.total, 450);
-  assert.equal(result.ok && result.summary.originalPrice, 600);
+  assert.equal(result.ok && result.summary.originalPrice, undefined);
 });
 
 test("Early Bird Corporate Group of 20 with 20 attendees = US$900", () => {
@@ -61,126 +57,117 @@ test("Early Bird Corporate Group of 20 with 20 attendees = US$900", () => {
   }, earlyBirdDate);
   assert.equal(result.ok, true);
   assert.equal(result.ok && result.summary.total, 900);
-  assert.equal(result.ok && result.summary.originalPrice, 1200);
+  assert.equal(result.ok && result.summary.originalPrice, undefined);
 });
 
-test("Regular Corporate packages are rejected during Early Bird", () => {
-  const result = calculateSummitPrice(
-    {
-      attendeeCount: 10,
-      corporatePackage: "corporate-10",
-      registrationType: "corporate",
-    },
-    earlyBirdDate,
+test("Individual and corporate bank-transfer totals use the advertised TTD prices", () => {
+  const individual = calculateSummitPrice(
+    { attendeeCount: 1, registrationType: "individual" },
+    extendedEarlyBirdDate,
   );
-  assert.equal(result.ok, false);
+  const corporate10 = calculateSummitPrice({
+    attendeeCount: 10,
+    corporatePackage: "corporate-early-bird-10",
+    registrationType: "corporate",
+  }, extendedEarlyBirdDate);
+  const corporate20 = calculateSummitPrice({
+    attendeeCount: 20,
+    corporatePackage: "corporate-early-bird-20",
+    registrationType: "corporate",
+  }, extendedEarlyBirdDate);
+
+  assert.equal(individual.ok && summitPaymentAmounts(individual.summary, "bank_transfer").amountDue, 315);
+  assert.equal(corporate10.ok && summitPaymentAmounts(corporate10.summary, "bank_transfer").amountDue, 3150);
+  assert.equal(corporate20.ok && summitPaymentAmounts(corporate20.summary, "bank_transfer").amountDue, 6300);
 });
 
-test("Early Bird Corporate packages are rejected after Early Bird ends", () => {
-  const result = calculateSummitPrice(
-    {
-      attendeeCount: 10,
-      corporatePackage: "corporate-early-bird-10",
-      registrationType: "corporate",
-    },
-    advanceDate,
-  );
-  assert.equal(result.ok, false);
-});
-
-for (const [instant, earlyBirdActive] of [
-  ["2026-09-01T00:00:00-04:00", true],
-  ["2026-09-07T23:59:59.999-04:00", true],
-  ["2026-09-08T00:00:00-04:00", false],
+for (const [instant, registrationOpen] of [
+  ["2026-10-01T00:00:00-04:00", true],
+  ["2026-10-01T23:59:59.999-04:00", true],
+  ["2026-10-02T00:00:00-04:00", false],
 ] as const) {
-  test(`Individual rate switches only after September 7 in Trinidad: ${instant}`, () => {
+  test(`Individual Early Bird registration closes after October 1 in Trinidad: ${instant}`, () => {
     const result = calculateSummitPrice(
       { attendeeCount: 1, registrationType: "individual" },
       new Date(instant),
     );
-    assert.equal(result.ok, true);
-    assert.equal(result.ok && result.summary.rateValue, earlyBirdActive ? "early-bird" : "advance");
-    assert.equal(result.ok && result.summary.total, earlyBirdActive ? 45 : 75);
+    assert.equal(result.ok, registrationOpen);
+    assert.equal(result.ok && result.summary.rateValue, registrationOpen ? "early-bird" : false);
+    assert.equal(result.ok && result.summary.total, registrationOpen ? 45 : false);
   });
 
-  test(`Corporate packages switch without overlap after September 7 in Trinidad: ${instant}`, () => {
+  test(`Corporate Early Bird registration closes after October 1 in Trinidad: ${instant}`, () => {
     for (const capacity of [10, 20] as const) {
       const earlyBird = calculateSummitPrice({
         attendeeCount: capacity,
         corporatePackage: `corporate-early-bird-${capacity}`,
         registrationType: "corporate",
       }, new Date(instant));
-      const standard = calculateSummitPrice({
-        attendeeCount: capacity,
-        corporatePackage: `corporate-${capacity}`,
-        registrationType: "corporate",
-      }, new Date(instant));
-      assert.equal(earlyBird.ok, earlyBirdActive);
-      assert.equal(standard.ok, !earlyBirdActive);
+      assert.equal(earlyBird.ok, registrationOpen);
     }
   });
 }
 
-test("Corporate Group of 10 with 7 attendees = US$600", () => {
+test("Corporate Group of 10 with 7 attendees = US$450", () => {
   const result = calculateSummitPrice({
     attendeeCount: 7,
-    corporatePackage: "corporate-10",
+    corporatePackage: "corporate-early-bird-10",
     registrationType: "corporate",
-  }, advanceDate);
+  }, extendedEarlyBirdDate);
   assert.equal(result.ok, true);
-  assert.equal(result.ok && result.summary.total, 600);
+  assert.equal(result.ok && result.summary.total, 450);
 });
 
 test("Corporate Group of 10 with 11 attendees = rejected", () => {
   const result = calculateSummitPrice({
     attendeeCount: 11,
-    corporatePackage: "corporate-10",
+    corporatePackage: "corporate-early-bird-10",
     registrationType: "corporate",
-  }, advanceDate);
+  }, extendedEarlyBirdDate);
   assert.equal(result.ok, false);
 });
 
-test("Corporate Group of 20 with 19 attendees = US$1,200", () => {
+test("Corporate Group of 20 with 19 attendees = US$900", () => {
   const result = calculateSummitPrice({
     attendeeCount: 19,
-    corporatePackage: "corporate-20",
+    corporatePackage: "corporate-early-bird-20",
     registrationType: "corporate",
-  }, advanceDate);
+  }, extendedEarlyBirdDate);
   assert.equal(result.ok, true);
-  assert.equal(result.ok && result.summary.total, 1200);
+  assert.equal(result.ok && result.summary.total, 900);
 });
 
-test("Corporate Group of 20 with 20 attendees = US$1,200", () => {
+test("Corporate Group of 20 with 20 attendees = US$900", () => {
   const result = calculateSummitPrice({
     attendeeCount: 20,
-    corporatePackage: "corporate-20",
+    corporatePackage: "corporate-early-bird-20",
     registrationType: "corporate",
-  }, advanceDate);
+  }, extendedEarlyBirdDate);
   assert.equal(result.ok, true);
-  assert.equal(result.ok && result.summary.total, 1200);
+  assert.equal(result.ok && result.summary.total, 900);
 });
 
 test("Corporate Group of 20 with 21 attendees = rejected", () => {
   const result = calculateSummitPrice({
     attendeeCount: 21,
-    corporatePackage: "corporate-20",
+    corporatePackage: "corporate-early-bird-20",
     registrationType: "corporate",
-  }, advanceDate);
+  }, extendedEarlyBirdDate);
   assert.equal(result.ok, false);
 });
 
 test("Switching from Corporate package to Individual registration recalculates total correctly", () => {
   const corporate = calculateSummitPrice({
     attendeeCount: 7,
-    corporatePackage: "corporate-10",
+    corporatePackage: "corporate-early-bird-10",
     registrationType: "corporate",
-  }, advanceDate);
+  }, extendedEarlyBirdDate);
   const individual = calculateSummitPrice(
-    { attendeeCount: 7, corporatePackage: "corporate-10", registrationType: "individual" },
-    earlyBirdDate,
+    { attendeeCount: 7, corporatePackage: "corporate-early-bird-10", registrationType: "individual" },
+    extendedEarlyBirdDate,
   );
 
-  assert.equal(corporate.ok && corporate.summary.total, 600);
+  assert.equal(corporate.ok && corporate.summary.total, 450);
   assert.equal(individual.ok && individual.summary.total, 315);
 });
 

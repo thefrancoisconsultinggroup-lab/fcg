@@ -1426,7 +1426,7 @@
 
 .optionCard {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0.85rem;
   align-items: center;
   padding: 0.88rem 0.9rem;
@@ -1441,8 +1441,8 @@
 }
 
 .rateCard {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
   padding: 0.88rem 0.9rem;
@@ -1490,7 +1490,7 @@
 
 .priceStack {
   display: grid;
-  justify-items: end;
+  justify-items: start;
   gap: 0.1rem;
   white-space: normal;
 }
@@ -1511,7 +1511,7 @@
   flex-wrap: nowrap;
   gap: 0.18rem 0.42rem;
   align-items: baseline;
-  justify-content: flex-end;
+  justify-content: flex-start;
   white-space: nowrap;
 }
 
@@ -1531,6 +1531,10 @@
 .optionCard input,
 .paymentOption input {
   accent-color: var(--summit-gold);
+}
+
+.optionCard .priceStack {
+  grid-column: 2;
 }
 
 .optionCard:has(input:checked),
@@ -1945,8 +1949,13 @@
   }
 
   .optionCard .priceStack {
-    grid-column: 2;
+    grid-column: 1 / -1;
     justify-items: start;
+  }
+
+  .rateCard .priceStack span,
+  .optionCard .priceStack span {
+    font-size: 1rem;
   }
 
   .rateCard .dualPrice,

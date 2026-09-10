@@ -276,7 +276,7 @@ test("create-order route stores the server-calculated Summit price and PayPal or
         method: "POST",
         body: JSON.stringify({
           attendeeCount: "7",
-          corporatePackage: "corporate-10",
+          corporatePackage: "corporate-early-bird-10",
           country: "TT",
           email: "team@example.com",
           firstName: "Team",
@@ -297,7 +297,7 @@ test("create-order route stores the server-calculated Summit price and PayPal or
     assert.equal(response.status, 200);
     assert.equal(body.orderId, "ORDER-RETRY");
     assert.equal(stored?.paypalOrderId, "ORDER-RETRY");
-    assert.equal(stored?.pricing.total, 600);
+    assert.equal(stored?.pricing.total, 450);
     assert.equal(stored?.pricing.attendeeCount, 7);
     assert.equal(stored?.status, "pending_approval");
   });

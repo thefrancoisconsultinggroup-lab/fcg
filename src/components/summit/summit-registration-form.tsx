@@ -137,7 +137,9 @@ export function SummitRegistrationForm({
   const activeIndividualRate = getActiveSummitIndividualRate(now);
   const activeCorporatePackages = useMemo(() => getActiveSummitCorporatePackages(now), [now]);
   const activeCorporatePackageValues = useMemo(
-    () => new Set(activeCorporatePackages.map((corporatePackage) => corporatePackage.value)),
+    () => new Set<SummitCorporatePackageValue>(
+      activeCorporatePackages.map((corporatePackage) => corporatePackage.value),
+    ),
     [activeCorporatePackages],
   );
   const pricing = calculateSummitPrice({
@@ -596,7 +598,7 @@ export function SummitRegistrationForm({
                   />
                   <span>
                     <strong>Corporate Group</strong>
-                    <small>Early bird and standard packages for 10 or 20 attendees</small>
+                    <small>Early Bird packages for up to 10 or 20 attendees</small>
                   </span>
                 </label>
               </div>
@@ -735,7 +737,7 @@ export function SummitRegistrationForm({
               })}
             </div>
             <p className={styles.fieldHint}>
-              The active rate is applied automatically based on the registration date.
+              The Early Bird rate is available through October 1, 2026.
             </p>
           </section>
         ) : (
@@ -779,7 +781,7 @@ export function SummitRegistrationForm({
                           : `${option.detail} - not currently available`}
                       </small>
                     </span>
-                    <PriceDisplay originalPrice={option.originalPrice} price={option.price} />
+                    <PriceDisplay price={option.price} />
                   </label>
                 );
               })}
